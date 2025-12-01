@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -6,6 +6,14 @@ function App() {
     <>
       <AmountOfProducts />
     </>
+  );
+}
+
+export function ContainerForProducts() {
+  return (
+    <section>
+      <AmountOfProducts />
+    </section>
   );
 }
 
