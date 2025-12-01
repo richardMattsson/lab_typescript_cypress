@@ -28,6 +28,6 @@ describe("AmountOfProducts.cy.jsx", () => {
     cy.get("[data-cy=decrement-button]").should("be.visible").click();
     cy.get('[data-cy="amount-of-products"]')
       .should("be.visible")
-      .should("have.text", 1);
+      .should("have.text", 0);
   });
 });

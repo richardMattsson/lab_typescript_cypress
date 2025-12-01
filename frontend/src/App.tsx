@@ -13,6 +13,9 @@ export function AmountOfProducts() {
   const [amount, setAmount] = useState(0);
   return (
     <>
+      <button data-cy="decrement-button" onClick={() => setAmount(amount - 1)}>
+        -
+      </button>
       <span data-cy="amount-of-products">{amount}</span>
       <button data-cy="increment-button" onClick={() => setAmount(amount + 1)}>
         +
