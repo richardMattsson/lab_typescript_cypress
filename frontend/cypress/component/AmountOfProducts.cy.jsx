@@ -30,4 +30,14 @@ describe("AmountOfProducts.cy.jsx", () => {
       .should("be.visible")
       .should("have.text", 0);
   });
+
+  it("decrement button should not affect amount when amount is 0", () => {
+    cy.get('[data-cy="amount-of-products"]')
+      .should("be.visible")
+      .should("have.text", 0);
+    cy.get("[data-cy=decrement-button]").should("be.visible").click();
+    cy.get('[data-cy="amount-of-products"]')
+      .should("be.visible")
+      .should("have.text", 0);
+  });
 });
