@@ -1,7 +1,24 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <AmountOfProducts />
+    </>
+  );
+}
+
+export function AmountOfProducts() {
+  const [amount, setAmount] = useState(0);
+  return (
+    <>
+      <span data-cy="amount-of-products">{amount}</span>
+      <button data-cy="increment-button" onClick={() => setAmount(amount + 1)}>
+        +
+      </button>
+    </>
+  );
 }
 
 export default App;
