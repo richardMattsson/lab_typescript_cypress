@@ -1,4 +1,4 @@
-import { Children, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
   );
 }
 
-export function ContainerForProducts() {
+export function ProductCard() {
   return (
-    <section>
+    <section data-cy="product-card" className="product-card">
       <AmountOfProducts />
     </section>
   );

@@ -1,10 +1,12 @@
-import { ContainerForProducts } from "../../src/App";
+import { ProductCard } from "../../src/App";
 
 describe("ContainerForProducts.cy.jsx", () => {
   it("playground", () => {
-    cy.mount(<ContainerForProducts />);
-    cy.get("[data-cy=container-products]")
-      .should("have.class", "container-for-products")
-      .should("have.css", "border");
+    cy.mount(<ProductCard />);
+    cy.get("[data-cy=product-card]")
+      .should("be.visible")
+      .should("have.class", "product-card")
+      .should("have.css", "border")
+      .and("equal", "1px solid rgb(0, 0, 0)");
   });
 });
