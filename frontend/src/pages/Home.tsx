@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
+import type { ProductType } from "../components/ProductContainer";
 
-export default function Home() {
+type HomeProps = {
+  addToCart: (product: ProductType) => void;
+};
+
+export default function Home({ addToCart }: HomeProps) {
   const [products, setProducts] = useState();
 
   useEffect(() => {
@@ -17,5 +22,11 @@ export default function Home() {
     getProducts();
   }, []);
 
-  return <>{products && <ProductContainer products={products} />}</>;
+  return (
+    <>
+      {products && (
+        <ProductContainer addToCart={addToCart} products={products} />
+      )}
+    </>
+  );
 }

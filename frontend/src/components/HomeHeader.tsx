@@ -1,13 +1,16 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import type { ProductType } from "./ProductContainer";
 
-export default function HomeHeader() {
-  const [someVariable] = useState(false);
+type HomeHeaderProps = {
+  cart: ProductType[] | null;
+};
+
+export default function HomeHeader({ cart }: HomeHeaderProps) {
   return (
     <header className="home-header">
       <HomeTitle />
       <AccountIcon />
-      <CartIcon someVariable={someVariable} />
+      <CartIcon cart={cart} />
     </header>
   );
 }
@@ -20,16 +23,12 @@ export function HomeTitle() {
   );
 }
 
-export function CartIcon({ someVariable }: { someVariable: boolean }) {
+export function CartIcon({ cart }: HomeHeaderProps) {
   return (
     <Link className="link" to={"/cart"}>
       <img
         data-cy="shopping-cart"
-        src={
-          someVariable
-            ? "shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-            : "add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-        }
+        src={cart === null ? "shopping_cart.svg" : "add_shopping_cart.svg"}
         alt="shopping cart icon"
       />
     </Link>

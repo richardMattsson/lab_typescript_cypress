@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type ProductType = {
+export type ProductType = {
   id: string;
   name: string;
   category: string;
@@ -13,15 +13,20 @@ type ProductType = {
 
 type ProductContainerProps = {
   products: ProductType[];
+  addToCart: (product: ProductType) => void;
 };
 
-export default function ProductContainer({ products }: ProductContainerProps) {
+export default function ProductContainer({
+  products,
+  addToCart,
+}: ProductContainerProps) {
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
     null
   );
   const handleClick = (product: ProductType) => {
     setSelectedProduct(product);
   };
+
   return (
     <article className="product-container" data-cy="product-container">
       {products &&
@@ -34,6 +39,7 @@ export default function ProductContainer({ products }: ProductContainerProps) {
 
       {selectedProduct && (
         <ProductModal
+          addToCart={addToCart}
           onClose={() => setSelectedProduct(null)}
           product={selectedProduct}
         />
@@ -91,9 +97,11 @@ export function ProductImage({ width }: { width?: string }) {
 export function ProductModal({
   product,
   onClose,
+  addToCart,
 }: {
   product: ProductType;
   onClose: () => void;
+  addToCart: (product: ProductType) => void;
 }) {
   return (
     <section className="product-modal-background">
@@ -118,7 +126,7 @@ export function ProductModal({
 
         <AmountOfProducts />
 
-        <AddToCart onClose={onClose} />
+        <AddToCart onClose={onClose} addToCart={() => addToCart(product)} />
       </section>
     </section>
   );
@@ -154,7 +162,17 @@ export function AmountOfProducts() {
   );
 }
 
-export function AddToCart({ onClose }: { onClose: () => void }) {
+export function AddToCart({
+  onClose,
+  addToCart,
+}: {
+  onClose: () => void;
+  addToCart: () => void;
+}) {
+  const handleClick = () => {
+    addToCart();
+    onClose();
+  };
   return (
     <section
       style={{
@@ -166,7 +184,13 @@ export function AddToCart({ onClose }: { onClose: () => void }) {
       <span className="underscore text-align cursor" onClick={onClose}>
         Gå tillbaka
       </span>
-      <span className="underscore text-align cursor">Lägg till</span>
+      <span
+        className="underscore text-align cursor"
+        data-cy="add-to-cart-button"
+        onClick={handleClick}
+      >
+        Lägg till
+      </span>
     </section>
   );
 }

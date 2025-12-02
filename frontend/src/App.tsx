@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="" style={{ padding: "25px" }}>
+    <div style={{ padding: "25px" }}>
       <Router />
     </div>
   );
