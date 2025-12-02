@@ -10,6 +10,7 @@ const {
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  video: true,
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({
@@ -21,6 +22,7 @@ module.exports = defineConfig({
 
       return config;
     },
+    baseUrl: "http://localhost:5173",
     specPattern: [
       // E2E-filer Cypress letar efter som standard
       "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
