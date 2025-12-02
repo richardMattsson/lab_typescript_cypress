@@ -4,6 +4,8 @@ Todo:
 
 <!-- Lägga till router -->
 
+Lägga till tanStack Query
+
 Bygga account
 
 - E2E tester:
@@ -17,4 +19,5 @@ Bygga account
 5. Innehåller beställningen rätt kundinformation?
 6. Är kostnaden för beställningen rätt?
 7. Går det att redigera beställningen? Ta bort en produkt?
-8. Går det att logga in och logga ut?
+8. Går det att genomföra ett köp?
+9. Går det att logga in och logga ut?

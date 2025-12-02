@@ -9,6 +9,11 @@ export default function Cart({ cart }: CartProps) {
     <>
       <article data-cy="order-container">
         {cart && cart.map((product) => <OrderCard product={product} />)}
+        {cart && (
+          <p className="text-align-end">
+            Total: {cart.reduce((acc, cur) => acc + cur.price, 0)} kr
+          </p>
+        )}
       </article>
     </>
   );
@@ -18,9 +23,9 @@ export function OrderCard({ product }: { product: ProductType }) {
   return (
     <>
       {product && (
-        <section data-cy="order-card">
-          <p>{product.name}</p>
-          <p>{product.price} kr</p>
+        <section className="order-card" data-cy="order-card">
+          <span>{product.name}</span>
+          <span>{product.price} kr</span>
         </section>
       )}
     </>

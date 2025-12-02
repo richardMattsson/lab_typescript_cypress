@@ -11,8 +11,6 @@ export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>([]);
 
   const addToCart = (product: ProductType) => {
-    console.log(product);
-
     setCart((prev) => [...(prev || []), product]);
   };
   const router = createHashRouter([

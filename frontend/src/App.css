@@ -30,16 +30,13 @@ body {
   display: grid;
 
   gap: 10px;
-  /* border: 1px solid #333; */
 }
 
 .product-card {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
+  grid-template-columns: 40% auto;
   border: 1px solid #333;
   padding: 15px;
-  cursor: pointer;
 }
 
 .product-item {
@@ -52,17 +49,13 @@ body {
   align-items: center;
   gap: 10px;
 }
-.product-description {
-  /* border: 1px solid #333; */
-  margin: 0;
-}
 
 .product-amount {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  /* border: 1px solid #333; */
+  /* justify-content: center; */
+  width: 150px;
 }
 
 .product-modal {
@@ -92,13 +85,36 @@ body {
   background: #fff;
 }
 
-.text-align {
+.order-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.text-align-center {
   text-align: center;
 }
 
-.cursor {
+.text-align-end {
+  text-align: end;
+}
+
+.pointer {
   cursor: pointer;
 }
 .underscore {
   text-decoration: underline;
+}
+.border {
+  border: 1px solid #333;
+}
+.no-margin {
+  margin: 0;
+}
+
+.change-amount {
+  width: 40px;
+}
+
+.amount-number {
+  font-size: 1.5em;
 }

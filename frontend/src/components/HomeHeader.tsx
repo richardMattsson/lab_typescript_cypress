@@ -18,7 +18,8 @@ export default function HomeHeader({ cart }: HomeHeaderProps) {
 export function HomeTitle() {
   return (
     <Link className="link" to={"/"}>
-      <h1>Some</h1>
+      <h1>Morgonlimpan</h1>
+      {/* Nybakat Brödhem Bread Home  */}
     </Link>
   );
 }
