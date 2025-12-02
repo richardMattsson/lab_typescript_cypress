@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomeHeader() {
+  const [someVariable] = useState(false);
   return (
     <header className="home-header">
       <HomeTitle />
       <AccountIcon />
-      <CartIcon />
+      <CartIcon someVariable={someVariable} />
     </header>
   );
 }
@@ -18,11 +20,16 @@ export function HomeTitle() {
   );
 }
 
-export function CartIcon() {
+export function CartIcon({ someVariable }: { someVariable: boolean }) {
   return (
     <Link className="link" to={"/cart"}>
       <img
-        src="shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+        data-cy="shopping-cart"
+        src={
+          someVariable
+            ? "shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            : "add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+        }
         alt="shopping cart icon"
       />
     </Link>

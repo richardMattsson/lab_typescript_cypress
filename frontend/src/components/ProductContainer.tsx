@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 type ProductType = {
-  id: "bread_001";
-  name: "Fralla Naturell";
-  category: "frallor";
-  description: "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.";
-  price: 8.0;
-  weight: 65;
-  stock: 120;
-  image: "/images/fralla-naturell.jpg";
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  price: number;
+  weight: number;
+  stock: number;
+  image: string;
 };
 
 type ProductContainerProps = {
@@ -23,7 +23,7 @@ export default function ProductContainer({ products }: ProductContainerProps) {
     setSelectedProduct(product);
   };
   return (
-    <article className="product-container">
+    <article className="product-container" data-cy="product-container">
       {products &&
         products.map((product) => (
           <ProductCard
