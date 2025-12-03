@@ -8,41 +8,26 @@ type HomeHeaderProps = {
 export default function HomeHeader({ cart }: HomeHeaderProps) {
   return (
     <header className="home-header">
-      <HomeTitle />
-      <AccountIcon />
-      <CartIcon cart={cart} />
+      <Link className="link" to={"/"}>
+        <h1>frukostbröd</h1>
+      </Link>
+      <Link className="link" to={"/account"}>
+        <img
+          src="account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="account icon"
+        />
+      </Link>
+      <Link className="link" to={"/cart"}>
+        <img
+          data-cy="shopping-cart"
+          src={
+            cart && cart.length === 0
+              ? "shopping_cart.svg"
+              : "add_shopping_cart.svg"
+          }
+          alt="shopping cart icon"
+        />
+      </Link>
     </header>
-  );
-}
-
-export function HomeTitle() {
-  return (
-    <Link className="link" to={"/"}>
-      <h1>Morgonlimpan</h1>
-      {/* FrukostLyx Nybakat Brödhem  */}
-    </Link>
-  );
-}
-
-export function CartIcon({ cart }: HomeHeaderProps) {
-  return (
-    <Link className="link" to={"/cart"}>
-      <img
-        data-cy="shopping-cart"
-        src={cart === null ? "shopping_cart.svg" : "add_shopping_cart.svg"}
-        alt="shopping cart icon"
-      />
-    </Link>
-  );
-}
-
-export function AccountIcon() {
-  return (
-    <Link className="link" to={"/account"}>
-      <img
-        src="account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-        alt="account icon"
-      />
-    </Link>
   );
 }
