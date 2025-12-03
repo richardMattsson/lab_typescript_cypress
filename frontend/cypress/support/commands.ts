@@ -35,3 +35,9 @@
 //     }
 //   }
 // }
+// import dotenv from "dotenv";
+// dotenv.config();
+
+// Cypress.Commands.add("resetDatabase", () => {
+//   cy.exec(`psql -f init.sql ${process.env.PGURI}`);
+// });

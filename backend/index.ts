@@ -13,10 +13,10 @@ interface City {
   population: number;
 }
 
-app.get("/cities", async (_request, response) => {
+app.get("/api/products", async (_request, response) => {
   try {
     const { rows }: QueryResult<City> = await database.query(
-      "SELECT * FROM cities"
+      "SELECT * FROM products"
     );
     response.send(rows);
   } catch (error) {

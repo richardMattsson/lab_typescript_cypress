@@ -19,7 +19,7 @@ export function HomeTitle() {
   return (
     <Link className="link" to={"/"}>
       <h1>Morgonlimpan</h1>
-      {/* Nybakat Brödhem Bread Home  */}
+      {/* FrukostLyx Nybakat Brödhem Bread Home  */}
     </Link>
   );
 }
