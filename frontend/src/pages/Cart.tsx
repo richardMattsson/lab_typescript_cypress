@@ -18,9 +18,11 @@ export default function Cart({ cart }: CartProps) {
     setOpenForm(false);
     setConfirmationMessage(true);
   };
+
   return (
     <>
       <article data-cy="order-container">
+        {!cart && <p>Din varukorg är tom.</p>}
         {cart &&
           cart.map((product) => (
             <OrderCard key={product.id} product={product} />
@@ -28,13 +30,15 @@ export default function Cart({ cart }: CartProps) {
 
         {cart && <p className="text-align-end">Total: {totalPrice} kr</p>}
 
-        <section
-          className="pointer"
-          onClick={() => setOpenForm(true)}
-          data-cy="continue-order"
-        >
-          Gå vidare
-        </section>
+        {cart && (
+          <section
+            className="pointer underscore"
+            onClick={() => setOpenForm(true)}
+            data-cy="continue-order"
+          >
+            Gå vidare
+          </section>
+        )}
 
         {openForm && (
           <OrderModal
@@ -89,8 +93,6 @@ export function OrderModal({
   }, [form]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-
     setForm((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });

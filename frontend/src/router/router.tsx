@@ -8,7 +8,7 @@ import { useState } from "react";
 import type { ProductType } from "../components/ProductContainer";
 
 export default function Router() {
-  const [cart, setCart] = useState<ProductType[] | null>([]);
+  const [cart, setCart] = useState<ProductType[] | null>(null);
 
   const addToCart = (product: ProductType) => {
     setCart((prev) => [...(prev || []), product]);

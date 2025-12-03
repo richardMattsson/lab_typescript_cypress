@@ -20,11 +20,7 @@ export default function HomeHeader({ cart }: HomeHeaderProps) {
       <Link className="link" to={"/cart"}>
         <img
           data-cy="shopping-cart"
-          src={
-            cart && cart.length === 0
-              ? "shopping_cart.svg"
-              : "add_shopping_cart.svg"
-          }
+          src={cart ? "add_shopping_cart.svg" : "shopping_cart.svg"}
           alt="shopping cart icon"
         />
       </Link>
