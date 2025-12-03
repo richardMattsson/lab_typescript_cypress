@@ -1,5 +1,10 @@
 ### Tisdag 02/12
 
+#### Frågor
+
+Hur gör jag en intercept där jag fetchar data och sedan lägger in resultatet
+i en variabel som jag vill använda som prop till en komponent i testet.
+
 #### Todo:
 
 1. Sätta upp automatiserade tester med github actions

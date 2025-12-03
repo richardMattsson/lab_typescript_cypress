@@ -1,5 +1,9 @@
-declare namespace Cypress {
-  interface Chainable {
-    resetDatabase(): Chainable<JQuery<HTMLElement>>;
+import { mount } from "cypress/react";
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      mount: typeof mount;
+      resetDatabase(): Chainable<JQuery<HTMLElement>>;
+    }
   }
 }

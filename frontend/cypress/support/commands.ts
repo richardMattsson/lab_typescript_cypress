@@ -26,8 +26,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 // declare global {
+
 //   namespace Cypress {
 //     interface Chainable {
+
 //       login(email: string, password: string): Chainable<void>
 //       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 //       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
@@ -41,3 +43,5 @@
 // Cypress.Commands.add("resetDatabase", () => {
 //   cy.exec(`psql -f init.sql ${process.env.PGURI}`);
 // });
+
+import "../../src/setup.js";

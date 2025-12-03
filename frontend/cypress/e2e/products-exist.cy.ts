@@ -5,5 +5,9 @@ describe("Product container", () => {
       .children()
       .should("exist")
       .and("be.visible");
+
+    cy.get("[data-cy=product-container]").should("have.property", "length");
+
+    cy.get("[data-cy=product-container]").should("have.length.at.least", 1);
   });
 });

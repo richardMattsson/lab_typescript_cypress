@@ -1,13 +1,11 @@
 import { useState } from "react";
 
 export type ProductType = {
-  id: string;
+  id: number;
   name: string;
   category: string;
   description: string;
   price: number;
-  weight: number;
-  stock: number;
   image: string;
 };
 
