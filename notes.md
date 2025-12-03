@@ -1,17 +1,14 @@
 ### Tisdag 02/12
 
-Todo:
+#### Todo:
 
-<!-- Lägga till router -->
+1. Sätta upp automatiserade tester med github actions
+2. Lägga till tanStack Query
+3. Bygga account
 
-Lägga till tanStack Query
-
-Bygga account
-
-- E2E tester:
+#### E2E tester:
 
 <!-- 1. Visas det några produkter på webbsidan? -->
-
 <!-- 2. Går det att lägga till produkter i kundvagnen? -->
 
 3. Går det att lägga en beställning?
