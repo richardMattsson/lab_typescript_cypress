@@ -8,18 +8,14 @@ describe("template spec", () => {
   it("add one product to cart", function () {
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
-  });
 
-  // Going to the cart.
+    // Going to the cart.
 
-  it("go to cart", function () {
     cy.get("[data-cy=shopping-cart]").click();
     cy.location("href").should("equal", "http://localhost:5173/#/cart");
-  });
 
-  // Clicking continue order.
+    // Clicking continue order.
 
-  it("continue with order ", function () {
-    cy.get("[data-cy=continue-order]").click();
+    cy.get("[data-cy=continue-order]").contains("Fortsätt med beställning");
   });
 });

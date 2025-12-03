@@ -8,12 +8,16 @@ export default function Cart({ cart }: CartProps) {
   return (
     <>
       <article data-cy="order-container">
-        {cart && cart.map((product) => <OrderCard product={product} />)}
+        {cart &&
+          cart.map((product) => (
+            <OrderCard key={product.id} product={product} />
+          ))}
         {cart && (
           <p className="text-align-end">
             Total: {cart.reduce((acc, cur) => acc + cur.price, 0)} kr
           </p>
         )}
+        <section data-cy="continue-order"></section>
       </article>
     </>
   );

@@ -27,6 +27,7 @@ export default function ProductContainer({
       {products &&
         products.map((product) => (
           <ProductCard
+            key={product.id}
             handleClick={() => setSelectedProduct(product)}
             product={product}
           />
