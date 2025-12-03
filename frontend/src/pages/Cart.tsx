@@ -17,7 +17,7 @@ export default function Cart({ cart }: CartProps) {
             Total: {cart.reduce((acc, cur) => acc + cur.price, 0)} kr
           </p>
         )}
-        <section data-cy="continue-order"></section>
+        <section data-cy="continue-order">Gå vidare</section>
       </article>
     </>
   );
