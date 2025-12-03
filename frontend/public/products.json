@@ -1,82 +1,50 @@
 [
   {
-    "id": "bread_001",
+    "id": 1,
     "name": "Fralla Naturell",
     "category": "frallor",
     "description": "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
-    "price": 8.0,
-    "weight": 65,
-    "stock": 120,
+    "price": 8,
     "image": "/images/fralla-naturell.jpg"
   },
   {
-    "id": "bread_002",
+    "id": 2,
     "name": "Fralla Sesam",
     "category": "frallor",
     "description": "Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.",
-    "price": 9.0,
-    "weight": 70,
-    "stock": 90,
+    "price": 9,
     "image": "/images/fralla-sesam.jpg"
   },
   {
-    "id": "bread_003",
+    "id": 3,
     "name": "Baguette Klassisk",
     "category": "baguetter",
     "description": "Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.",
-    "price": 18.0,
-    "weight": 220,
-    "stock": 45,
+    "price": 18,
     "image": "/images/baguette-classic.jpg"
   },
   {
-    "id": "bread_004",
+    "id": 4,
     "name": "Baguette Rustik Surdeg",
     "category": "baguetter",
     "description": "Ljus surdegsbaguette med äkta fransk känsla. Djupare smak och segare struktur.",
-    "price": 22.0,
-    "weight": 240,
-    "stock": 32,
+    "price": 22,
     "image": "/images/baguette-sourdough.jpg"
   },
   {
-    "id": "bread_005",
+    "id": 5,
     "name": "Limpan Vetebröd",
     "category": "limpor",
     "description": "Klassisk svensk limpa med mild smak. Passar till smör, ost och marmelad.",
-    "price": 32.0,
-    "weight": 700,
-    "stock": 20,
+    "price": 32,
     "image": "/images/lovet-loaf.jpg"
   },
   {
-    "id": "bread_006",
+    "id": 6,
     "name": "Limpan Surdeg",
     "category": "limpor",
     "description": "Rustik surdegslimpa med lång jästid och kraftig skorpa. Rik, komplex smak.",
-    "price": 42.0,
-    "weight": 850,
-    "stock": 15,
+    "price": 42,
     "image": "/images/sourdough-loaf.jpg"
-  },
-  {
-    "id": "bread_007",
-    "name": "Focaccia Rosmarin",
-    "category": "special",
-    "description": "Italienskt bröd bakat med olivolja, flingsalt och färsk rosmarin. Mjukt och smakrikt.",
-    "price": 38.0,
-    "weight": 450,
-    "stock": 18,
-    "image": "/images/focaccia-rosemary.jpg"
-  },
-  {
-    "id": "bread_008",
-    "name": "Ciabatta",
-    "category": "special",
-    "description": "Poröst bröd med olivolja och rustik yta. Perfekt till grillade smörgåsar eller soppa.",
-    "price": 16.0,
-    "weight": 160,
-    "stock": 50,
-    "image": "/images/ciabatta.jpg"
   }
 ]
