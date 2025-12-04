@@ -47,7 +47,7 @@ Cypress.Commands.add("resetDatabase", () => {
 
 import "../../src/setup.js";
 
-export const mockData = () => {
+export const mockDataProducts = () => {
   return cy
     .intercept("/api/products", {
       body: [
@@ -81,4 +81,22 @@ export const mockData = () => {
       ],
     })
     .as("products");
+};
+
+export const mockDataOrderProducts = () => {
+  return cy
+    .intercept("/api/orderProducts", {
+      body: [
+        {
+          id: 1,
+          name: "Fralla Naturell",
+          category: "frallor",
+          description:
+            "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
+          price: 8,
+          image: "/images/fralla-naturell.jpg",
+        },
+      ],
+    })
+    .as("orderProducts");
 };

@@ -24,6 +24,17 @@ app.get("/api/products", async (_request, response) => {
   }
 });
 
+app.get("/api/orderProducts", async (_request, response) => {
+  try {
+    const { rows }: QueryResult<City> = await database.query(
+      "SELECT * FROM products"
+    );
+    response.send(rows);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.post("/cities", async (request, response) => {
   const { name, population } = request.body;
 

@@ -25,7 +25,7 @@ export default function Cart({ cart }: CartProps) {
         {!cart && <p>Din varukorg är tom.</p>}
         {cart &&
           cart.map((product) => (
-            <OrderCard key={product.id} product={product} />
+            <SelectedProductCard key={product.id} product={product} />
           ))}
 
         {cart && <p className="text-align-end">Total: {totalPrice} kr</p>}
@@ -56,7 +56,7 @@ export default function Cart({ cart }: CartProps) {
   );
 }
 
-export function OrderCard({ product }: { product: ProductType }) {
+export function SelectedProductCard({ product }: { product: ProductType }) {
   return (
     <>
       {product && (

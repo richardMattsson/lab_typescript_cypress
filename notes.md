@@ -1,6 +1,7 @@
 #### Frågor
 
-- hur lägger jag in en .env fil i backend? TS klagar på att dotenv paketet har require.
+- hur kan jag dölja min databasuppkpploing i frontend likt som jag gör i backend med
+  .env?
 
 - Hur gör jag en intercept där jag fetchar data och sedan lägger in resultatet
   i en variabel som jag vill använda som prop till en komponent i testet.

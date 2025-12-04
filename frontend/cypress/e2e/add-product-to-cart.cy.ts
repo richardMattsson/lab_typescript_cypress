@@ -1,8 +1,8 @@
-import { mockData } from "../support/commands.ts";
+import { mockDataProducts } from "../support/commands.ts";
 
 describe("Product to cart", () => {
   it("Possible to add product to cart", () => {
-    mockData();
+    mockDataProducts();
     cy.visit("/");
     cy.wait("@products");
     cy.get("[data-cy=product-container]")
