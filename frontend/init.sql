@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS products;
 
+DROP TABLE IF EXISTS orders;
+
 CREATE TABLE
   products (
     id serial PRIMARY KEY,
@@ -8,6 +10,37 @@ CREATE TABLE
     description text,
     price INTEGER NOT NULL,
     image text
+  );
+
+CREATE TABLE
+  orders (
+    id serial PRIMARY KEY,
+    address text NOT NULL,
+    cart JSONB NOT NULL,
+    delivery text NOT NULL,
+    name text NOT NULL,
+    price INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW ()
+  );
+
+INSERT INTO
+  orders (address, cart, delivery, name, price)
+VALUES
+  (
+    'Majorna, Göteborg',
+    '[
+     {
+       "name": "Hamburgare", 
+       "price": 129
+     },
+     {
+       "name": "Pommes", 
+       "price": 39
+     }
+   ]'::jsonb,
+    '2025-12-31',
+    'Some name',
+    100
   );
 
 INSERT INTO

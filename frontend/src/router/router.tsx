@@ -13,6 +13,9 @@ export default function Router() {
   const addToCart = (product: ProductType) => {
     setCart((prev) => [...(prev || []), product]);
   };
+  const removeCart = () => {
+    setCart(null);
+  };
   const router = createHashRouter([
     {
       element: (
@@ -30,7 +33,7 @@ export default function Router() {
         },
         {
           path: "/cart",
-          element: <Cart cart={cart} />,
+          element: <Cart cart={cart} setCart={removeCart} />,
         },
         {
           path: "/account",

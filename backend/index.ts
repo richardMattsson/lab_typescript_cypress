@@ -24,10 +24,23 @@ app.get("/api/products", async (_request, response) => {
   }
 });
 
-app.get("/api/orderProducts", async (_request, response) => {
+app.get("/api/order", async (_request, response) => {
   try {
     const { rows }: QueryResult<City> = await database.query(
-      "SELECT * FROM products"
+      "SELECT * FROM orders"
+    );
+    response.send(rows);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post("/api/order", async (request, response) => {
+  const { address, cart, delivery, name, price } = request.body;
+  try {
+    const { rows }: QueryResult<City> = await database.query(
+      `INSERT INTO orders (address, cart, delivery, name, price ) VALUES ($1, $2::jsonb, $3, $4, $5) RETURNING *`,
+      [address, JSON.stringify(cart), delivery, name, price]
     );
     response.send(rows);
   } catch (error) {
