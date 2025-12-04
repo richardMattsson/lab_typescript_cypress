@@ -6,8 +6,6 @@ jobs:
   cypress-run:
     runs-on: ubuntu-24.04
 
-    env:
-      PGURI: ${{ secrets.PGURI }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,6 +13,8 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        env:
+          PGURI: ${{ secrets.PGURI }}
         with:
           working-directory: frontend
           build: npm run build
