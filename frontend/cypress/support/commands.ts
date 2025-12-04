@@ -37,9 +37,9 @@
 //     }
 //   }
 // }
-import { PGURI } from "../../db.ts";
 
 Cypress.Commands.add("resetDatabase", () => {
+  const PGURI = Cypress.env("PGURI");
   cy.exec(`psql -f init.sql ${PGURI}`);
 });
 

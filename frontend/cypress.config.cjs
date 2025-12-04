@@ -19,6 +19,7 @@ module.exports = defineConfig({
 
       return config;
     },
+    env: { PGURI: process.env.PGURI },
     baseUrl: "http://localhost:5173",
     specPattern: [
       // E2E-filer Cypress letar efter som standard
