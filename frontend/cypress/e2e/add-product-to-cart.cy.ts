@@ -1,6 +1,10 @@
+import { mockData } from "../support/commands.ts";
+
 describe("Product to cart", () => {
   it("Possible to add product to cart", () => {
+    mockData();
     cy.visit("/");
+    cy.wait("@products");
     cy.get("[data-cy=product-container]")
       .children()
       .should(($item) => {

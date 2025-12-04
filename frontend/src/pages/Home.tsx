@@ -12,7 +12,7 @@ export default function Home({ addToCart }: HomeProps) {
   useEffect(() => {
     async function getProducts() {
       try {
-        const response = await fetch("/products.json");
+        const response = await fetch("/api/products");
         const result = await response.json();
         setProducts(result);
       } catch (error) {

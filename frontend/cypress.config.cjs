@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const {
   addCucumberPreprocessorPlugin,
@@ -10,7 +8,6 @@ const {
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  video: true,
   e2e: {
     async setupNodeEvents(on, config) {
       const bundler = createBundler({

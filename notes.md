@@ -1,9 +1,9 @@
-### Tisdag 02/12
-
 #### Frågor
 
-Hur gör jag en intercept där jag fetchar data och sedan lägger in resultatet
-i en variabel som jag vill använda som prop till en komponent i testet.
+- hur lägger jag in en .env fil i backend? TS klagar på att dotenv paketet har require.
+
+- Hur gör jag en intercept där jag fetchar data och sedan lägger in resultatet
+  i en variabel som jag vill använda som prop till en komponent i testet.
 
 #### Todo:
 
@@ -28,3 +28,24 @@ i en variabel som jag vill använda som prop till en komponent i testet.
 #### Andra titlar
 
 FrukostLyx Nybakat Brödhem MorgonLimpan
+
+### Tisdag 02/12
+
+### Torsdag 04/12
+
+Databasinitialisering
+
+Kan nollställa och bygga om databasen inför tester
+
+- Integrations-tester
+  kan vara bra att köra tester mot backend med cy.request. kan vara bra att köra tester mot backend med sånt som vår frontend inte accepterar.
+
+- fejkdata
+  @faker-js/faker
+
+- Kopiera databasen
+  pg_dump -f backup.sql --username=postgres
+
+dropdb postgres
+createdb postgres
+psql -d postgres -f backup.sql
