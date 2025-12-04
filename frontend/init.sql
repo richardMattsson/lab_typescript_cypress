@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS products;
-
 DROP TABLE IF EXISTS orders;
 
 CREATE TABLE
@@ -39,7 +38,7 @@ VALUES
      }
    ]'::jsonb,
     '2025-12-31',
-    'Some name',
+    'Anders Andersson',
     100
   );
 

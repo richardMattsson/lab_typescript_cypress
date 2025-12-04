@@ -24,7 +24,6 @@ type Order = {
 
 export default function Cart({ cart, setCart }: CartProps) {
   const [openForm, setOpenForm] = useState(false);
-  const [confirmationMessage, setConfirmationMessage] = useState(false);
   const [form, setForm] = useState<Form>({
     name: "",
     address: "",
@@ -35,16 +34,6 @@ export default function Cart({ cart, setCart }: CartProps) {
     if (!cart) return 0;
     return cart.reduce((acc, cur) => acc + cur.price, 0);
   }, [cart]);
-
-  async function getOrderProducts() {
-    try {
-      const response = await fetch("/products-order.json");
-      const result = await response.json();
-      setOrder(result);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   async function postOrderProducts() {
     const dbCart = cart?.map((product) => {
@@ -65,7 +54,7 @@ export default function Cart({ cart, setCart }: CartProps) {
       });
       const result = await response.json();
       setOrder(result[0]);
-      console.log(result[0]);
+      setCart();
     } catch (error) {
       console.log(error);
     }
@@ -81,9 +70,6 @@ export default function Cart({ cart, setCart }: CartProps) {
     event.preventDefault();
     postOrderProducts();
     setOpenForm(false);
-    setCart();
-    setConfirmationMessage(true);
-    getOrderProducts();
   };
 
   return (
@@ -117,9 +103,6 @@ export default function Cart({ cart, setCart }: CartProps) {
           />
         )}
 
-        {confirmationMessage && (
-          <p data-cy="confirmation-message">Du har lagt en beställning!</p>
-        )}
         {order && <OrderConfirmation order={order} />}
       </article>
     </>
@@ -127,24 +110,27 @@ export default function Cart({ cart, setCart }: CartProps) {
 }
 
 export function OrderConfirmation({ order }: { order: Order | null }) {
-  console.log(order!.cart[0].name);
-
   return (
     <>
-      {/* {order &&
-        order.cart.map((product) => {
+      <p data-cy="confirmation-message">Du har lagt en beställning!</p>
+
+      {order &&
+        order.cart.map((product, index) => {
           return (
-            <section className="order-card" data-cy="order-card">
+            <section
+              className="order-card"
+              data-cy="order-confirmation"
+              key={index}
+            >
               <span>{product.name}</span>
               <span>{product.price} kr</span>
             </section>
           );
-        })} */}
+        })}
+      {order && <p className="text-align-end">Total: {order.price} kr</p>}
       {order && <p>{order.name}</p>}
-      {order && <p>{order.price}</p>}
-      {order && <p>{order.delivery}</p>}
-      {/* {order?.cart && <p>{order.cart[0].name}</p>}
-      {order?.cart && <p>{order.cart[0].price}</p>} */}
+      {order && <p>Leveransdatum: {order.delivery}</p>}
+      {order && <p>Skapad: {order.created_at}</p>}
     </>
   );
 }
