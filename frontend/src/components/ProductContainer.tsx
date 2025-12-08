@@ -7,6 +7,7 @@ export type ProductType = {
   description: string;
   price: number;
   image: string;
+  quantity: number;
 };
 
 type ProductContainerProps = {
@@ -37,7 +38,8 @@ export default function ProductContainer({
         <ProductModal
           addToCart={addToCart}
           onClose={() => setSelectedProduct(null)}
-          product={selectedProduct}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
         />
       )}
     </article>
@@ -82,14 +84,30 @@ export function ProductImage({ width }: { width?: string }) {
 }
 
 export function ProductModal({
-  product,
+  selectedProduct,
   onClose,
   addToCart,
+  setSelectedProduct,
 }: {
-  product: ProductType;
+  selectedProduct: ProductType;
   onClose: () => void;
-  addToCart: (product: ProductType) => void;
+  addToCart: (selectedProduct: ProductType) => void;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>;
 }) {
+  const [amount, setAmount] = useState(1);
+
+  function onIncrease() {
+    console.log("increase");
+    setAmount(amount + 1);
+
+    setSelectedProduct({ ...selectedProduct, quantity: amount + 1 });
+  }
+  // console.log(selectedProduct);
+  function onDecrease() {
+    console.log("decrease");
+    setAmount(amount > 1 ? amount - 1 : amount);
+    setSelectedProduct({ ...selectedProduct, quantity: amount - 1 });
+  }
   return (
     <section className="product-modal-background">
       <section className="product-modal">
@@ -99,8 +117,8 @@ export function ProductModal({
           alt="close modal button"
           style={{ cursor: "pointer" }}
         />
-        <h2 style={{ margin: 0 }}>{product.name}</h2>
-        <p style={{ margin: 0 }}>{product.price} kr</p>
+        <h2 style={{ margin: 0 }}>{selectedProduct.name}</h2>
+        <p style={{ margin: 0 }}>{selectedProduct.price * amount} kr</p>
         <figure
           className="no-margin"
           style={{
@@ -112,16 +130,37 @@ export function ProductModal({
           <ProductImage width="100px" />
         </figure>
 
-        <AmountOfProducts />
+        <AmountOfProducts onIncrease={onIncrease} onDecrease={onDecrease} />
 
-        <AddToCart onClose={onClose} addToCart={() => addToCart(product)} />
+        <AddToCart
+          onClose={onClose}
+          addToCart={() => addToCart(selectedProduct)}
+        />
       </section>
     </section>
   );
 }
 
-export function AmountOfProducts() {
-  const [amount, setAmount] = useState(0);
+export function AmountOfProducts({
+  onIncrease,
+  onDecrease,
+}: {
+  onIncrease: () => void;
+  onDecrease: () => void;
+}) {
+  const [amount, setAmount] = useState(1);
+
+  function handleDecrement() {
+    setAmount(amount > 1 ? amount - 1 : amount);
+    onDecrease();
+  }
+
+  function handleIncrement() {
+    setAmount(amount + 1);
+
+    onIncrease();
+  }
+
   return (
     <section style={{ display: "grid", justifyContent: "center" }}>
       <section className="product-amount">
@@ -129,7 +168,7 @@ export function AmountOfProducts() {
           <img
             className="change-amount pointer"
             data-cy="decrement-button"
-            onClick={() => setAmount(amount > 0 ? amount - 1 : amount)}
+            onClick={handleDecrement}
             src="keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
           />
         </span>
@@ -144,7 +183,7 @@ export function AmountOfProducts() {
           <img
             className="change-amount pointer"
             data-cy="increment-button"
-            onClick={() => setAmount(amount + 1)}
+            onClick={handleIncrement}
             src="keyboard_arrow_up_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
           />
         </span>

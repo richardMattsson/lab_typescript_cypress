@@ -59,6 +59,7 @@ export const mockDataProducts = () => {
             "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
           price: 8,
           image: "/images/fralla-naturell.jpg",
+          quantity: 1,
         },
         {
           id: 2,
@@ -68,6 +69,7 @@ export const mockDataProducts = () => {
             "Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.",
           price: 9,
           image: "/images/fralla-sesam.jpg",
+          quantity: 1,
         },
         {
           id: 3,
@@ -77,6 +79,7 @@ export const mockDataProducts = () => {
             "Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.",
           price: 18,
           image: "/images/baguette-classic.jpg",
+          quantity: 1,
         },
       ],
     })

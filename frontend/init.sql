@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS products;
+
 DROP TABLE IF EXISTS orders;
 
 CREATE TABLE
@@ -8,7 +9,8 @@ CREATE TABLE
     category text,
     description text,
     price INTEGER NOT NULL,
-    image text
+    image text,
+    quantity INTEGER DEFAULT 1
   );
 
 CREATE TABLE
@@ -20,26 +22,6 @@ CREATE TABLE
     name text NOT NULL,
     price INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW ()
-  );
-
-INSERT INTO
-  orders (address, cart, delivery, name, price)
-VALUES
-  (
-    'Majorna, Göteborg',
-    '[
-     {
-       "name": "Hamburgare", 
-       "price": 129
-     },
-     {
-       "name": "Pommes", 
-       "price": 39
-     }
-   ]'::jsonb,
-    '2025-12-31',
-    'Anders Andersson',
-    100
   );
 
 INSERT INTO
@@ -73,4 +55,37 @@ VALUES
     'Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.',
     18,
     '/images/fralla-naturell.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Fralla Fullkorn',
+    'frallor',
+    'Näringsrik fullkornsfralla med mjuk insida och rustik smak. Gott val till frukost eller mellanmål.',
+    10,
+    '/images/fralla-fullkorn.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Ostfralla',
+    'frallor',
+    'Nygräddad fralla toppad med smält ost som ger en krispig och smakrik yta.',
+    12,
+    '/images/fralla-ost.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Baguette Rustik',
+    'baguetter',
+    'Rustik baguette med kraftigare smak och extra krispig skorpa. Passar utmärkt till soppor och grytor.',
+    20,
+    '/images/baguette-rustik.jpg'
   );

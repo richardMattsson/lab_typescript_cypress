@@ -12,7 +12,7 @@ type Form = {
   date: string;
 };
 
-type Order = {
+export type Order = {
   address: string;
   delivery: string;
   id: number;
@@ -32,12 +32,18 @@ export default function Cart({ cart, setCart }: CartProps) {
   const [order, setOrder] = useState<Order | null>(null);
   const totalPrice = useMemo(() => {
     if (!cart) return 0;
-    return cart.reduce((acc, cur) => acc + cur.price, 0);
+    return cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
   }, [cart]);
+
+  console.log(cart);
 
   async function postOrderProducts() {
     const dbCart = cart?.map((product) => {
-      return { name: product.name, price: product.price };
+      return {
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+      };
     });
     const body = {
       address: form.address,
@@ -140,8 +146,16 @@ export function SelectedProductCard({ product }: { product: ProductType }) {
     <>
       {product && (
         <section className="order-card" data-cy="order-card">
-          <span>{product.name}</span>
-          <span>{product.price} kr</span>
+          <span>
+            {product.name}{" "}
+            {product.quantity > 1 ? ` x ${product.quantity}` : ""}
+          </span>
+          <span>
+            {product.quantity > 1
+              ? product.price * product.quantity
+              : product.price}{" "}
+            kr
+          </span>
         </section>
       )}
     </>
