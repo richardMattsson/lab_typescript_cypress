@@ -13,8 +13,8 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        # env:
-        #   PGURI: ${{ secrets.PGURI }}
+        env:
+          PGURI: ${{ secrets.PGURI }}
         with:
           working-directory: frontend
           build: npm run build
