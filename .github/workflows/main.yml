@@ -9,16 +9,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Start backend server
+        working-directory: backend
+        run: npm run dev &
         env:
           PGURI: ${{ secrets.PGURI }}
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
           working-directory: frontend
           build: npm run build
-          start: |
-            npm run dev --prefix backend &
-            npm run dev --prefix frontend
+          start: npm run dev
+
           # spec: cypress/e2e/products-exist.cy.ts
