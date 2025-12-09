@@ -19,4 +19,4 @@ jobs:
           working-directory: frontend
           build: npm run build
           start: npm run dev
-          spec: cypress/e2e/products-exist.cy.ts
+          # spec: cypress/e2e/products-exist.cy.ts

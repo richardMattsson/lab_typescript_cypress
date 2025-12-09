@@ -11,24 +11,23 @@ export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
 
   const addToCart = (product: ProductType) => {
-    console.log(product);
-    const existingProduct = cart?.some((item) => item.id === product.id);
-    if (existingProduct) {
-      const quantity = cart?.reduce((acc, cur) => acc + cur.quantity, 0);
+    if (cart) {
+      const productExistInCart = cart.some((item) => item.id === product.id);
 
-      console.log(quantity);
-      const newProduct = product;
-      if (quantity) {
-        newProduct.quantity += quantity;
-      }
-      const updatedArray = cart?.filter((item) => item.id !== product.id);
-      updatedArray?.push(newProduct);
-      if (updatedArray) {
+      if (!productExistInCart) {
+        setCart((prev) => [...(prev || []), product]);
+      } else {
+        const quantity = cart.reduce(
+          (acc, cur) => (cur.id === product.id ? acc + cur.quantity : acc),
+          product.quantity
+        );
+        const updatedProduct = product;
+        updatedProduct.quantity = quantity;
+        const updatedArray = cart.filter((item) => item.id !== product.id);
+        updatedArray.push(updatedProduct);
         setCart(updatedArray);
       }
-    } else {
-      setCart((prev) => [...(prev || []), product]);
-    }
+    } else setCart((prev) => [...(prev || []), product]);
   };
 
   const removeCart = () => {

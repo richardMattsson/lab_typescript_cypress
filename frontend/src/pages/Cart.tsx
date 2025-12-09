@@ -35,8 +35,6 @@ export default function Cart({ cart, setCart }: CartProps) {
     return cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
   }, [cart]);
 
-  console.log(cart);
-
   async function postOrderProducts() {
     const dbCart = cart?.map((product) => {
       return {
@@ -101,6 +99,7 @@ export default function Cart({ cart, setCart }: CartProps) {
 
         {openForm && (
           <OrderModal
+            cart={cart}
             onClose={() => setOpenForm(false)}
             onSubmit={onSubmit}
             totalPrice={totalPrice}
@@ -118,7 +117,8 @@ export default function Cart({ cart, setCart }: CartProps) {
 export function OrderConfirmation({ order }: { order: Order | null }) {
   return (
     <>
-      <p data-cy="confirmation-message">Du har lagt en beställning!</p>
+      <h2>{order && order.name}</h2>
+      <p data-cy="confirmation-message">Kvitto på din beställning.</p>
 
       {order &&
         order.cart.map((product, index) => {
@@ -134,9 +134,16 @@ export function OrderConfirmation({ order }: { order: Order | null }) {
           );
         })}
       {order && <p className="text-align-end">Total: {order.price} kr</p>}
-      {order && <p>{order.name}</p>}
-      {order && <p>Leveransdatum: {order.delivery}</p>}
-      {order && <p>Skapad: {order.created_at}</p>}
+
+      {order && <p>Leverans: {order.delivery}</p>}
+      {order && (
+        <p>
+          Skapad:{" "}
+          {`${order.created_at.split("T")[0]} kl.${
+            order.created_at.split("T")[1].split(".")[0]
+          }`}
+        </p>
+      )}
     </>
   );
 }
@@ -163,12 +170,14 @@ export function SelectedProductCard({ product }: { product: ProductType }) {
 }
 
 export function OrderModal({
+  cart,
   onClose,
   totalPrice,
   onSubmit,
   form,
   handleChange,
 }: {
+  cart: ProductType[] | null;
   onClose: () => void;
   totalPrice: number;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -194,6 +203,10 @@ export function OrderModal({
         />
         <h2>Din beställning:</h2>
         <p>Totalt: {totalPrice} kr</p>
+        {cart &&
+          cart.map((product) => (
+            <SelectedProductCard key={product.id} product={product} />
+          ))}
 
         <form onSubmit={(e) => onSubmit(e)}>
           <input

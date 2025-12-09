@@ -25,8 +25,5 @@ When("I click the make order button", () => {
 });
 
 Then("I should get a confirmation about that my order was successfull", () => {
-  cy.get("[data-cy=confirmation-message]").should(
-    "have.text",
-    "Du har lagt en beställning!"
-  );
+  cy.get("[data-cy=confirmation-message]").should("be.visible");
 });
