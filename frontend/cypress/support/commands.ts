@@ -86,20 +86,32 @@ export const mockDataProducts = () => {
     .as("products");
 };
 
-export const mockDataOrderProducts = () => {
-  return cy
-    .intercept("/api/orderProducts", {
-      body: [
-        {
-          id: 1,
-          name: "Fralla Naturell",
-          category: "frallor",
-          description:
-            "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
-          price: 8,
-          image: "/images/fralla-naturell.jpg",
-        },
-      ],
-    })
-    .as("orderProducts");
+export const mockDataOrder = () => {
+  const cart = [{ name: "Fralla Naturell", price: 8, quantity: 1 }];
+  const body = {
+    address: "Gatan 2",
+    cart: cart,
+    delivery: "2025-12-26",
+    name: "Johan",
+    price: 8,
+  };
+  cy.intercept("POST", "/api/order", {
+    statusCode: 200,
+    body: body,
+  }).as("order");
+};
+
+export const getOrder = () => {
+  cy.intercept("/api/order", {
+    body: [
+      {
+        id: 1,
+        address: "Gatan 2",
+        cart: [{ name: "Fralla Naturell", price: 8, quantity: 1 }],
+        delivery: "2025-12-26",
+        name: "Johan",
+        price: 8,
+      },
+    ],
+  }).as("getOrder");
 };

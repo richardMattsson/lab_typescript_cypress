@@ -16,7 +16,7 @@ export type Order = {
   address: string;
   delivery: string;
   id: number;
-  cart: Pick<ProductType, "name" | "price">[];
+  cart: Pick<ProductType, "name" | "price" | "quantity">[];
   created_at: string;
   name: string;
   price: number;
