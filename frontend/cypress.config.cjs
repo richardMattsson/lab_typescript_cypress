@@ -7,8 +7,6 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 const { defineConfig } = require("cypress");
 
-const codeCoverage = require("@cypress/code-coverage/task");
-
 module.exports = defineConfig({
   env: {
     codeCoverage: {
@@ -22,7 +20,6 @@ module.exports = defineConfig({
         plugins: [createEsbuildPlugin(config)],
       });
       on("file:preprocessor", bundler);
-      await codeCoverage(on, config);
 
       await addCucumberPreprocessorPlugin(on, config);
 
