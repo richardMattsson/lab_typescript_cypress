@@ -7,32 +7,15 @@ import { useState } from "react";
 
 import type { ProductType } from "../components/ProductContainer";
 
+import { addToCart } from "../utils/cart";
+
 export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
 
-  const addToCart = (product: ProductType) => {
-    if (cart) {
-      const productExistInCart = cart.some((item) => item.id === product.id);
-
-      if (!productExistInCart) {
-        setCart((prev) => [...(prev || []), product]);
-      } else {
-        const quantity = cart.reduce(
-          (acc, cur) => (cur.id === product.id ? acc + cur.quantity : acc),
-          product.quantity
-        );
-        const updatedProduct = product;
-        updatedProduct.quantity = quantity;
-        const updatedArray = cart.filter((item) => item.id !== product.id);
-        updatedArray.push(updatedProduct);
-        setCart(updatedArray);
-      }
-    } else setCart((prev) => [...(prev || []), product]);
-  };
-
-  const removeCart = () => {
-    setCart(null);
-  };
+  function handleAdd(product: ProductType) {
+    const updatedCart = addToCart(cart, product);
+    setCart(updatedCart);
+  }
 
   const router = createHashRouter([
     {
@@ -47,11 +30,11 @@ export default function Router() {
       children: [
         {
           path: "/",
-          element: <Home addToCart={addToCart} />,
+          element: <Home addToCart={handleAdd} />,
         },
         {
           path: "/cart",
-          element: <Cart cart={cart} setCart={removeCart} />,
+          element: <Cart cart={cart} setCart={() => setCart(null)} />,
         },
         {
           path: "/account",

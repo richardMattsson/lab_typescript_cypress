@@ -32,7 +32,7 @@ VALUES
     'frallor',
     'Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.',
     8,
-    '/images/fralla-naturell.jpg'
+    '/images/fralla-naturell.jpg',
   );
 
 INSERT INTO
