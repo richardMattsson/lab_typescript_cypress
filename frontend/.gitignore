@@ -14,6 +14,8 @@ backup.sql
 dist
 dist-ssr
 *.local
+coverage
+.nyc_output
 
 # Editor directories and files
 .vscode/*

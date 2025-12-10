@@ -16,7 +16,8 @@
 // Import commands.js using ES2015 syntax:
 /* And that's it! */
 import "../../src/setup.tsx";
-import "./commands";
+import "./commands.ts";
+import "@cypress/code-coverage/support.js";
 
 import { mount } from "cypress/react";
 

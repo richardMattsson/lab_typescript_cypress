@@ -102,7 +102,6 @@ export function ProductModal({
 
     setSelectedProduct({ ...selectedProduct, quantity: amount + 1 });
   }
-  // console.log(selectedProduct);
   function onDecrease() {
     console.log("decrease");
     setAmount(amount > 1 ? amount - 1 : amount);
@@ -112,9 +111,10 @@ export function ProductModal({
     <section className="product-modal-background">
       <section className="product-modal">
         <img
+          alt="close modal button"
+          data-cy="close-modal-icon"
           onClick={onClose}
           src="close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="close modal button"
           style={{ cursor: "pointer" }}
         />
         <h2 style={{ margin: 0 }}>{selectedProduct.name}</h2>

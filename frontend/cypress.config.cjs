@@ -7,19 +7,31 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 const { defineConfig } = require("cypress");
 
+const codeCoverage = require("@cypress/code-coverage/task");
+
 module.exports = defineConfig({
+  env: {
+    codeCoverage: {
+      exclude: "cypress/**/*.*",
+    },
+  },
   e2e: {
     async setupNodeEvents(on, config) {
+      require("@cypress/code-coverage/task")(on, config);
       const bundler = createBundler({
         plugins: [createEsbuildPlugin(config)],
       });
       on("file:preprocessor", bundler);
+      await codeCoverage(on, config);
 
       await addCucumberPreprocessorPlugin(on, config);
 
       return config;
     },
-    env: { PGURI: process.env.PGURI },
+    env: {
+      PGURI: process.env.PGURI,
+    },
+
     baseUrl: "http://localhost:5173",
     specPattern: [
       // E2E-filer Cypress letar efter som standard
@@ -28,11 +40,15 @@ module.exports = defineConfig({
       "cypress/e2e/**/*.feature",
     ],
   },
-
   component: {
     devServer: {
       framework: "react",
       bundler: "vite",
+    },
+    setupNodeEvents(on, config) {
+      require("@cypress/code-coverage/task")(on, config);
+
+      return config;
     },
   },
 });

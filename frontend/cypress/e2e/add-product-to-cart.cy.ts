@@ -5,11 +5,7 @@ describe("Product to cart", () => {
     mockDataProducts();
     cy.visit("/");
     cy.wait("@products");
-    cy.get("[data-cy=product-container]")
-      .children()
-      .should(($item) => {
-        $item.first().click();
-      });
+    cy.get("[data-cy=product-container]").children().eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]")
       .should("have.attr", "src")
