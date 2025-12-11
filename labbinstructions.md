@@ -38,4 +38,4 @@ För G ska ett tillräckligt stort bidrag till produkten ska göras. Grundlägga
 
 #### Redovisning
 
-Projektet ska redovisas på kursens sista tillfälle.
+Projektet ska redovisas på kursens sista tillfälle, cirka
