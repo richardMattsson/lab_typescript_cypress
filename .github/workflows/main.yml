@@ -6,6 +6,11 @@ jobs:
   cypress-run:
     runs-on: ubuntu-24.04
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,10 +34,17 @@ jobs:
 
       - name: Update code coverage badge
         working-directory: frontend
-        run: npx update-badge
-
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Update code coverage badge
+        run:
+          npx update-badge
 
           # spec: cypress/e2e/products-exist.cy.ts
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      # Other steps that change files in the repository go here
+      # …
+
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v5
