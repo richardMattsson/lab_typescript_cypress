@@ -8,21 +8,25 @@
   </head>
   <body>
     <pre class="mermaid">
-     
-            
-      flowchart LR
-  A[StartA] --> B{Har du valt en produkt?B}
-  B -->|No| C[Välj en produktC]
-  C --> B
-  B -->|YES| D[Klicka Lägg tillD]
-  D --> E{Vill du fortsätta handla?E}
-  E -->|Yes| C
-  E -->|No| F[Gå till kassanF]
-  F --> G{Har du fyllt i dina uppgifter?}
-  G -->|No| H[Fyll i dina uppgifter]
-  H --> G
-  G -->|Yes| I[Klicka på Skapa orderI]
-  I --> J[EndH]
+      flowchart TD
+        A[Start] --> Aa[Open app] 
+        Aa --> B[Show products]
+        B --> C{Selected product} 
+        C -->|No|B 
+        C -->|Yes| D[Add to cart] 
+        D --> E{Continue shopping?} 
+        E -->|Yes| B 
+        E -->|No| F[Show cart] 
+        F --> G{Update cart?} 
+        G -->|Yes| I[Make changes] 
+        I --> G 
+        G -->|No| H{Proceed with order?}
+        H -->|No| E 
+        H -->|Yes| J[Type order details] 
+        J --> K[Send order]
+        K --> L[Save order in database]
+        L --> M[Show receipt]
+        M --> N[End]
     </pre>
   </body>
 </html>
