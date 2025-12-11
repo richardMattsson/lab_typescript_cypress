@@ -1,4 +1,5 @@
-import { addToCart } from "../../src/utils/cart";
+import type { ProductType } from "../../src/components/ProductContainer.tsx";
+import { addToCart } from "../../src/utils/cart.ts";
 
 const defaultProduct = {
   id: 1,
@@ -13,7 +14,7 @@ const defaultProduct = {
 
 describe("addToCart-function.cy.jsx", () => {
   it("adds a product", () => {
-    const cart = [];
+    const cart: ProductType[] | null = [];
     const product = {
       id: 1,
       name: "Fralla Naturell",
@@ -24,18 +25,18 @@ describe("addToCart-function.cy.jsx", () => {
       image: "/images/fralla-naturell.jpg",
       quantity: 1,
     };
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 
   it("adds quantity if product already exist in cart", () => {
     const cart = [defaultProduct];
     const product = defaultProduct;
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 
   it("adds the product if the cart is null", () => {
     const cart = null;
     const product = defaultProduct;
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 });

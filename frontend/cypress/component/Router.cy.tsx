@@ -1,5 +1,6 @@
-import Router from "../../src/router/router";
-import { addToCart } from "../../src/utils/cart";
+import type { ProductType } from "../../src/components/ProductContainer.tsx";
+import Router from "../../src/router/router.tsx";
+import { addToCart } from "../../src/utils/cart.ts";
 
 const defaultProduct = {
   id: 1,
@@ -34,7 +35,7 @@ describe("Router.cy.jsx", () => {
   });
 
   it("adds a product", () => {
-    const cart = [];
+    const cart: ProductType[] | null = [];
     const product = {
       id: 1,
       name: "Fralla Naturell",
@@ -45,18 +46,18 @@ describe("Router.cy.jsx", () => {
       image: "/images/fralla-naturell.jpg",
       quantity: 1,
     };
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 
   it("adds quantity if product already exist in cart", () => {
     const cart = [defaultProduct];
     const product = defaultProduct;
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 
   it("adds the product if the cart is null", () => {
     const cart = null;
     const product = defaultProduct;
-    const result = addToCart(cart, product);
+    addToCart(cart, product);
   });
 });

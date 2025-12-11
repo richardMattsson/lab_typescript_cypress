@@ -87,9 +87,12 @@ body {
 
 .order-card {
   display: grid;
+  grid-template-columns: 4fr 1fr auto;
+}
+.order-card-confirmation {
+  display: grid;
   grid-template-columns: 1fr auto;
 }
-
 .text-align-center {
   text-align: center;
 }
@@ -113,6 +116,9 @@ body {
 
 .change-amount {
   width: 40px;
+}
+.change-amount-cart {
+  width: 20px;
 }
 
 .amount-number {

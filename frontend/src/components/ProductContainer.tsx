@@ -97,13 +97,10 @@ export function ProductModal({
   const [amount, setAmount] = useState(1);
 
   function onIncrease() {
-    console.log("increase");
     setAmount(amount + 1);
-
     setSelectedProduct({ ...selectedProduct, quantity: amount + 1 });
   }
   function onDecrease() {
-    console.log("decrease");
     setAmount(amount > 1 ? amount - 1 : amount);
     setSelectedProduct({ ...selectedProduct, quantity: amount - 1 });
   }
@@ -157,7 +154,6 @@ export function AmountOfProducts({
 
   function handleIncrement() {
     setAmount(amount + 1);
-
     onIncrease();
   }
 

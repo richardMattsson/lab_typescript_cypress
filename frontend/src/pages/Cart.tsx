@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
-import type { ProductType } from "../components/ProductContainer";
+import { type ProductType } from "../components/ProductContainer";
 
 type CartProps = {
   cart: ProductType[] | null;
   setCart: () => void;
+  updateCart: (action: "increase" | "decrease", product: ProductType) => void;
 };
 
 type Form = {
@@ -22,7 +23,7 @@ export type Order = {
   price: number;
 };
 
-export default function Cart({ cart, setCart }: CartProps) {
+export default function Cart({ cart, setCart, updateCart }: CartProps) {
   const [openForm, setOpenForm] = useState(false);
   const [form, setForm] = useState<Form>({
     name: "",
@@ -82,10 +83,15 @@ export default function Cart({ cart, setCart }: CartProps) {
         {!cart && !order && <p>Varukorgen är tom.</p>}
         {cart &&
           cart.map((product) => (
-            <SelectedProductCard key={product.id} product={product} />
+            <SelectedProductCard
+              key={product.id}
+              product={product}
+              updateCart={updateCart}
+              openForm={openForm}
+            />
           ))}
 
-        {cart && <p className="text-align-end">Total: {totalPrice} kr</p>}
+        {cart && <p className="text-align-end">Totalt: {totalPrice} kr</p>}
 
         {cart && (
           <section
@@ -105,6 +111,7 @@ export default function Cart({ cart, setCart }: CartProps) {
             totalPrice={totalPrice}
             form={form}
             handleChange={handleChange}
+            openForm={openForm}
           />
         )}
 
@@ -124,12 +131,12 @@ export function OrderConfirmation({ order }: { order: Order | null }) {
         order.cart.map((product, index) => {
           return (
             <section
-              className="order-card"
+              className="order-card-confirmation"
               data-cy="order-confirmation"
               key={index}
             >
-              <span>{product.name}</span>
-              <span>{product.price} kr</span>
+              <span>{`${product.name} x ${product.quantity}`}</span>
+              <span>{product.price * product.quantity} kr</span>
             </section>
           );
         })}
@@ -148,21 +155,40 @@ export function OrderConfirmation({ order }: { order: Order | null }) {
   );
 }
 
-export function SelectedProductCard({ product }: { product: ProductType }) {
+export function SelectedProductCard({
+  product,
+  updateCart,
+  openForm,
+}: {
+  product: ProductType;
+  updateCart: (action: "increase" | "decrease", product: ProductType) => void;
+  openForm: boolean;
+}) {
   return (
     <>
       {product && (
         <section className="order-card" data-cy="order-card">
-          <span>
-            {product.name}{" "}
-            {product.quantity > 1 ? ` x ${product.quantity}` : ""}
-          </span>
-          <span>
-            {product.quantity > 1
-              ? product.price * product.quantity
-              : product.price}{" "}
-            kr
-          </span>
+          <span>{`${product.name} x ${product.quantity}`}</span>
+
+          {!openForm && (
+            <span className="text-align-center">
+              <img
+                className="change-amount-cart pointer"
+                data-cy="decrement-button-cart"
+                onClick={() => updateCart("decrease", product)}
+                src="keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+              />
+
+              <img
+                className="change-amount-cart pointer"
+                data-cy="increment-button-cart"
+                onClick={() => updateCart("increase", product)}
+                src="keyboard_arrow_up_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+              />
+            </span>
+          )}
+
+          <span>{`${product.price * product.quantity} kr`}</span>
         </section>
       )}
     </>
@@ -176,6 +202,7 @@ export function OrderModal({
   onSubmit,
   form,
   handleChange,
+  openForm,
 }: {
   cart: ProductType[] | null;
   onClose: () => void;
@@ -183,6 +210,7 @@ export function OrderModal({
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   form: Form;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  openForm: boolean;
 }) {
   const disabled = useMemo(() => {
     if (form.name && form.address && form.date) {
@@ -205,7 +233,12 @@ export function OrderModal({
         <p>Totalt: {totalPrice} kr</p>
         {cart &&
           cart.map((product) => (
-            <SelectedProductCard key={product.id} product={product} />
+            <SelectedProductCard
+              key={product.id}
+              product={product}
+              updateCart={() => {}}
+              openForm={openForm}
+            />
           ))}
 
         <form onSubmit={(e) => onSubmit(e)}>

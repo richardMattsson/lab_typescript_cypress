@@ -7,13 +7,21 @@ import { useState } from "react";
 
 import type { ProductType } from "../components/ProductContainer";
 
-import { addToCart } from "../utils/cart";
+import { addToCart, updateCart } from "../utils/cart";
 
 export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
 
   function handleAdd(product: ProductType) {
     const updatedCart = addToCart(cart, product);
+    setCart(updatedCart);
+  }
+
+  function handleUpdateCart(
+    action: "increase" | "decrease",
+    product: ProductType
+  ) {
+    const updatedCart = updateCart(action, cart, product);
     setCart(updatedCart);
   }
 
@@ -34,7 +42,13 @@ export default function Router() {
         },
         {
           path: "/cart",
-          element: <Cart cart={cart} setCart={() => setCart(null)} />,
+          element: (
+            <Cart
+              cart={cart}
+              setCart={() => setCart(null)}
+              updateCart={handleUpdateCart}
+            />
+          ),
         },
         {
           path: "/account",
