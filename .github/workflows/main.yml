@@ -28,6 +28,7 @@ jobs:
           start: npm run dev
 
       - name: Update code coverage badge
+        working-directory: frontend
         run: npx update-badge
 
       - uses: stefanzweifel/git-auto-commit-action@v5
