@@ -1,1 +1,1 @@
-<img src="./frontend/public/make-order-flow-chart.png" alt="UML Diagram" width="600" />
+<img src="./frontend/public/make-order-flow-chart-2.png" alt="UML Diagram" width="300" />
