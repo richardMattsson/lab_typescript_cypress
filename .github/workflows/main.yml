@@ -34,10 +34,13 @@ jobs:
 
       - name: Update code coverage badge
         working-directory: frontend
-        run:
-          npx update-badge
+        run: npx update-badge
 
-          # spec: cypress/e2e/products-exist.cy.ts
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: ./frontend/coverage-merged
 
       - uses: actions/checkout@v4
         with:
