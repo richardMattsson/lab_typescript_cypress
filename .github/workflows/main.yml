@@ -32,18 +32,6 @@ jobs:
           build: npm run build
           start: npm run dev
 
-      - name: Generate merged coverage
-        working-directory: frontend
-        run: |
-          npx nyc merge coverage .nyc_output/out.json
-          npx nyc report --reporter=json-summary --report-dir ./
-
-      - name: Upload code coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: ./frontend/coverage-summary.json
-
       - name: Update code coverage badge
         working-directory: frontend
         run: npx update-badge --coverage-source ./coverage-summary.json
