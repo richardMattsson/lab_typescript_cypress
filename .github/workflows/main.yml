@@ -40,13 +40,15 @@ jobs:
         working-directory: frontend
         run: |
           mkdir -p coverage
+          mkdir -p coverage/html
           npx nyc merge .nyc_output coverage/merged.json
+          npx nyc report --reporter=html --report-dir=coverage/html --temp-dir=coverage/merged.json
 
       - name: Upload code coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: ./frontend/coverage/merged.json
+          path: ./frontend/coverage/html
 
       - name: Mirror frontend README to root
         run: cp frontend/README.md README.md
