@@ -34,7 +34,7 @@ jobs:
 
       - name: Update code coverage badge
         working-directory: frontend
-        run: npx update-badge --coverage-source ./coverage-summary.json
+        run: npx update-badge
 
       - name: Mirror frontend README to root
         run: cp frontend/README.md README.md
