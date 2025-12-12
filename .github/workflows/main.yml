@@ -32,9 +32,8 @@ jobs:
           build: npm run build
           start: npm run dev
 
-      - name: Mirror root README to frontend
-        run: cp ../README.md frontend/README.md
-        working-directory: .
+      - name: Mirror frontend README to root
+        run: cp frontend/README.md README.md
 
       - name: Update code coverage badge
         working-directory: frontend
