@@ -17,7 +17,9 @@ jobs:
         working-directory: backend
         env:
           PGURI: ${{ secrets.PGURI }}
-        run: npm run dev &
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:9999
 
   cypress-tests:
     runs-on: ubuntu-24.04
