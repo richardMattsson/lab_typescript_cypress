@@ -33,8 +33,8 @@ jobs:
           start: npm run dev
 
       - name: Update code coverage badge
-        working-directory: .
-        run: npx update-badge --file README.md
+        working-directory: frontend
+        run: npx update-badge --file ../ README.md
 
       - name: Upload code coverage report
         uses: actions/upload-artifact@v4
