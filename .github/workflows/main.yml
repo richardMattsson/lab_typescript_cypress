@@ -9,15 +9,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+
       - name: Install backend dependencies
         working-directory: backend
         run: npm install
 
-      - name: Start backend server
+      - name: Start backend server and wait until it's ready
         working-directory: backend
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:9999
         env:
           PGURI: ${{ secrets.PGURI }}
-        run: npm run dev &
 
   cypress-tests:
     runs-on: ubuntu-24.04
