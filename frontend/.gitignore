@@ -17,6 +17,7 @@ dist-ssr
 coverage-merged
 coverage
 .nyc_output
+README.md
 
 # Editor directories and files
 .vscode/*
