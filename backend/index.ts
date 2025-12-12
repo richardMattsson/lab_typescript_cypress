@@ -45,5 +45,5 @@ app.post("/api/order", async (request, response) => {
 });
 
 app.listen(port, () => {
-  console.log("Webbtjänsten kan nu ta emot anrop.");
+  console.log("Webbtjänsten kan nu ta emot anrop på port " + port);
 });
