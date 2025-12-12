@@ -36,6 +36,12 @@ jobs:
         working-directory: frontend
         run: npx update-badge
 
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: ./frontend/coverage-merged
+
       - name: Mirror frontend README to root
         run: cp frontend/README.md README.md
 
