@@ -14,8 +14,8 @@ backup.sql
 dist
 dist-ssr
 *.local
-coverage
 coverage-merged
+coverage
 .nyc_output
 
 # Editor directories and files
