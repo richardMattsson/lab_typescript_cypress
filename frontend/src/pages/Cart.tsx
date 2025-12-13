@@ -176,14 +176,14 @@ export function SelectedProductCard({
                 className="change-amount-cart pointer"
                 data-cy="decrement-button-cart"
                 onClick={() => updateCart("decrease", product)}
-                src="keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                src="remove-icon.svg"
               />
 
               <img
                 className="change-amount-cart pointer"
                 data-cy="increment-button-cart"
                 onClick={() => updateCart("increase", product)}
-                src="keyboard_arrow_up_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                src="add-icon.svg"
               />
             </span>
           )}

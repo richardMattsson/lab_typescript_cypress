@@ -165,7 +165,7 @@ export function AmountOfProducts({
             className="change-amount pointer"
             data-cy="decrement-button"
             onClick={handleDecrement}
-            src="keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            src="remove-icon.svg"
           />
         </span>
 
@@ -180,7 +180,7 @@ export function AmountOfProducts({
             className="change-amount pointer"
             data-cy="increment-button"
             onClick={handleIncrement}
-            src="keyboard_arrow_up_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            src="add-icon.svg"
           />
         </span>
       </section>
