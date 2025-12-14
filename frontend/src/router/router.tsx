@@ -7,21 +7,19 @@ import { useState } from "react";
 
 import type { ProductType } from "../components/ProductContainer";
 
-import { addToCart, updateCart } from "../utils/cart";
+import { updateCart } from "../utils/cart";
+
+export type UpdateCartType = {
+  action: "increase" | "decrease" | "increase by" | "add" | "update quantity";
+  product: ProductType;
+  quantity: number;
+};
 
 export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
 
-  function handleAdd(product: ProductType) {
-    const updatedCart = addToCart(cart, product);
-    setCart(updatedCart);
-  }
-
-  function handleUpdateCart(
-    action: "increase" | "decrease",
-    product: ProductType
-  ) {
-    const updatedCart = updateCart(action, cart, product);
+  function handleUpdateCart({ action, product, quantity }: UpdateCartType) {
+    const updatedCart = updateCart({ action, cart, product, quantity });
     setCart(updatedCart);
   }
 
@@ -38,7 +36,7 @@ export default function Router() {
       children: [
         {
           path: "/",
-          element: <Home addToCart={handleAdd} />,
+          element: <Home updateCart={handleUpdateCart} />,
         },
         {
           path: "/cart",

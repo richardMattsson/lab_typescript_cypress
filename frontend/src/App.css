@@ -85,9 +85,42 @@ body {
   background: #fff;
 }
 
+.product-name {
+  grid-area: product;
+}
+
+.product-price {
+  grid-area: price;
+}
+
+.product-quantity {
+  grid-area: quantity;
+}
+
+.product-select {
+  grid-area: select;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #fff;
+  font-family: Google Sans Code;
+}
+.product-option-number {
+  font-family: Google Sans Code;
+}
+
 .order-card {
   display: grid;
-  grid-template-columns: 4fr 1fr auto;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "product product product price"
+    ". . quantity select";
+  gap: 20px;
+  border-bottom: 1px solid #999;
+  margin-top: 5px;
+  padding: 5px;
+  align-items: center;
 }
 .order-card-confirmation {
   display: grid;

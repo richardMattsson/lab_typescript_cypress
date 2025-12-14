@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
-import type { ProductType } from "../components/ProductContainer";
+import type { UpdateCartType } from "../router/router";
 
 type HomeProps = {
-  addToCart: (product: ProductType) => void;
+  updateCart: ({ action, product }: UpdateCartType) => void;
 };
 
-export default function Home({ addToCart }: HomeProps) {
+export default function Home({ updateCart }: HomeProps) {
   const [products, setProducts] = useState();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Home({ addToCart }: HomeProps) {
   return (
     <>
       {products && (
-        <ProductContainer addToCart={addToCart} products={products} />
+        <ProductContainer updateCart={updateCart} products={products} />
       )}
     </>
   );

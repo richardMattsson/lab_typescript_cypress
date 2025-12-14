@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import { type ProductType } from "../components/ProductContainer";
+import type { UpdateCartType } from "../router/router";
 
 type CartProps = {
   cart: ProductType[] | null;
   setCart: () => void;
-  updateCart: (action: "increase" | "decrease", product: ProductType) => void;
+  updateCart: ({ action, product }: UpdateCartType) => void;
 };
 
 type Form = {
@@ -161,34 +162,69 @@ export function SelectedProductCard({
   openForm,
 }: {
   product: ProductType;
-  updateCart: (action: "increase" | "decrease", product: ProductType) => void;
+  updateCart: ({ action, product }: UpdateCartType) => void;
   openForm: boolean;
 }) {
   return (
     <>
       {product && (
         <section className="order-card" data-cy="order-card">
-          <span>{`${product.name} x ${product.quantity}`}</span>
+          <span className="product-name">{product.name}</span>
+          <span className="product-price">{`${
+            product.price * product.quantity
+          } kr`}</span>
 
           {!openForm && (
-            <span className="text-align-center">
-              <img
-                className="change-amount-cart pointer"
-                data-cy="decrement-button-cart"
-                onClick={() => updateCart("decrease", product)}
-                src="remove-icon.svg"
-              />
-
-              <img
-                className="change-amount-cart pointer"
-                data-cy="increment-button-cart"
-                onClick={() => updateCart("increase", product)}
-                src="add-icon.svg"
-              />
-            </span>
+            <>
+              <span className="product-quantity">Kvantitet</span>
+              <select
+                className="product-select"
+                name="quantity"
+                id="product-quantity"
+              >
+                {[
+                  product.quantity,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19,
+                  20,
+                ].map((number, index) => {
+                  return (
+                    <option
+                      className="product-option-number"
+                      onClick={() =>
+                        updateCart({
+                          action: "update quantity",
+                          product,
+                          quantity: number,
+                        })
+                      }
+                      key={index === product.quantity ? 0 : number}
+                      value={number}
+                    >
+                      {number}
+                    </option>
+                  );
+                })}
+              </select>
+            </>
           )}
-
-          <span>{`${product.price * product.quantity} kr`}</span>
         </section>
       )}
     </>

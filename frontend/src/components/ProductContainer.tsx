@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { UpdateCartType } from "../router/router";
 
 export type ProductType = {
   id: number;
@@ -12,12 +13,12 @@ export type ProductType = {
 
 type ProductContainerProps = {
   products: ProductType[];
-  addToCart: (product: ProductType) => void;
+  updateCart: ({ action, product, quantity }: UpdateCartType) => void;
 };
 
 export default function ProductContainer({
   products,
-  addToCart,
+  updateCart,
 }: ProductContainerProps) {
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
     null
@@ -36,10 +37,10 @@ export default function ProductContainer({
 
       {selectedProduct && (
         <ProductModal
-          addToCart={addToCart}
           onClose={() => setSelectedProduct(null)}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
+          updateCart={updateCart}
         />
       )}
     </article>
@@ -63,7 +64,7 @@ export function ProductCard({
         className="no-margin"
         style={{ display: "grid", justifyContent: "center" }}
       >
-        <ProductImage width="60px" />
+        <ProductImage src="bakery_dining_black.svg" width="50px" />
       </figure>
       <section className="product-item-description-container">
         <p className="no-margin text-align-end">{product.name}</p>
@@ -73,26 +74,26 @@ export function ProductCard({
   );
 }
 
-export function ProductImage({ width }: { width?: string }) {
-  return (
-    <img
-      src="bakery_dining_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-      alt="product-image"
-      style={{ border: "1px solid #fff", width: `${width || "25px"}` }}
-    />
-  );
+export function ProductImage({
+  width = "45px",
+  src,
+}: {
+  width?: string;
+  src: string;
+}) {
+  return <img src={src} alt="product-image" style={{ width: width }} />;
 }
 
 export function ProductModal({
   selectedProduct,
   onClose,
-  addToCart,
   setSelectedProduct,
+  updateCart,
 }: {
   selectedProduct: ProductType;
   onClose: () => void;
-  addToCart: (selectedProduct: ProductType) => void;
   setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>;
+  updateCart: ({ action, product, quantity }: UpdateCartType) => void;
 }) {
   const [amount, setAmount] = useState(1);
 
@@ -124,14 +125,20 @@ export function ProductModal({
             alignItems: "center",
           }}
         >
-          <ProductImage width="100px" />
+          <ProductImage width="100px" src="bakery_dining_black.svg" />
         </figure>
 
         <AmountOfProducts onIncrease={onIncrease} onDecrease={onDecrease} />
 
         <AddToCart
           onClose={onClose}
-          addToCart={() => addToCart(selectedProduct)}
+          addToCart={() =>
+            updateCart({
+              action: "add",
+              product: selectedProduct,
+              quantity: selectedProduct.quantity,
+            })
+          }
         />
       </section>
     </section>
@@ -153,8 +160,10 @@ export function AmountOfProducts({
   }
 
   function handleIncrement() {
-    setAmount(amount + 1);
-    onIncrease();
+    if (amount < 20) {
+      setAmount(amount + 1);
+      onIncrease();
+    } else return;
   }
 
   return (
@@ -180,7 +189,7 @@ export function AmountOfProducts({
             className="change-amount pointer"
             data-cy="increment-button"
             onClick={handleIncrement}
-            src="add-icon.svg"
+            src={amount < 20 ? "add-icon.svg" : "add-icon-grey.svg"}
           />
         </span>
       </section>
