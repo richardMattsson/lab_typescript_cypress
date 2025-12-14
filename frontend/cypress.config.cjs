@@ -45,6 +45,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       require("@cypress/code-coverage/task")(on, config);
 
+      on("task", {
+        resetCoverage() {
+          return null;
+        },
+      });
       return config;
     },
   },
