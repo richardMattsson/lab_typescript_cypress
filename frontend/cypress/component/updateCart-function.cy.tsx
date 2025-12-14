@@ -26,13 +26,13 @@ describe("updateCart function", () => {
       image: "/images/fralla-naturell.jpg",
       quantity: 1,
     };
-    updateCart(action, cart, product);
+    updateCart({ action, cart, product });
   });
 
   it("decreases quantity", () => {
     const action = "decrease";
     const cart = [defaultProduct];
     const product = defaultProduct;
-    updateCart(action, cart, product);
+    updateCart({ action, cart, product });
   });
 });

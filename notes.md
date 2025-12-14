@@ -10,11 +10,12 @@
 
 #### Todo:
 
-1. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner.
-1. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README.
-1. Sätta upp automatiserade tester med github actions
-1. Lägga till tanStack Query
-1. Bygga account
+1. Updatera komponent tester
+2. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner.
+3. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README.
+4. Sätta upp automatiserade tester med github actions
+5. Lägga till tanStack Query
+6. Bygga account
 
 #### E2E tester:
 
