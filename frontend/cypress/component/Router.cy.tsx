@@ -24,6 +24,6 @@ describe("Router.cy.jsx", () => {
   });
 
   it("restores db", () => {
-    cy.restoreDatabase();
+    cy.resetDatabase();
   });
 });
