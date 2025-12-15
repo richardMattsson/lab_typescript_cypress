@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict gLdBmicpXOUwBhfW7uR4uqUExlDh9E3QnAJKBoybH0nTNPcCgepwp3KlJe7sqhs
+\restrict YWaODiqgoDZUa7mMEVvouXKaEe9ROj3U7yqHuYAUo3JS6CjvsvXQdGAayfh0NaK
 
 -- Dumped from database version 17.7 (Debian 17.7-3.pgdg12+1)
 -- Dumped by pg_dump version 17.7 (Ubuntu 17.7-3.pgdg24.04+1)
@@ -475,10 +475,8 @@ ALTER TABLE ONLY public.wallposts ALTER COLUMN id SET DEFAULT nextval('public.wa
 
 COPY public.orders (id, address, cart, delivery, name, price, created_at) FROM stdin;
 1	aa	[{"name": "Fralla Sesam", "price": 9, "quantity": 1}]	2025-12-20	aa	9	2025-12-15 13:10:44.484135
-2	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:18:52.889158
-3	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:28:52.355759
-4	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:38:35.469224
-5	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:41:17.005419
+2	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:57:10.117435
+3	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 15:01:59.977988
 \.
 
 
@@ -592,7 +590,7 @@ COPY public.wallposts (id, report_count, phone_number, free_text, severity, crea
 -- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: trygghetskollen_db_user
 --
 
-SELECT pg_catalog.setval('public.orders_id_seq', 5, true);
+SELECT pg_catalog.setval('public.orders_id_seq', 3, true);
 
 
 --
@@ -833,5 +831,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES TO trygghetskolle
 -- PostgreSQL database dump complete
 --
 
-\unrestrict gLdBmicpXOUwBhfW7uR4uqUExlDh9E3QnAJKBoybH0nTNPcCgepwp3KlJe7sqhs
+\unrestrict YWaODiqgoDZUa7mMEVvouXKaEe9ROj3U7yqHuYAUo3JS6CjvsvXQdGAayfh0NaK
 
