@@ -27,7 +27,7 @@ export default function Router() {
       element: (
         <>
           <HomeHeader cart={cart} />
-          <main>
+          <main data-cy="main-container">
             <Outlet />
           </main>
         </>

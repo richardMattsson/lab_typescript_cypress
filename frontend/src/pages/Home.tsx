@@ -7,7 +7,7 @@ type HomeProps = {
 };
 
 export default function Home({ updateCart }: HomeProps) {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
     async function getProducts() {
@@ -27,6 +27,7 @@ export default function Home({ updateCart }: HomeProps) {
       {products && (
         <ProductContainer updateCart={updateCart} products={products} />
       )}
+      {!products && <p>Kunde inte ladda produkter.</p>}
     </>
   );
 }
