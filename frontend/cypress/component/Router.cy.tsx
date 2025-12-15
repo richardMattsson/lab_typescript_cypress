@@ -21,9 +21,6 @@ describe("Router.cy.jsx", () => {
     cy.get("[data-cy=date-input]").type("2025-12-31");
 
     cy.get("[data-cy=make-order]").click();
-  });
-
-  it("restores db", () => {
     cy.resetDatabase();
   });
 });
