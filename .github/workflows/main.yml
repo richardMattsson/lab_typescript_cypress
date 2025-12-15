@@ -9,11 +9,30 @@ jobs:
     permissions:
       contents: write
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: testdb
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+
+      - name: Initialize database
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -d testdb -f frontend/init.sql
 
       - name: Install backend dependencies
         working-directory: backend
@@ -23,12 +42,12 @@ jobs:
         working-directory: backend
         run: npm run dev &
         env:
-          PGURI: ${{ secrets.PGURI }}
+          PGURI: postgresql://postgres:postgres@localhost:5432/testdb
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          PGURI: ${{ secrets.PGURI }}
+          PGURI: postgresql://postgres:postgres@localhost:5432/testdb
         with:
           working-directory: frontend
           build: npm run build
