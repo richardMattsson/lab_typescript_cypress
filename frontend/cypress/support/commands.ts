@@ -40,9 +40,12 @@
 
 Cypress.Commands.add("resetDatabase", () => {
   const PGURI = Cypress.env("PGURI");
-  console.log("PGURI", PGURI);
 
-  cy.exec(`psql -f init.sql ${PGURI}`);
+  try {
+    cy.exec(`psql -f init.sql ${PGURI}`);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 Cypress.Commands.add("backupDatabase", () => {
