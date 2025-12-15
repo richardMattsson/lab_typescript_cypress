@@ -70,7 +70,6 @@ jobs:
           working-directory: frontend
           build: npm run build
           start: npm run dev
-        continue-on-error: true
 
       - name: Run component tests
         working-directory: frontend
