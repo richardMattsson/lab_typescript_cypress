@@ -22,8 +22,6 @@ jobs:
           curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
           sudo apt update
           sudo apt install postgresql-17
-          sudo systemctl start postgresql
-          sudo systemctl enable postgresql
 
       - name: Install backend dependencies
         working-directory: backend
