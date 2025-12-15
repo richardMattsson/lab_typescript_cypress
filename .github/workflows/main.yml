@@ -32,6 +32,13 @@ jobs:
 
       - name: Check pg_dump version
         run: pg_dump --version
+
+      - name: Dump database
+        run: /usr/lib/postgresql/17/bin/pg_dump --version
+
+      - name: Run pg_dump
+        run: |
+          /usr/lib/postgresql/17/bin/pg_dump "$DATABASE_URL" > dump.sql
       # - name: install postgres version
       #   run: |
       #     sudo apt update
