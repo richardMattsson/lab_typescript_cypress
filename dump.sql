@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict a4zfsRFRqZwDbPt5Dvv04j2O5BRzEh0i0BQW0Ltj1I8ew7Uiu4eCL3C9rJW48Lw
+\restrict dm9Qg1Muelp9DxhAOrCvGEyuliZH4aKcwqgdLRHbYDR935RqRADkUDXtGZqQsnY
 
 -- Dumped from database version 17.7 (Debian 17.7-3.pgdg12+1)
 -- Dumped by pg_dump version 17.7 (Ubuntu 17.7-3.pgdg24.04+1)
@@ -477,6 +477,7 @@ COPY public.orders (id, address, cart, delivery, name, price, created_at) FROM s
 1	aa	[{"name": "Fralla Sesam", "price": 9, "quantity": 1}]	2025-12-20	aa	9	2025-12-15 13:10:44.484135
 2	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:18:52.889158
 3	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:28:52.355759
+4	Some address	[{"name": "Fralla Naturell", "price": 8, "quantity": 1}]	2025-12-31	Richard	8	2025-12-15 14:38:35.469224
 \.
 
 
@@ -590,7 +591,7 @@ COPY public.wallposts (id, report_count, phone_number, free_text, severity, crea
 -- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: trygghetskollen_db_user
 --
 
-SELECT pg_catalog.setval('public.orders_id_seq', 3, true);
+SELECT pg_catalog.setval('public.orders_id_seq', 4, true);
 
 
 --
@@ -831,5 +832,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES TO trygghetskolle
 -- PostgreSQL database dump complete
 --
 
-\unrestrict a4zfsRFRqZwDbPt5Dvv04j2O5BRzEh0i0BQW0Ltj1I8ew7Uiu4eCL3C9rJW48Lw
+\unrestrict dm9Qg1Muelp9DxhAOrCvGEyuliZH4aKcwqgdLRHbYDR935RqRADkUDXtGZqQsnY
 
