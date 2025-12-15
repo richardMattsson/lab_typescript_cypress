@@ -17,8 +17,7 @@ jobs:
 
       - name: install postgres version
         run: |
-          sudo apt update
-          sudo apt install postgresql-17
+          psql --version
 
       - name: Install backend dependencies
         working-directory: backend
