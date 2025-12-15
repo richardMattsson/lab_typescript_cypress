@@ -62,9 +62,13 @@ export function ProductCard({
     >
       <figure
         className="no-margin"
-        style={{ display: "grid", justifyContent: "center" }}
+        style={{
+          display: "grid",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <ProductImage src="bakery_dining_black.svg" width="50px" />
+        <ProductImage src={product.image} width={55} />
       </figure>
       <section className="product-item-description-container">
         <p className="no-margin text-align-end">{product.name}</p>
@@ -75,13 +79,13 @@ export function ProductCard({
 }
 
 export function ProductImage({
-  width = "45px",
-  src,
+  width = 45,
+  src = "bakery_dining_black.svg",
 }: {
-  width?: string;
+  width?: number;
   src: string;
 }) {
-  return <img src={src} alt="product-image" style={{ width: width }} />;
+  return <img src={src} alt="product-image" style={{ width: `${width}px` }} />;
 }
 
 export function ProductModal({
@@ -117,6 +121,7 @@ export function ProductModal({
         />
         <h2 style={{ margin: 0 }}>{selectedProduct.name}</h2>
         <p style={{ margin: 0 }}>{selectedProduct.price * amount} kr</p>
+        <p>{selectedProduct.description}</p>
         <figure
           className="no-margin"
           style={{
@@ -125,7 +130,7 @@ export function ProductModal({
             alignItems: "center",
           }}
         >
-          <ProductImage width="100px" src="bakery_dining_black.svg" />
+          <ProductImage width={100} src={selectedProduct.image} />
         </figure>
 
         <AmountOfProducts onIncrease={onIncrease} onDecrease={onDecrease} />

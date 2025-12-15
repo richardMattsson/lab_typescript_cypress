@@ -225,6 +225,7 @@ export function SelectedProductCard({
               </select>
             </>
           )}
+          {openForm && <span>{`x ${product.quantity}`}</span>}
         </section>
       )}
     </>
@@ -266,7 +267,6 @@ export function OrderModal({
           style={{ cursor: "pointer" }}
         />
         <h2>Din beställning:</h2>
-        <p>Totalt: {totalPrice} kr</p>
         {cart &&
           cart.map((product) => (
             <SelectedProductCard
@@ -276,8 +276,9 @@ export function OrderModal({
               openForm={openForm}
             />
           ))}
+        <p>Totalt: {totalPrice} kr</p>
 
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form className="order-form" onSubmit={(e) => onSubmit(e)}>
           <input
             data-cy="name-input"
             name="name"
@@ -301,6 +302,31 @@ export function OrderModal({
             value={form.date}
             onChange={handleChange}
           />
+
+          <h3 className="text-align-center" style={{ fontWeight: 500 }}>
+            Betalningsmetod
+          </h3>
+          <section
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              marginBottom: "30px",
+            }}
+          >
+            <div>
+              <label htmlFor="radio-swish">Swish</label>
+              <input
+                type="radio"
+                name="payment"
+                id="radio-swish"
+                value="Swish"
+              />
+            </div>
+            <div>
+              <label htmlFor="radio-card">Kort</label>
+              <input type="radio" name="payment" id="radio-card" />
+            </div>
+          </section>
           <input
             data-cy="make-order"
             disabled={disabled}

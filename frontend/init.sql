@@ -2,6 +2,9 @@ DROP TABLE IF EXISTS products;
 
 DROP TABLE IF EXISTS orders;
 
+SET
+  client_encoding = 'UTF8';
+
 CREATE TABLE
   products (
     id serial PRIMARY KEY,
@@ -32,7 +35,7 @@ VALUES
     'frallor',
     'Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.',
     8,
-    '/images/fralla-naturell.jpg'
+    '/fralla-natural.png'
   );
 
 INSERT INTO
@@ -43,7 +46,7 @@ VALUES
     'frallor',
     'Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.',
     9,
-    '/images/fralla-naturell.jpg'
+    '/fralla-sesam.png'
   );
 
 INSERT INTO
@@ -54,7 +57,7 @@ VALUES
     'baguetter',
     'Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.',
     18,
-    '/images/fralla-naturell.jpg'
+    '/baguette-classic.png'
   );
 
 INSERT INTO
@@ -65,7 +68,7 @@ VALUES
     'frallor',
     'Näringsrik fullkornsfralla med mjuk insida och rustik smak. Gott val till frukost eller mellanmål.',
     10,
-    '/images/fralla-fullkorn.jpg'
+    '/fralla-fullkorn.png'
   );
 
 INSERT INTO
@@ -76,7 +79,7 @@ VALUES
     'frallor',
     'Nygräddad fralla toppad med smält ost som ger en krispig och smakrik yta.',
     12,
-    '/images/fralla-ost.jpg'
+    '/fralla-ost.png'
   );
 
 INSERT INTO
@@ -89,3 +92,16 @@ VALUES
     20,
     '/images/baguette-rustik.jpg'
   );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Croissant Klassisk',
+    'croissanter',
+    'Smörig croissant med fluffig insida och gyllene, frasig yta. Perfekt till morgonkaffet.',
+    15,
+    '/croissant-classic.jpg'
+  );
+
+SHOW client_encoding;

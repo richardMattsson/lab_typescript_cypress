@@ -65,7 +65,7 @@ body {
   /* justify-content: center; */
   padding: 15px;
   width: 275px;
-  height: 500px;
+  min-height: 500px;
   background: #fff;
   border: 1px solid #333;
 }
@@ -131,6 +131,13 @@ body {
   display: grid;
   grid-template-columns: 1fr auto;
 }
+
+.order-form {
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+}
+
 .text-align-center {
   text-align: center;
 }

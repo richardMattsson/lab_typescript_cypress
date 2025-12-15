@@ -22,4 +22,8 @@ describe("Router.cy.jsx", () => {
 
     cy.get("[data-cy=make-order]").click();
   });
+
+  it("restores db", () => {
+    cy.restoreDatabase();
+  });
 });
