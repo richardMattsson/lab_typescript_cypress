@@ -30,24 +30,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y postgresql-client-17
 
+      - name: Add pg_dump 17 to PATH
+        run: echo "/usr/lib/postgresql/17/bin" >> $GITHUB_PATH
+
       - name: Check pg_dump version
         run: pg_dump --version
 
-      - name: Dump database
-        run: /usr/lib/postgresql/17/bin/pg_dump --version
-
-      - name: Debug DATABASE_URL
+      - name: Dump PostgreSQL database
         env:
           PGURI: ${{ secrets.PGURI }}
         run: |
-          echo "DATABASE_URL is set: ${{ secrets.PGURI != '' }}"
+          echo "Dumping database..."
+          pg_dump "$PGURI" > dump.sql
 
-      - name: Dump database
-        env:
-          PGURI: ${{ secrets.PGURI }}
-        run: |
-          /usr/lib/postgresql/17/bin/pg_dump "$PGURI" > dump.sql
-          pg_dump --version
       # - name: install postgres version
       #   run: |
       #     sudo apt update
