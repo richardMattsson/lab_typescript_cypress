@@ -37,10 +37,14 @@ jobs:
         run: /usr/lib/postgresql/17/bin/pg_dump --version
 
       - name: Debug DATABASE_URL
+        env:
+          PGURI: ${{ secrets.PGURI }}
         run: |
           echo "DATABASE_URL is set: ${{ secrets.PGURI != '' }}"
 
-      - name: Run pg_dump
+      - name: Dump database
+        env:
+          PGURI: ${{ secrets.PGURI }}
         run: |
           /usr/lib/postgresql/17/bin/pg_dump "$PGURI" > dump.sql
       # - name: install postgres version
