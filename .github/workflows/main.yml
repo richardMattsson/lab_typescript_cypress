@@ -38,13 +38,13 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        continue-on-error: true
         env:
           PGURI: ${{ secrets.PGURI }}
         with:
           working-directory: frontend
           build: npm run build
           start: npm run dev
+        continue-on-error: true
 
       - name: Run component tests
         working-directory: frontend
