@@ -1,4 +1,14 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import {
+  Before,
+  Given,
+  When,
+  Then,
+  After,
+} from "@badeball/cypress-cucumber-preprocessor";
+
+Before(() => {
+  cy.backupDatabase();
+});
 
 Given(
   "I have choosen a product, clicked continue with order and filled in all info correct",
@@ -24,4 +34,8 @@ When("I click the make order button", () => {
 
 Then("I should get a confirmation about that my order was successfull", () => {
   cy.get("[data-cy=confirmation-message]").should("be.visible");
+});
+
+After(() => {
+  cy.restoreDatabase();
 });

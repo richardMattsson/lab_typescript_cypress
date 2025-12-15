@@ -102,14 +102,15 @@ body {
   grid-area: select;
   padding: 12px;
   width: 80px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  border: 2px solid #777;
+  border-radius: 40px;
   background-color: #fff;
   font-family: Google Sans Code;
+  font-size: 1em;
   text-align: center;
 }
 .product-option-number {
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .order-card {

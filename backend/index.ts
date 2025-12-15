@@ -5,7 +5,7 @@ import type { ProductType } from "../frontend/src/components/ProductContainer.ts
 import type { Order } from "../frontend/src/pages/Cart.tsx";
 
 const app = express();
-const port = 9999;
+const port = process.env.PORT || 9999;
 
 app.use(express.json());
 

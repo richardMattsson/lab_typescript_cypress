@@ -27,6 +27,14 @@ module.exports = defineConfig({
         resetCoverage() {
           return null;
         },
+
+        backupDatabase() {
+          return null;
+        },
+
+        restoreDatabase() {
+          return null;
+        },
       });
 
       return config;

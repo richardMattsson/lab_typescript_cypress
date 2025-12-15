@@ -1,4 +1,14 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import {
+  Before,
+  Given,
+  When,
+  Then,
+  After,
+} from "@badeball/cypress-cucumber-preprocessor";
+
+Before(() => {
+  cy.backupDatabase();
+});
 
 Given("I selected some product and went to the cart page", () => {
   cy.visit("/");
@@ -22,4 +32,8 @@ Then("I should see my selected products in the order confirmation", () => {
     .eq(0)
     .contains("Fralla Naturell")
     .should("be.visible");
+});
+
+After(() => {
+  cy.restoreDatabase();
 });

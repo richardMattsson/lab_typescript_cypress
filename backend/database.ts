@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const database = new Client({
-  connectionString: process.env.PGURI,
+  connectionString: `${process.env.PGURI}?sslmode=require`,
 });
 
 database.connect();

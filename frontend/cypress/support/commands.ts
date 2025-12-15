@@ -45,6 +45,20 @@ Cypress.Commands.add("resetDatabase", () => {
   cy.exec(`psql -f init.sql ${PGURI}`);
 });
 
+Cypress.Commands.add("backupDatabase", () => {
+  const PGURI = Cypress.env("PGURI");
+  if (PGURI) {
+    cy.exec(`pg_dump -f backup.sql ${PGURI}`);
+  }
+});
+
+Cypress.Commands.add("restoreDatabase", () => {
+  const PGURI = Cypress.env("PGURI");
+  if (PGURI) {
+    cy.exec(`psql -f backup.sql ${PGURI}`);
+  }
+});
+
 import "../../src/setup.js";
 
 export const mockFailLoad = () => {

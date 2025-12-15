@@ -11,6 +11,7 @@ node_modules
 .env
 db.ts
 backup.sql
+cypress.env.json
 dist
 dist-ssr
 *.local

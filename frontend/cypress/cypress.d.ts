@@ -4,6 +4,8 @@ declare global {
     interface Chainable {
       mount: typeof mount;
       resetDatabase(): Chainable<JQuery<HTMLElement>>;
+      backupDatabase(): Chainable<JQuery<HTMLElement>>;
+      restoreDatabase(): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
