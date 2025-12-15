@@ -1,14 +1,16 @@
 import Router from "../../src/router/router.tsx";
 
+beforeEach(() => {
+  cy.mount(<Router />);
+});
+
 describe("Router.cy.jsx", () => {
   it("add a product", () => {
-    cy.mount(<Router />);
     cy.get("[data-cy=product-container]").children().eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
   });
 
   it("confirm order", () => {
-    cy.mount(<Router />);
     cy.get("[data-cy=product-container]").children().eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();

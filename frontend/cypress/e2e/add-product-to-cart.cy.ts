@@ -1,10 +1,7 @@
-// import { mockDataProducts } from "../support/commands.ts";
-
 describe("Product to cart", () => {
   it("Possible to add product to cart", () => {
-    // mockDataProducts();
     cy.visit("/");
-    // cy.wait("@products");
+
     cy.get("[data-cy=product-container]").children().eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]")

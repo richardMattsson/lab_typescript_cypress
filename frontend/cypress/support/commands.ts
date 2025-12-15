@@ -47,71 +47,10 @@ Cypress.Commands.add("resetDatabase", () => {
 
 import "../../src/setup.js";
 
-export const mockDataProducts = () => {
+export const mockFailLoad = () => {
   return cy
     .intercept("/api/products", {
-      body: [
-        {
-          id: 1,
-          name: "Fralla Naturell",
-          category: "frallor",
-          description:
-            "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
-          price: 8,
-          image: "/images/fralla-naturell.jpg",
-          quantity: 1,
-        },
-        {
-          id: 2,
-          name: "Fralla Sesam",
-          category: "frallor",
-          description:
-            "Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.",
-          price: 9,
-          image: "/images/fralla-sesam.jpg",
-          quantity: 1,
-        },
-        {
-          id: 3,
-          name: "Baguette Klassisk",
-          category: "baguetter",
-          description:
-            "Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.",
-          price: 18,
-          image: "/images/baguette-classic.jpg",
-          quantity: 1,
-        },
-      ],
+      body: [],
     })
-    .as("products");
-};
-
-export const mockDataOrder = () => {
-  const cart = [{ name: "Fralla Naturell", price: 8, quantity: 1 }];
-  const body = {
-    address: "Gatan 2",
-    cart: cart,
-    delivery: "2025-12-26",
-    name: "Johan",
-    price: 8,
-  };
-  cy.intercept("POST", "/api/order", {
-    statusCode: 200,
-    body: body,
-  }).as("order");
-};
-
-export const getOrder = () => {
-  cy.intercept("/api/order", {
-    body: [
-      {
-        id: 1,
-        address: "Gatan 2",
-        cart: [{ name: "Fralla Naturell", price: 8, quantity: 1 }],
-        delivery: "2025-12-26",
-        name: "Johan",
-        price: 8,
-      },
-    ],
-  }).as("getOrder");
+    .as("failLoad");
 };

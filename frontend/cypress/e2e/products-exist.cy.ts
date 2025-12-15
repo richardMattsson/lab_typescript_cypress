@@ -1,9 +1,10 @@
-// import { mockDataProducts } from "../support/commands.ts";
+import { mockFailLoad } from "../support/commands.ts";
+
 describe("Product container", () => {
-  it("Product container shows some products", () => {
-    // mockDataProducts();
+  beforeEach(() => {
     cy.visit("/");
-    // cy.wait("@products");
+  });
+  it("Product container shows some products", () => {
     cy.get("[data-cy=product-container]")
       .children()
       .should("exist")
@@ -12,5 +13,22 @@ describe("Product container", () => {
     cy.get("[data-cy=product-container]").should("have.property", "length");
 
     cy.get("[data-cy=product-container]").should("have.length.at.least", 1);
+  });
+
+  it.only("error message if fail to load products", () => {
+    mockFailLoad();
+    cy.wait("@failLoad");
+    cy.get("[data-cy=product-container]")
+      .children()
+      .eq(0)
+      .contains("Kunde inte ladda produkter");
+  });
+
+  it("shows message when cart is empty", () => {
+    cy.get("[data-cy=shopping-cart]").click();
+    cy.get("[data-cy=order-container]")
+      .children()
+      .eq(0)
+      .contains("Varukorgen är tom.");
   });
 });

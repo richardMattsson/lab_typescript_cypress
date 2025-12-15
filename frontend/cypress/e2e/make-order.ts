@@ -1,12 +1,10 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-// import { mockDataProducts } from "../support/commands.ts";
 
 Given(
   "I have choosen a product, clicked continue with order and filled in all info correct",
   () => {
-    // mockDataProducts();
     cy.visit("/");
-    // cy.wait("@products");
+
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();
@@ -21,13 +19,9 @@ Given(
 );
 
 When("I click the make order button", () => {
-  // mockDataOrder();
   cy.get("[data-cy=make-order]").click();
-  // cy.wait("@order");
 });
 
 Then("I should get a confirmation about that my order was successfull", () => {
-  // getOrder();
-  // cy.wait("@getOrder");
   cy.get("[data-cy=confirmation-message]").should("be.visible");
 });

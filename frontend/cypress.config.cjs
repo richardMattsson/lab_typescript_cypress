@@ -23,6 +23,12 @@ module.exports = defineConfig({
 
       await addCucumberPreprocessorPlugin(on, config);
 
+      on("task", {
+        resetCoverage() {
+          return null;
+        },
+      });
+
       return config;
     },
     env: {

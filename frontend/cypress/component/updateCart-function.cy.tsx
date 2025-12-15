@@ -1,7 +1,7 @@
 import type { ProductType } from "../../src/components/ProductContainer.tsx";
 import { updateCart } from "../../src/utils/cart.ts";
 
-const defaultProduct = {
+export const defaultProduct = {
   id: 1,
   name: "Fralla Naturell",
   category: "frallor",
@@ -12,30 +12,10 @@ const defaultProduct = {
   quantity: 1,
 };
 
-const productExtraQuantity = {
-  id: 1,
-  name: "Fralla Naturell",
-  category: "frallor",
-  description:
-    "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
-  price: 8,
-  image: "/images/fralla-naturell.jpg",
-  quantity: 4,
-};
-
 describe("updateCart function", () => {
   it("adds a product", () => {
     const cart: ProductType[] | null = [];
-    const product = {
-      id: 1,
-      name: "Fralla Naturell",
-      category: "frallor",
-      description:
-        "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
-      price: 8,
-      image: "/images/fralla-naturell.jpg",
-      quantity: 1,
-    };
+    const product = defaultProduct;
     updateCart({ action: "add", cart, product });
   });
 
@@ -68,7 +48,7 @@ describe("updateCart function", () => {
   it("adds product with a set quantity", () => {
     const action = "increase by";
     const cart = [defaultProduct];
-    const product = productExtraQuantity;
+    const product = { ...defaultProduct, quantity: 4 };
     updateCart({ action, cart, product });
   });
 
