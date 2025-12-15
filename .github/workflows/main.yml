@@ -36,9 +36,13 @@ jobs:
       - name: Dump database
         run: /usr/lib/postgresql/17/bin/pg_dump --version
 
+      - name: Debug DATABASE_URL
+        run: |
+          echo "DATABASE_URL is set: ${{ secrets.PGURI != '' }}"
+
       - name: Run pg_dump
         run: |
-          /usr/lib/postgresql/17/bin/pg_dump "$DATABASE_URL" > dump.sql
+          /usr/lib/postgresql/17/bin/pg_dump "$PGURI" > dump.sql
       # - name: install postgres version
       #   run: |
       #     sudo apt update
