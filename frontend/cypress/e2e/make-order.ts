@@ -37,5 +37,6 @@ Then("I should get a confirmation about that my order was successfull", () => {
 });
 
 After(() => {
+  cy.resetDatabase();
   cy.restoreDatabase();
 });

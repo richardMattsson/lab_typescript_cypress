@@ -35,5 +35,6 @@ Then("I should see my selected products in the order confirmation", () => {
 });
 
 After(() => {
+  cy.resetDatabase();
   cy.restoreDatabase();
 });

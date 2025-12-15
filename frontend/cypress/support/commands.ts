@@ -55,7 +55,7 @@ Cypress.Commands.add("backupDatabase", () => {
 Cypress.Commands.add("restoreDatabase", () => {
   const PGURI = Cypress.env("PGURI");
   if (PGURI) {
-    cy.exec(`psql -f backup.sql ${PGURI}`);
+    cy.exec(`psql ${PGURI} -f backup.sql`);
   }
 });
 
