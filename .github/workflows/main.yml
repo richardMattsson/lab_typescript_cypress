@@ -47,6 +47,7 @@ jobs:
           PGURI: ${{ secrets.PGURI }}
         run: |
           /usr/lib/postgresql/17/bin/pg_dump "$PGURI" > dump.sql
+          pg_dump --version
       # - name: install postgres version
       #   run: |
       #     sudo apt update
