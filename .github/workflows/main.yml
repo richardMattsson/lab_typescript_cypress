@@ -36,10 +36,10 @@ jobs:
       - name: Check pg_dump version
         run: pg_dump --version
 
-      - name: Dump PostgreSQL database
-        env:
-          PGURI: ${{ secrets.PGURI }}
-        run: pg_dump "$PGURI" > dump.sql
+      # - name: Dump PostgreSQL database
+      #   env:
+      #     PGURI: ${{ secrets.PGURI }}
+      #   run: pg_dump "$PGURI" > dump.sql
 
       # - name: install postgres version
       #   run: |
