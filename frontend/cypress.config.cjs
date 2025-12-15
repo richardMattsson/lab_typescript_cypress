@@ -66,5 +66,8 @@ module.exports = defineConfig({
       });
       return config;
     },
+    env: {
+      PGURI: process.env.PGURI,
+    },
   },
 });
