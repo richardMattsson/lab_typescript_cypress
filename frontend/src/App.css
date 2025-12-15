@@ -91,6 +91,7 @@ body {
 
 .product-price {
   grid-area: price;
+  text-align: end;
 }
 
 .product-quantity {
@@ -100,13 +101,15 @@ body {
 .product-select {
   grid-area: select;
   padding: 12px;
+  width: 80px;
   border: 1px solid #ccc;
   border-radius: 20px;
   background-color: #fff;
   font-family: Google Sans Code;
+  text-align: center;
 }
 .product-option-number {
-  font-family: Google Sans Code;
+  font-size: 1.3em;
 }
 
 .order-card {
@@ -121,6 +124,7 @@ body {
   margin-top: 5px;
   padding: 5px;
   align-items: center;
+  justify-content: flex-end;
 }
 .order-card-confirmation {
   display: grid;

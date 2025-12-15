@@ -1,9 +1,9 @@
-import { mockDataProducts } from "../support/commands.ts";
+// import { mockDataProducts } from "../support/commands.ts";
 describe("Product container", () => {
   it("Product container shows some products", () => {
-    mockDataProducts();
+    // mockDataProducts();
     cy.visit("/");
-    cy.wait("@products");
+    // cy.wait("@products");
     cy.get("[data-cy=product-container]")
       .children()
       .should("exist")

@@ -1,12 +1,12 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { mockDataProducts } from "../support/commands.ts";
+// import { mockDataProducts } from "../support/commands.ts";
 
 Given(
   "I have choosen a product, clicked continue with order and filled in all info correct",
   () => {
-    mockDataProducts();
+    // mockDataProducts();
     cy.visit("/");
-    cy.wait("@products");
+    // cy.wait("@products");
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();
