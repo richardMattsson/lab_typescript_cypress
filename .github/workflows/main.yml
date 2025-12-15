@@ -39,9 +39,7 @@ jobs:
       - name: Dump PostgreSQL database
         env:
           PGURI: ${{ secrets.PGURI }}
-        run: |
-          echo "Dumping database..."
-          pg_dump "$PGURI" > dump.sql
+        run: pg_dump "$PGURI" > dump.sql
 
       # - name: install postgres version
       #   run: |
