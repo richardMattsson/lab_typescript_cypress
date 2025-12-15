@@ -2,83 +2,90 @@ DROP TABLE IF EXISTS products;
 
 DROP TABLE IF EXISTS orders;
 
--- CREATE TABLE
---   products (
---     id serial PRIMARY KEY,
---     name text UNIQUE NOT NULL,
---     category text,
---     description text,
---     price INTEGER NOT NULL,
---     image text,
---     quantity INTEGER DEFAULT 1
---   );
--- CREATE TABLE
---   orders (
---     id serial PRIMARY KEY,
---     address text NOT NULL,
---     cart JSONB NOT NULL,
---     delivery text NOT NULL,
---     name text NOT NULL,
---     price INTEGER NOT NULL,
---     created_at TIMESTAMP DEFAULT NOW ()
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Fralla Naturell',
---     'frallor',
---     'Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.',
---     8,
---     '/images/fralla-naturell.jpg'
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Fralla Sesam',
---     'frallor',
---     'Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.',
---     9,
---     '/images/fralla-naturell.jpg'
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Baguette Klassisk',
---     'baguetter',
---     'Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.',
---     18,
---     '/images/fralla-naturell.jpg'
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Fralla Fullkorn',
---     'frallor',
---     'Näringsrik fullkornsfralla med mjuk insida och rustik smak. Gott val till frukost eller mellanmål.',
---     10,
---     '/images/fralla-fullkorn.jpg'
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Ostfralla',
---     'frallor',
---     'Nygräddad fralla toppad med smält ost som ger en krispig och smakrik yta.',
---     12,
---     '/images/fralla-ost.jpg'
---   );
--- INSERT INTO
---   products (name, category, description, price, image)
--- VALUES
---   (
---     'Baguette Rustik',
---     'baguetter',
---     'Rustik baguette med kraftigare smak och extra krispig skorpa. Passar utmärkt till soppor och grytor.',
---     20,
---     '/images/baguette-rustik.jpg'
---   );
+CREATE TABLE
+  products (
+    id serial PRIMARY KEY,
+    name text UNIQUE NOT NULL,
+    category text,
+    description text,
+    price INTEGER NOT NULL,
+    image text,
+    quantity INTEGER DEFAULT 1
+  );
+
+CREATE TABLE
+  orders (
+    id serial PRIMARY KEY,
+    address text NOT NULL,
+    cart JSONB NOT NULL,
+    delivery text NOT NULL,
+    name text NOT NULL,
+    price INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW ()
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Fralla Naturell',
+    'frallor',
+    'Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.',
+    8,
+    '/images/fralla-naturell.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Fralla Sesam',
+    'frallor',
+    'Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.',
+    9,
+    '/images/fralla-naturell.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Baguette Klassisk',
+    'baguetter',
+    'Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.',
+    18,
+    '/images/fralla-naturell.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Fralla Fullkorn',
+    'frallor',
+    'Näringsrik fullkornsfralla med mjuk insida och rustik smak. Gott val till frukost eller mellanmål.',
+    10,
+    '/images/fralla-fullkorn.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Ostfralla',
+    'frallor',
+    'Nygräddad fralla toppad med smält ost som ger en krispig och smakrik yta.',
+    12,
+    '/images/fralla-ost.jpg'
+  );
+
+INSERT INTO
+  products (name, category, description, price, image)
+VALUES
+  (
+    'Baguette Rustik',
+    'baguetter',
+    'Rustik baguette med kraftigare smak och extra krispig skorpa. Passar utmärkt till soppor och grytor.',
+    20,
+    '/images/baguette-rustik.jpg'
+  );

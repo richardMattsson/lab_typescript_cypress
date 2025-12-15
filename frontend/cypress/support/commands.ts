@@ -50,15 +50,19 @@ Cypress.Commands.add("resetDatabase", () => {
 
 Cypress.Commands.add("backupDatabase", () => {
   const PGURI = Cypress.env("PGURI");
-  if (PGURI) {
+  try {
     cy.exec(`pg_dump -f backup.sql ${PGURI}`);
+  } catch (error) {
+    console.log(error);
   }
 });
 
 Cypress.Commands.add("restoreDatabase", () => {
   const PGURI = Cypress.env("PGURI");
-  if (PGURI) {
+  try {
     cy.exec(`psql ${PGURI} -f backup.sql`);
+  } catch (error) {
+    console.log(error);
   }
 });
 

@@ -1,14 +1,14 @@
 import {
-  Before,
+  // Before,
   Given,
   When,
   Then,
   After,
 } from "@badeball/cypress-cucumber-preprocessor";
 
-Before(() => {
-  cy.backupDatabase();
-});
+// Before(() => {
+//   cy.backupDatabase();
+// });
 
 Given(
   "I have choosen a product, clicked continue with order and filled in all info correct",
@@ -38,5 +38,5 @@ Then("I should get a confirmation about that my order was successfull", () => {
 
 After(() => {
   cy.resetDatabase();
-  cy.restoreDatabase();
+  // cy.restoreDatabase();
 });
