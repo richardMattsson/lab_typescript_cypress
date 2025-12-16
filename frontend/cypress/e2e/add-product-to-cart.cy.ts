@@ -12,6 +12,6 @@ describe("Product to cart", () => {
     cy.location("href").should("equal", "http://localhost:5173/#/cart");
 
     cy.get("[data-cy=order-container]").should("exist");
-    cy.get("[data-cy=order-card]").should("exist");
+    cy.get("[data-cy=order-card-1]").should("exist");
   });
 });
