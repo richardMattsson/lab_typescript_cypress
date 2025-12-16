@@ -22,6 +22,7 @@ export type UpdateCartType = {
 
 export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
+  console.log(cart);
 
   function handleUpdateCart({ action, product, quantity = 1 }: UpdateCartType) {
     const updatedCart = updateCart({ action, cart, product, quantity });

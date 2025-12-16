@@ -21,12 +21,20 @@ describe("change amount of products work", () => {
   it.only("deletes a product from cart", () => {
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
+
+    cy.get("[data-cy=product-card]").eq(1).click();
+    cy.get("[data-cy=add-to-cart-button]").click();
+
+    cy.get("[data-cy=product-card]").eq(2).click();
+    cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();
 
-    cy.get("[data-cy=order-card]").should("exist");
+    cy.get("[data-cy=order-card-1]").should("exist");
+    cy.get("[data-cy=order-card-2]").should("exist");
+    cy.get("[data-cy=order-card-3]").should("exist");
 
-    cy.get("[data-cy=delete-icon-1]").should("exist").click();
+    cy.get("[data-cy=delete-icon-2]").should("exist").click();
 
-    cy.get("[data-cy=order-card]").should("not.exist");
+    cy.get("[data-cy=order-card-2]").should("not.exist");
   });
 });
