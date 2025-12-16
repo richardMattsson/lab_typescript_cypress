@@ -10,13 +10,13 @@
 
 #### Todo:
 
-1. Göra test för att ta bort en produkt
+1. Göra test för att ta bort en produkt ✔️
 2. Lägga till input för betalnings information
-3. Lägga till tester för updateCart
-4. Updatera komponent tester
-5. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner.
-6. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README.
-7. Sätta upp automatiserade tester med github actions
+3. Lägga till tester för updateCart ✔️
+4. Updatera komponent tester ✔️
+5. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
+6. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
+7. Sätta upp automatiserade tester med github actions ✔️
 8. Lägga till tanStack Query
 9. Bygga account
 
@@ -31,7 +31,7 @@
 
 5. Innehåller beställningen rätt kundinformation?
 6. Är kostnaden för beställningen rätt?
-7. Går det att redigera beställningen? Ta bort en produkt?
+7. Går det att redigera beställningen? Ta bort en produkt? ✔️
 8. Går det att genomföra ett köp?
 9. Går det att logga in och logga ut?
 

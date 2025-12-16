@@ -12,6 +12,7 @@ type Form = {
   name: string;
   address: string;
   date: string;
+  payment: "swish" | "card" | "";
 };
 
 export type Order = {
@@ -30,6 +31,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     name: "",
     address: "",
     date: "",
+    payment: "",
   });
   const [order, setOrder] = useState<Order | null>(null);
   const totalPrice = useMemo(() => {
@@ -66,7 +68,9 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
@@ -253,16 +257,20 @@ export function OrderModal({
   totalPrice: number;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   form: Form;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
   openForm: boolean;
 }) {
   const disabled = useMemo(() => {
-    if (form.name && form.address && form.date) {
+    if (form.name && form.address && form.date && form.payment) {
       return false;
     } else {
       return true;
     }
   }, [form]);
+
+  console.log(form);
 
   return (
     <section className="product-modal-background">
@@ -302,13 +310,28 @@ export function OrderModal({
             value={form.address}
             onChange={handleChange}
           />
-          <input
-            data-cy="date-input"
-            name="date"
-            type="date"
-            value={form.date}
-            onChange={handleChange}
-          />
+          <div style={{ display: "grid" }}>
+            <label htmlFor="date-input">Levereras</label>
+            <select
+              data-cy="date-input"
+              id="date-input"
+              onChange={handleChange}
+              name="date"
+              value={form.date}
+            >
+              <option value="">Välj dag</option>
+              <option value="Saturday kl. 08-09">Lördag kl. 08-09</option>
+              <option value="Sunday kl. 08-09">Söndag kl. 08-09</option>
+            </select>
+            {/* <input
+              data-cy="date-input"
+              id="date-input"
+              name="date"
+              type="date"
+              value={form.date}
+              onChange={handleChange}
+            /> */}
+          </div>
 
           <h3 className="text-align-center" style={{ fontWeight: 500 }}>
             Betalningsmetod
@@ -323,15 +346,24 @@ export function OrderModal({
             <div>
               <label htmlFor="radio-swish">Swish</label>
               <input
+                data-cy="radio-swish"
                 type="radio"
                 name="payment"
                 id="radio-swish"
-                value="Swish"
+                value="swish"
+                onChange={handleChange}
               />
             </div>
             <div>
               <label htmlFor="radio-card">Kort</label>
-              <input type="radio" name="payment" id="radio-card" />
+              <input
+                data-cy="radio-card"
+                type="radio"
+                name="payment"
+                id="radio-card"
+                value={"card"}
+                onChange={handleChange}
+              />
             </div>
           </section>
           <input

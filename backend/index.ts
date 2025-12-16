@@ -35,7 +35,7 @@ app.post("/api/order", async (request, response) => {
   const { address, cart, delivery, name, price } = request.body;
   try {
     const { rows }: QueryResult<Order> = await database.query(
-      `INSERT INTO orders (address, cart, delivery, name, price ) VALUES ($1, $2::jsonb, $3, $4, $5) RETURNING *`,
+      `INSERT INTO orders (address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       [address, JSON.stringify(cart), delivery, name, price]
     );
     response.send(rows);
