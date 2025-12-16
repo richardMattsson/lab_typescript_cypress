@@ -71,6 +71,9 @@ export const updateCart = ({
         }
       }
 
+      case "delete":
+        return cart.filter((item) => item.id !== product.id);
+
       default:
         return cart;
     }

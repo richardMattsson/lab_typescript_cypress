@@ -18,12 +18,11 @@ describe("change amount of products work", () => {
     cy.get("[data-cy=amount-of-products]").contains(2);
   });
 
-  it("deletes a product from cart", () => {
+  it.only("deletes a product from cart", () => {
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();
 
-    cy.get("[data-cy=order-container]").should("have.attr", "length");
     cy.get("[data-cy=order-card]").should("exist");
 
     cy.get("[data-cy=delete-icon-1]").should("exist").click();

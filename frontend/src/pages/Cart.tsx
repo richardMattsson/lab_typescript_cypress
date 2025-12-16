@@ -173,6 +173,13 @@ export function SelectedProductCard({
           <span className="product-price">{`${
             product.price * (product.quantity || 1)
           } kr`}</span>
+          <img
+            className="delete-icon pointer"
+            data-cy={`delete-icon-${product.id}`}
+            onClick={() => updateCart({ action: "delete", product })}
+            src="delete-icon.svg"
+            alt="delete-icon"
+          />
 
           {!openForm && (
             <>
