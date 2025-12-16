@@ -52,7 +52,7 @@ Cypress.Commands.add("resetDatabase", () => {
 Cypress.Commands.add("backupDatabase", () => {
   const PGURI = Cypress.env("PGURI");
   try {
-    cy.exec(`pg_dump -f backup.sql ${PGURI}`);
+    cy.exec(`pg_dump ${PGURI} -f backup.sql`);
   } catch (error) {
     console.log(error);
   }
@@ -60,10 +60,14 @@ Cypress.Commands.add("backupDatabase", () => {
 
 Cypress.Commands.add("restoreDatabase", () => {
   const PGURI = Cypress.env("PGURI");
-  try {
-    cy.exec(`psql ${PGURI} -f backup.sql`);
-  } catch (error) {
-    console.log(error);
+  const DB_NAME = Cypress.env("DB_NAME");
+  if (PGURI && DB_NAME) {
+    try {
+      cy.exec(`psql ${PGURI} -f resetdb.sql`);
+      cy.exec(`psql ${PGURI} -f backup.sql`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 

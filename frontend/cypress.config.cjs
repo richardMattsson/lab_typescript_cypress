@@ -41,6 +41,7 @@ module.exports = defineConfig({
     },
     env: {
       PGURI: process.env.PGURI,
+      DB_NAME: process.env.DB_NAME,
     },
 
     baseUrl: "http://localhost:5173",
@@ -68,6 +69,7 @@ module.exports = defineConfig({
     },
     env: {
       PGURI: process.env.PGURI,
+      DB_NAME: process.env.DB_NAME,
     },
   },
 });
