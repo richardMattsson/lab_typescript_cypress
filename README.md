@@ -1,4 +1,4 @@
-![check-code-coverage](https://img.shields.io/badge/code--coverage-96.33%25-brightgreen)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-97.24%25-brightgreen)
 
 Link to report: https://richardmattsson.github.io/report-labb3-typescript-testing/
 
