@@ -16,7 +16,7 @@ export const updateCart = ({
       case "increase":
         return cart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: product.quantity + 1 }
+            ? { ...item, quantity: product.quantity && product.quantity + 1 }
             : item
         );
 
@@ -26,7 +26,7 @@ export const updateCart = ({
             ? {
                 ...item,
                 quantity:
-                  product.quantity > 0
+                  product.quantity && product.quantity > 0
                     ? product.quantity - 1
                     : product.quantity,
               }
@@ -36,7 +36,13 @@ export const updateCart = ({
       case "increase by":
         return cart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: product.quantity + item.quantity }
+            ? {
+                ...item,
+                quantity:
+                  product.quantity &&
+                  item.quantity &&
+                  product.quantity + item.quantity,
+              }
             : item
         );
 
@@ -52,7 +58,10 @@ export const updateCart = ({
           return [...(cart || []), product];
         } else {
           const quantity = cart.reduce(
-            (acc, cur) => (cur.id === product.id ? acc + cur.quantity : acc),
+            (acc, cur) =>
+              acc && cur.quantity && cur.id === product.id
+                ? acc + cur.quantity
+                : acc,
             product.quantity
           );
 

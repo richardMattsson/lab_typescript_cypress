@@ -8,7 +8,7 @@ export type ProductType = {
   description: string;
   price: number;
   image: string;
-  quantity: number;
+  quantity?: number;
 };
 
 type ProductContainerProps = {

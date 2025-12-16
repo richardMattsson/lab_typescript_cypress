@@ -34,7 +34,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
   const [order, setOrder] = useState<Order | null>(null);
   const totalPrice = useMemo(() => {
     if (!cart) return 0;
-    return cart.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+    return cart.reduce((acc, cur) => acc + cur.price * (cur.quantity || 1), 0);
   }, [cart]);
 
   async function postOrderProducts() {
@@ -137,7 +137,7 @@ export function OrderConfirmation({ order }: { order: Order | null }) {
               key={index}
             >
               <span>{`${product.name} x ${product.quantity}`}</span>
-              <span>{product.price * product.quantity} kr</span>
+              <span>{product.price * (product.quantity || 1)} kr</span>
             </section>
           );
         })}
@@ -171,7 +171,7 @@ export function SelectedProductCard({
         <section className="order-card" data-cy="order-card">
           <span className="product-name">{product.name}</span>
           <span className="product-price">{`${
-            product.price * product.quantity
+            product.price * (product.quantity || 1)
           } kr`}</span>
 
           {!openForm && (

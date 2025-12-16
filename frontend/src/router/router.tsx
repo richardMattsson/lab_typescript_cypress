@@ -9,15 +9,21 @@ import type { ProductType } from "../components/ProductContainer";
 import { updateCart } from "../utils/cart";
 
 export type UpdateCartType = {
-  action: "increase" | "decrease" | "increase by" | "add" | "update quantity";
+  action:
+    | "increase"
+    | "decrease"
+    | "increase by"
+    | "add"
+    | "update quantity"
+    | "delete";
   product: ProductType;
-  quantity: number;
+  quantity?: number;
 };
 
 export default function Router() {
   const [cart, setCart] = useState<ProductType[] | null>(null);
 
-  function handleUpdateCart({ action, product, quantity }: UpdateCartType) {
+  function handleUpdateCart({ action, product, quantity = 1 }: UpdateCartType) {
     const updatedCart = updateCart({ action, cart, product, quantity });
     setCart(updatedCart);
   }

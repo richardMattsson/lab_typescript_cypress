@@ -59,4 +59,11 @@ describe("updateCart function", () => {
     const quantity = 10;
     updateCart({ action, cart, product, quantity });
   });
+
+  it("deletes a product", () => {
+    const action = "delete";
+    const cart = [defaultProduct];
+    const product = defaultProduct;
+    updateCart({ action, cart, product });
+  });
 });
