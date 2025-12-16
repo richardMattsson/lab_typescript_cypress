@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { type ProductType } from "../components/ProductContainer";
 import type { UpdateCartType } from "../router/router";
+import { useNavigate } from "react-router-dom";
 
 type CartProps = {
   cart: ProductType[] | null;
@@ -38,6 +39,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     if (!cart) return 0;
     return cart.reduce((acc, cur) => acc + cur.price * (cur.quantity || 1), 0);
   }, [cart]);
+  const navigate = useNavigate();
 
   async function postOrderProducts() {
     const dbCart = cart?.map((product) => {
@@ -82,10 +84,13 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     setOpenForm(false);
   };
 
+  console.log(cart);
+
   return (
     <>
       <article data-cy="order-container">
-        {!cart && !order && <p>Varukorgen är tom.</p>}
+        {(cart && cart.length === 0 && <p>Varukorgen är tom.</p>) ||
+          (!cart && !order && <p>Varukorgen är tom.</p>)}
         {cart &&
           cart.map((product) => (
             <SelectedProductCard
@@ -96,16 +101,28 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
             />
           ))}
 
-        {cart && <p className="text-align-end">Totalt: {totalPrice} kr</p>}
-
-        {cart && (
-          <section
-            className="pointer underscore"
-            onClick={() => setOpenForm(true)}
-            data-cy="continue-order"
-          >
-            Gå vidare
-          </section>
+        {cart && cart.length > 0 && (
+          <>
+            <p className="text-align-end">Totalt: {totalPrice} kr</p>
+            <section
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <span
+                className="pointer underscore"
+                onClick={() => navigate("/")}
+                data-cy="continue-shopping"
+              >
+                Fortsätt handla
+              </span>
+              <span
+                className="pointer underscore"
+                onClick={() => setOpenForm(true)}
+                data-cy="continue-order"
+              >
+                Gå vidare
+              </span>
+            </section>
+          </>
         )}
 
         {openForm && (
@@ -236,7 +253,9 @@ export function SelectedProductCard({
               </select>
             </>
           )}
-          {openForm && <span>{`x ${product.quantity}`}</span>}
+          {openForm && (
+            <span className="product-quantity-confirmation">{`x ${product.quantity}`}</span>
+          )}
         </section>
       )}
     </>
@@ -270,8 +289,6 @@ export function OrderModal({
     }
   }, [form]);
 
-  console.log(form);
-
   return (
     <section className="product-modal-background">
       <section className="product-modal">
@@ -291,49 +308,46 @@ export function OrderModal({
               openForm={openForm}
             />
           ))}
-        <p>Totalt: {totalPrice} kr</p>
+        <p style={{ textAlign: "end" }}>Totalt: {totalPrice} kr</p>
 
         <form className="order-form" onSubmit={(e) => onSubmit(e)}>
+          <label htmlFor="name-input">Namn:</label>
           <input
             data-cy="name-input"
+            id="name-input"
             name="name"
             type="text"
             placeholder="Namn"
             value={form.name}
             onChange={handleChange}
           />
+          <label htmlFor="address-input">Adress:</label>
           <input
             data-cy="address-input"
+            id="address-input"
             name="address"
             type="text"
             placeholder="Adress"
             value={form.address}
             onChange={handleChange}
           />
-          <div style={{ display: "grid" }}>
-            <label htmlFor="date-input">Levereras</label>
-            <select
-              data-cy="date-input"
-              id="date-input"
-              onChange={handleChange}
-              name="date"
-              value={form.date}
-            >
-              <option value="">Välj dag</option>
-              <option value="Saturday kl. 08-09">Lördag kl. 08-09</option>
-              <option value="Sunday kl. 08-09">Söndag kl. 08-09</option>
-            </select>
-            {/* <input
-              data-cy="date-input"
-              id="date-input"
-              name="date"
-              type="date"
-              value={form.date}
-              onChange={handleChange}
-            /> */}
-          </div>
 
-          <h3 className="text-align-center" style={{ fontWeight: 500 }}>
+          <label htmlFor="date-input">Tid för leverens:</label>
+          <select
+            data-cy="date-input"
+            id="date-input"
+            onChange={handleChange}
+            name="date"
+            value={form.date}
+          >
+            <option style={{ fontFamily: "Google Sans Code" }} value="">
+              Välj dag
+            </option>
+            <option value="Saturday kl. 08-09">Lördag kl. 08-09</option>
+            <option value="Sunday kl. 08-09">Söndag kl. 08-09</option>
+          </select>
+
+          <h3 className="text-align-center" style={{ fontWeight: 400 }}>
             Betalningsmetod
           </h3>
           <section

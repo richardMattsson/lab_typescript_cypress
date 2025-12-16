@@ -27,6 +27,7 @@ export default function ProductContainer({
   return (
     <article className="product-container" data-cy="product-container">
       {products &&
+        products.length > 0 &&
         products.map((product) => (
           <ProductCard
             key={product.id}
@@ -180,6 +181,7 @@ export function AmountOfProducts({
             data-cy="decrement-button"
             onClick={handleDecrement}
             src="remove-icon.svg"
+            width={10}
           />
         </span>
 

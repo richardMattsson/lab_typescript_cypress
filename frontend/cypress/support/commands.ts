@@ -52,7 +52,7 @@ Cypress.Commands.add("resetDatabase", () => {
 Cypress.Commands.add("backupDatabase", () => {
   const PGURI = Cypress.env("PGURI");
   try {
-    cy.exec(`pg_dump ${PGURI} -f backup.sql`);
+    cy.exec(`pg_dump -f backup.sql ${PGURI}`);
   } catch (error) {
     console.log(error);
   }
@@ -76,7 +76,7 @@ import "../../src/setup.js";
 export const mockFailLoad = () => {
   return cy
     .intercept("/api/products", {
-      body: [],
+      statusCode: 500,
     })
     .as("failLoad");
 };

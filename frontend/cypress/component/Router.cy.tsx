@@ -1,8 +1,15 @@
 import Router from "../../src/router/router.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 describe("Router.cy.jsx", () => {
   it("confirm order", () => {
-    cy.mount(<Router />);
+    cy.mount(
+      <QueryClientProvider client={queryClient}>
+        <Router />
+      </QueryClientProvider>
+    );
     cy.get("[data-cy=product-container]").children().eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
     cy.get("[data-cy=shopping-cart]").click();

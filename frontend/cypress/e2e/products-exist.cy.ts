@@ -18,7 +18,10 @@ describe("Product container", () => {
   it.only("error message if fail to load products", () => {
     mockFailLoad();
     cy.wait("@failLoad");
-    cy.get("[data-cy=main-container]").contains("Kunde inte ladda produkter.");
+    cy.wait(5000);
+    cy.get("[data-cy=main-container]").contains(
+      "Något gick fel med att hämta produkter"
+    );
   });
 
   it("shows message when cart is empty", () => {
