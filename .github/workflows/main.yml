@@ -31,8 +31,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Initialize database
-        run: |
-          PGPASSWORD=postgres psql -h localhost -U postgres -d testdb -f frontend/init.sql
+        run: PGPASSWORD=postgres psql -h localhost -U postgres -d testdb -f frontend/init.sql
 
       - name: Install backend dependencies
         working-directory: backend
