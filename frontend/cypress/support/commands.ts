@@ -60,8 +60,7 @@ Cypress.Commands.add("backupDatabase", () => {
 
 Cypress.Commands.add("restoreDatabase", () => {
   const PGURI = Cypress.env("PGURI");
-  const DB_NAME = Cypress.env("DB_NAME");
-  if (PGURI && DB_NAME) {
+  if (PGURI) {
     try {
       cy.exec(`psql ${PGURI} -f resetdb.sql`);
       cy.exec(`psql ${PGURI} -f backup.sql`);

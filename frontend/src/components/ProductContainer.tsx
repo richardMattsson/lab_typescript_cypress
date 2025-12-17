@@ -117,7 +117,7 @@ export function ProductModal({
           alt="close modal button"
           data-cy="close-modal-icon"
           onClick={onClose}
-          src="close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+          src="/images/app/close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
           style={{ cursor: "pointer" }}
         />
         <h2 style={{ margin: 0 }}>{selectedProduct.name}</h2>
@@ -180,7 +180,7 @@ export function AmountOfProducts({
             className="change-amount pointer"
             data-cy="decrement-button"
             onClick={handleDecrement}
-            src="remove-icon.svg"
+            src="/images/app/remove-icon.svg"
             width={10}
           />
         </span>
@@ -196,7 +196,11 @@ export function AmountOfProducts({
             className="change-amount pointer"
             data-cy="increment-button"
             onClick={handleIncrement}
-            src={amount < 20 ? "add-icon.svg" : "add-icon-grey.svg"}
+            src={
+              amount < 20
+                ? "/images/app/add-icon.svg"
+                : "/images/app/add-icon-grey.svg"
+            }
           />
         </span>
       </section>

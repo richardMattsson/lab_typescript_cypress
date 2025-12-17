@@ -35,7 +35,7 @@ VALUES
     'frallor',
     'Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.',
     8,
-    '/fralla-natural.png'
+    '/images/products/fralla-natural.png'
   );
 
 INSERT INTO
@@ -46,7 +46,7 @@ VALUES
     'frallor',
     'Mjuk fralla toppad med sesamfrön. Mild smak och krispig yta.',
     9,
-    '/fralla-sesam.png'
+    '/images/products/fralla-sesam.png'
   );
 
 INSERT INTO
@@ -57,7 +57,7 @@ VALUES
     'baguetter',
     'Fransk baguette med spröd skorpa och mjukt inre. Perfekt som tillbehör eller smörgås.',
     18,
-    '/baguette-classic.png'
+    '/images/products/baguette-classic.png'
   );
 
 INSERT INTO
@@ -68,7 +68,7 @@ VALUES
     'frallor',
     'Näringsrik fullkornsfralla med mjuk insida och rustik smak. Gott val till frukost eller mellanmål.',
     10,
-    '/fralla-fullkorn.png'
+    '/images/products/fralla-fullkorn.png'
   );
 
 INSERT INTO
@@ -79,7 +79,7 @@ VALUES
     'frallor',
     'Nygräddad fralla toppad med smält ost som ger en krispig och smakrik yta.',
     12,
-    '/fralla-ost.png'
+    '/images/products/fralla-ost.png'
   );
 
 INSERT INTO
@@ -90,7 +90,7 @@ VALUES
     'baguetter',
     'Rustik baguette med kraftigare smak och extra krispig skorpa. Passar utmärkt till soppor och grytor.',
     20,
-    '/images/baguette-rustik.jpg'
+    '/images/products/baguette-rustik.png'
   );
 
 INSERT INTO
@@ -101,7 +101,7 @@ VALUES
     'croissanter',
     'Smörig croissant med fluffig insida och gyllene, frasig yta. Perfekt till morgonkaffet.',
     15,
-    '/croissant-classic.jpg'
+    '/images/products/croissant-classic.jpg'
   );
 
 SHOW client_encoding;

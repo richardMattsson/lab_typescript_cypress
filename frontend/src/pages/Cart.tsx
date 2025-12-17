@@ -84,8 +84,6 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     setOpenForm(false);
   };
 
-  console.log(cart);
-
   return (
     <>
       <article data-cy="order-container">
@@ -163,8 +161,8 @@ export function OrderConfirmation({ order }: { order: Order | null }) {
           );
         })}
       {order && <p className="text-align-end">Total: {order.price} kr</p>}
-
-      {order && <p>Leverans: {order.delivery}</p>}
+      {order && <p>Adress: {order.address}</p>}
+      {order && <p>Levereras: {order.delivery}</p>}
       {order && (
         <p>
           Skapad:{" "}
@@ -194,16 +192,18 @@ export function SelectedProductCard({
           <span className="product-price">{`${
             product.price * (product.quantity || 1)
           } kr`}</span>
-          <img
-            className="delete-icon pointer"
-            data-cy={`delete-icon-${product.id}`}
-            onClick={() => updateCart({ action: "delete", product })}
-            src="delete-icon.svg"
-            alt="delete-icon"
-          />
-
+          {openForm && (
+            <span className="product-quantity-confirmation">{`x ${product.quantity}`}</span>
+          )}
           {!openForm && (
             <>
+              <img
+                className="delete-icon pointer"
+                data-cy={`delete-icon-${product.id}`}
+                onClick={() => updateCart({ action: "delete", product })}
+                src="/images/app/delete-icon.svg"
+                alt="delete-icon"
+              />
               <span className="product-quantity">Kvantitet</span>
               <select
                 className="product-select"
@@ -253,9 +253,6 @@ export function SelectedProductCard({
               </select>
             </>
           )}
-          {openForm && (
-            <span className="product-quantity-confirmation">{`x ${product.quantity}`}</span>
-          )}
         </section>
       )}
     </>
@@ -294,7 +291,7 @@ export function OrderModal({
       <section className="product-modal">
         <img
           onClick={onClose}
-          src="close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+          src="/images/app/close_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
           alt="close modal button"
           style={{ cursor: "pointer" }}
         />
@@ -343,8 +340,8 @@ export function OrderModal({
             <option style={{ fontFamily: "Google Sans Code" }} value="">
               Välj dag
             </option>
-            <option value="Saturday kl. 08-09">Lördag kl. 08-09</option>
-            <option value="Sunday kl. 08-09">Söndag kl. 08-09</option>
+            <option value="Lördag kl. 08-09">Lördag kl. 08-09</option>
+            <option value="Söndag kl. 08-09">Söndag kl. 08-09</option>
           </select>
 
           <h3 className="text-align-center" style={{ fontWeight: 400 }}>

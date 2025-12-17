@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetchProductsUML</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  </head>
+  <body>
+    <pre class="mermaid">
+ sequenceDiagram
+
+  actor U as User
+  participant F as Home page
+  participant E as Express
+  participant P as PostgreSQL
+
+  U->>F: Opens app
+  F->>E: fetch "GET" products
+  E->>P: SELECT * FROM products
+  P-->>E: Rows
+  E-->>F: Replies with JSON
+  F-->>U: Displays data from JSON
+</pre
+    >
+
+    <hr>
+     <pre class="mermaid">
+  sequenceDiagram
+
+  actor U as User
+  participant F as Cart
+  participant E as Express
+  participant P as PostgreSQL
+
+  U->>F: Procceds with order
+  F->>E: fetch "POST" order
+  E->>P: INSERT INTO orders
+  P-->>E: Rows
+  E-->>F: Replies with JSON
+  F-->>U: Shows receipt
+</pre
+  </body>
+</html>

@@ -98,8 +98,8 @@ body {
 }
 
 .product-quantity-confirmation {
-  grid-area: select;
-  text-align: end;
+  grid-area: delete;
+  text-align: start;
 }
 
 .product-select {

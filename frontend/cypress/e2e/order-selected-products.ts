@@ -22,7 +22,7 @@ Given("I selected some product and went to the cart page", () => {
 When("I fill the form and make the order", () => {
   cy.get("[data-cy=name-input]").type("Richard");
   cy.get("[data-cy=address-input]").type("Some address");
-  cy.get("[data-cy=date-input]").select("Saturday kl. 08-09");
+  cy.get("[data-cy=date-input]").select("Lördag kl. 08-09");
   cy.get("[data-cy=radio-swish]").click();
 
   cy.get("[data-cy=make-order]").click();

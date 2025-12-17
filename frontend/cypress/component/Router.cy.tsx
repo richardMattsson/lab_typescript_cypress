@@ -17,7 +17,7 @@ describe("Router.cy.jsx", () => {
 
     cy.get("[data-cy=name-input]").type("Richard");
     cy.get("[data-cy=address-input]").type("Some address");
-    cy.get("[data-cy=date-input]").select("Saturday kl. 08-09");
+    cy.get("[data-cy=date-input]").select("Lördag kl. 08-09");
     cy.get("[data-cy=radio-swish]").click();
   });
 });

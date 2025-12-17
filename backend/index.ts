@@ -34,6 +34,7 @@ app.get("/api/order", async (_request, response) => {
 app.post("/api/order", async (request, response) => {
   const { address, cart, delivery, name, price } = request.body;
   try {
+    await database.query("SET client_encoding = 'UTF8'");
     const { rows }: QueryResult<Order> = await database.query(
       `INSERT INTO orders (address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       [address, JSON.stringify(cart), delivery, name, price]

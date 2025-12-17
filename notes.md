@@ -10,15 +10,18 @@
 
 #### Todo:
 
-1. Göra test för att ta bort en produkt ✔️
 2. Lägga till input för betalnings information
-3. Lägga till tester för updateCart ✔️
-4. Updatera komponent tester ✔️
-5. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
-6. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
-7. Sätta upp automatiserade tester med github actions ✔️
-8. Lägga till tanStack Query
-9. Bygga account
+3. Fixa viewport landscape
+4. styla bekräfta neställning knapp
+5. Bygga account
+6. Skapa workflow som skickar en beställning på produkter varje torsdag kl. 13
+7. Göra test för att ta bort en produkt ✔️
+8. Lägga till tester för updateCart ✔️
+9. Updatera komponent tester ✔️
+10. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
+11. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
+12. Sätta upp automatiserade tester med github actions ✔️
+13. Lägga till tanStack Query ✔️
 
 #### E2E tester:
 
@@ -59,3 +62,17 @@ Kan nollställa och bygga om databasen inför tester
 dropdb postgres
 createdb postgres
 psql -d postgres -f backup.sql
+
+### Presentation
+
+- Kodstruktur
+
+- Visa tester går igenom
+
+- Lägga till, öka antal, justera pris, funktioner
+
+- spela in ett flöde
+
+- Visa att databasen uppdateras
+
+-

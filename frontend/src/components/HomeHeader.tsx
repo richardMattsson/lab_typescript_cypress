@@ -17,8 +17,8 @@ export default function HomeHeader({ cart }: HomeHeaderProps) {
           data-cy="shopping-cart"
           src={
             cart === null || cart.length === 0
-              ? "shopping_cart.svg"
-              : "add_shopping_cart.svg"
+              ? "/images/app/shopping_cart.svg"
+              : "/images/app/add_shopping_cart.svg"
           }
           alt="shopping cart icon"
         />
