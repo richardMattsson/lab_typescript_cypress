@@ -1,7 +1,7 @@
-import type { ProductType } from "./ProductContainer";
+import type { OrderType } from "../pages/Cart";
 
 type UserOrdersProps = {
-  orders: ProductType[];
+  orders: OrderType[];
 };
 
 export default function UserOrders({ orders }: UserOrdersProps) {
@@ -15,14 +15,13 @@ export default function UserOrders({ orders }: UserOrdersProps) {
 }
 
 type OrderItemProps = {
-  order: ProductType;
+  order: OrderType;
 };
 
 export function OrderItem({ order }: OrderItemProps) {
   return (
     <li data-cy="order-item">
-      <img src={order.image} alt={order.name} />
-      <span>{order.name}</span>
+      <span>{order.created_at}</span>
     </li>
   );
 }

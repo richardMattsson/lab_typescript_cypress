@@ -17,6 +17,15 @@ const orders: OrderType[] = [
     price: 80,
     delivery: "Lördag kl. 08-09",
   },
+  {
+    id: 2,
+    name: "Richard",
+    address: "Kollagatan 2",
+    cart: cart,
+    created_at: "2025-12-11 12:16:29.737133",
+    price: 80,
+    delivery: "Lördag kl. 08-09",
+  },
 ];
 
 describe("UserOrders.cy.jsx", () => {
@@ -26,11 +35,11 @@ describe("UserOrders.cy.jsx", () => {
     cy.get("[data-cy=order-history-list]")
       .children()
       .eq(0)
-      .should("have.text", "Fralla Naturell");
+      .should("have.text", "2025-12-18 12:16:29");
     cy.get("[data-cy=order-history-list]")
       .children()
       .eq(1)
-      .should("have.text", "Fralla Sesam");
+      .should("have.text", "2025-12-11 12:16:29");
   });
 
   it("show previuos orders with an OrderItemComponent", () => {
