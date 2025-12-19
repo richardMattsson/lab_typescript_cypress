@@ -1,7 +1,8 @@
-import UserOrders from "../../src/components/UserOrders";
+import type { ProductType } from "../../src/components/ProductContainer.tsx";
+import UserOrders from "../../src/components/UserOrders.tsx";
 describe("UserOrders.cy.jsx", () => {
   it("shows a list of previous orders", () => {
-    const orders = [
+    const orders: ProductType[] = [
       {
         id: 1,
         name: "Fralla Naturell",
@@ -26,11 +27,13 @@ describe("UserOrders.cy.jsx", () => {
 
     cy.mount(<UserOrders orders={orders} />);
 
-    cy.get("data-cy=order-history-list")
-      .first()
+    cy.get("[data-cy=order-history-list]")
+      .children()
+      .eq(0)
       .should("have.text", "Fralla Naturell");
-    cy.get("data-cy=order-history-list")
-      .last()
+    cy.get("[data-cy=order-history-list]")
+      .children()
+      .eq(1)
       .should("have.text", "Fralla Sesam");
   });
 });
