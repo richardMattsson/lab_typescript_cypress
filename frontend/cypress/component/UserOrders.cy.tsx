@@ -1,5 +1,5 @@
 import type { OrderType } from "../../src/pages/Cart.tsx";
-import UserOrders from "../../src/components/UserOrders.tsx";
+import UserOrders, { OrderItem } from "../../src/components/UserOrders.tsx";
 import type { ProductType } from "../../src/components/ProductContainer.tsx";
 
 const cart: Pick<ProductType, "name" | "price" | "quantity">[] = [
@@ -55,22 +55,17 @@ describe("UserOrders.cy.jsx", () => {
   });
 
   it("shows correct amount of orders", () => {
-    cy.mount(
-      <UserOrders
-        orders={[
-          {
-            id: 1,
-            name: "Richard Mattsson",
-            address: "Kollagatan 2",
-            cart: cart,
-            created_at: "2025-12-18 12:16:29.737133",
-            price: 80,
-            delivery: "Lördag kl. 08-09",
-          },
-        ]}
-      />
-    );
+    cy.mount(<UserOrders orders={orders} />);
 
-    cy.get("data-cy=order-history-list").children().should("have.length", 1);
+    cy.get("[data-cy=order-history-list]").children().should("have.length", 2);
+  });
+
+  it("calls onClick with order id when clicked", () => {
+    cy.mount(<OrderItem order={orders[0]} />);
+
+    cy.get("[data-cy=order-item]")
+      .eq(0)
+      .click()
+      .should("have.been.calledWith", 1);
   });
 });
