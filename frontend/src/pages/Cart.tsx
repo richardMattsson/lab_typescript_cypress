@@ -16,7 +16,7 @@ type Form = {
   payment: "swish" | "card" | "";
 };
 
-export type Order = {
+export type OrderType = {
   address: string;
   delivery: string;
   id: number;
@@ -34,7 +34,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     date: "",
     payment: "",
   });
-  const [order, setOrder] = useState<Order | null>(null);
+  const [order, setOrder] = useState<OrderType | null>(null);
   const totalPrice = useMemo(() => {
     if (!cart) return 0;
     return cart.reduce((acc, cur) => acc + cur.price * (cur.quantity || 1), 0);
@@ -141,7 +141,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
   );
 }
 
-export function OrderConfirmation({ order }: { order: Order | null }) {
+export function OrderConfirmation({ order }: { order: OrderType | null }) {
   return (
     <>
       <h2>{order && order.name}</h2>
