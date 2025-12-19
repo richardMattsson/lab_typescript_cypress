@@ -30,12 +30,16 @@ type OrderItemProps = {
 
 export function OrderItem({ order, onClick }: OrderItemProps) {
   return (
-    <button
-      className="pointer"
-      data-cy="order-item"
-      onClick={() => onClick(order.id)}
-    >
-      {order.created_at.split(".")[0]}
-    </button>
+    <>
+      <span>Antal varor: {order.cart.length}</span>
+      <span>Pris totalt: {order.price} kr</span>
+      <button
+        className="pointer"
+        data-cy="order-item"
+        onClick={() => onClick(order.id)}
+      >
+        {order.created_at.split(".")[0]}
+      </button>
+    </>
   );
 }

@@ -41,6 +41,11 @@ CREATE TABLE
   );
 
 INSERT INTO
+  users (email, password, name)
+VALUES
+  ('example@email.com', '1234', 'test');
+
+INSERT INTO
   products (name, category, description, price, image)
 VALUES
   (
