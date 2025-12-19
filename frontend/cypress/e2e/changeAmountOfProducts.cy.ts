@@ -18,7 +18,7 @@ describe("change amount of products work", () => {
     cy.get("[data-cy=amount-of-products]").contains(2);
   });
 
-  it.only("deletes a product from cart", () => {
+  it("deletes a product from cart", () => {
     cy.get("[data-cy=product-card]").eq(0).click();
     cy.get("[data-cy=add-to-cart-button]").click();
 

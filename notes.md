@@ -10,33 +10,35 @@
 
 #### Todo:
 
-2. Lägga till input för betalnings information
-3. Fixa viewport landscape
-4. styla bekräfta neställning knapp
-5. Bygga account
-6. Skapa workflow som skickar en beställning på produkter varje torsdag kl. 13
-7. Göra test för att ta bort en produkt ✔️
-8. Lägga till tester för updateCart ✔️
-9. Updatera komponent tester ✔️
-10. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
-11. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
-12. Sätta upp automatiserade tester med github actions ✔️
-13. Lägga till tanStack Query ✔️
+1. Skapa login account page
+2. Göra en ny testdriven komponent
+3. Skapa tester för landscape
+4. Dela upp backend
+5. Kolla om det finns fler enpoints att lägga till, flytta över logik till backend
+6. Lägga till input för betalnings information
+7. Fixa viewport landscape
+8. styla bekräfta beställning knapp
+9. Bygga account
+10. Skapa workflow som skickar en beställning på produkter varje torsdag kl. 13
+11. Göra test för att ta bort en produkt ✔️
+12. Lägga till tester för updateCart ✔️
+13. Updatera komponent tester ✔️
+14. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
+15. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
+16. Sätta upp automatiserade tester med github actions ✔️
+17. Lägga till tanStack Query ✔️
 
 #### E2E tester:
 
-<!-- 1. Visas det några produkter på webbsidan? -->
-<!-- 2. Går det att lägga till produkter i kundvagnen? -->
-
-<!-- 3. Går det att lägga en beställning? -->
-
-<!-- 4. Innehåller beställningen rätt produkter? -->
-
-5. Innehåller beställningen rätt kundinformation?
-6. Är kostnaden för beställningen rätt?
-7. Går det att redigera beställningen? Ta bort en produkt? ✔️
-8. Går det att genomföra ett köp?
-9. Går det att logga in och logga ut?
+1. Är kostnaden för beställningen rätt?
+2. Innehåller beställningen rätt kundinformation?
+3. Går det att genomföra ett köp?
+4. Går det att logga in och logga ut?
+5. Visas det några produkter på webbsidan? ✔️
+6. Går det att lägga till produkter i kundvagnen? ✔️
+7. Går det att lägga en beställning? ✔️
+8. Innehåller beställningen rätt produkter? ✔️
+9. Går det att redigera beställningen? Ta bort en produkt? ✔️
 
 #### Andra titlar
 
@@ -65,14 +67,33 @@ psql -d postgres -f backup.sql
 
 ### Presentation
 
-- Kodstruktur
+- Inledning, vad jag har byggt, vilka ramverk jag använt
 
-- Visa tester går igenom
+- Sekventiella Diagram
 
-- Lägga till, öka antal, justera pris, funktioner
+- Kodstruktur (Kan visa något test)
 
-- spela in ett flöde
+- Visa util (visa bild)
+
+- Visa att tester går igenom
+
+- Visa att databasen inte påverkas
+
+- Visa appen (visa flödesbild innan)
 
 - Visa att databasen uppdateras
 
--
+code coverage: true
+
+1. github startsida
+2. visa produkt
+3. github actions
+4. rapport
+5. Github TDD
+6. Cypress Tester för TDD
+7. Code router och cart
+8. Code Commands
+9. Code Make orders
+10. Cypress Tester
+11. Databas
+12. Appen och visa databas

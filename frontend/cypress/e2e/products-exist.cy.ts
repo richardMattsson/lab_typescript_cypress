@@ -15,7 +15,7 @@ describe("Product container", () => {
     cy.get("[data-cy=product-container]").should("have.length.at.least", 1);
   });
 
-  it.only("error message if fail to load products", () => {
+  it("error message if fail to load products", () => {
     mockFailLoad();
     cy.wait("@failLoad");
     cy.wait(5000);

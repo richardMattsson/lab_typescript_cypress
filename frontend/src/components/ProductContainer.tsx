@@ -16,6 +16,13 @@ type ProductContainerProps = {
   updateCart: ({ action, product, quantity }: UpdateCartType) => void;
 };
 
+type ProductModalType = {
+  selectedProduct: ProductType;
+  onClose: () => void;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>;
+  updateCart: ({ action, product, quantity }: UpdateCartType) => void;
+};
+
 export default function ProductContainer({
   products,
   updateCart,
@@ -79,27 +86,12 @@ export function ProductCard({
   );
 }
 
-export function ProductImage({
-  width = 45,
-  src = "bakery_dining_black.svg",
-}: {
-  width?: number;
-  src: string;
-}) {
-  return <img src={src} alt="product-image" style={{ width: `${width}px` }} />;
-}
-
 export function ProductModal({
   selectedProduct,
   onClose,
   setSelectedProduct,
   updateCart,
-}: {
-  selectedProduct: ProductType;
-  onClose: () => void;
-  setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>;
-  updateCart: ({ action, product, quantity }: UpdateCartType) => void;
-}) {
+}: ProductModalType) {
   const [amount, setAmount] = useState(1);
 
   function onIncrease() {
@@ -149,6 +141,16 @@ export function ProductModal({
       </section>
     </section>
   );
+}
+
+export function ProductImage({
+  width = 45,
+  src = "bakery_dining_black.svg",
+}: {
+  width?: number;
+  src: string;
+}) {
+  return <img src={src} alt="product-image" style={{ width: `${width}px` }} />;
 }
 
 export function AmountOfProducts({

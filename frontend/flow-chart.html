@@ -28,5 +28,25 @@
         L --> M[Show receipt]
         M --> N[End]
     </pre>
+
+    <pre class="mermaid">
+    
+    flowchart TB
+    A(("Start")) --> B["Show products"]
+    B --> C{"Selected product?"}
+    C -- No --> B
+    C -- Yes --> D["Add to cart"]
+    D --> E{"Continue shopping?"}
+    E -- Yes --> B
+    E -- No --> F["Show cart"]
+    F --> G{"Update cart?"}
+    G -- Yes --> I["Make changes"]
+    I --> G
+    G -- No --> H{"Proceed with order?"}
+    H -- No --> E
+    H -- Yes --> J["Send order"]
+    J --> K["Show receipt"]
+    K --> L(("End"))
+    </pre>
   </body>
 </html>
