@@ -47,4 +47,10 @@ describe("UserOrders.cy.jsx", () => {
 
     cy.get("[data-cy=order-item]");
   });
+
+  it("show previuos orders with an OrderItemComponent", () => {
+    cy.mount(<UserOrders orders={[]} />);
+
+    cy.window().contains("Du har inga tidigare ordrar.");
+  });
 });
