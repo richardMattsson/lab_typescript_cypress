@@ -1,5 +1,6 @@
 import type { ProductType } from "../../src/components/ProductContainer.tsx";
 import UserOrders from "../../src/components/UserOrders.tsx";
+
 describe("UserOrders.cy.jsx", () => {
   it("shows a list of previous orders", () => {
     const orders: ProductType[] = [
@@ -35,5 +36,23 @@ describe("UserOrders.cy.jsx", () => {
       .children()
       .eq(1)
       .should("have.text", "Fralla Sesam");
+  });
+
+  it("show previuos orders with a OrderItemComponent", () => {
+    const orders = [
+      {
+        id: 1,
+        name: "Fralla Naturell",
+        category: "frallor",
+        description:
+          "Luftig fralla bakad med vetemjöl, vatten och lite smör. Perfekt till frukosten.",
+        price: 8,
+        image: "/images/fralla-naturell.jpg",
+        quantity: 4,
+      },
+    ];
+    cy.mount(<UserOrders orders={orders} />);
+
+    cy.get("[data-cy=order-item]");
   });
 });
