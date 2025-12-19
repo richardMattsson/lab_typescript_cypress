@@ -6,11 +6,16 @@ type UserOrdersProps = {
 
 export default function UserOrders({ orders }: UserOrdersProps) {
   return (
-    <ul data-cy="order-history-list">
-      {orders.map((item) => (
-        <OrderItem key={item.id} order={item} />
-      ))}
-    </ul>
+    <>
+      {orders && (
+        <ul data-cy="order-history-list">
+          {orders.map((item) => (
+            <OrderItem key={item.id} order={item} />
+          ))}
+        </ul>
+      )}
+      {orders && orders.length <= 0 && <p>Du har inga tidigare ordrar.</p>}
+    </>
   );
 }
 
