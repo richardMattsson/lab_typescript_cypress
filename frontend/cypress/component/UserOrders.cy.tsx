@@ -34,12 +34,10 @@ describe("UserOrders.cy.jsx", () => {
   it("shows a list of previous orders", () => {
     cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
-    cy.get("[data-cy=order-history-list]")
-      .children()
+    cy.get("[data-cy=order-item]")
       .eq(0)
       .should("have.text", "2025-12-18 12:16:29");
-    cy.get("[data-cy=order-history-list]")
-      .children()
+    cy.get("[data-cy=order-item]")
       .eq(1)
       .should("have.text", "2025-12-11 12:16:29");
   });
@@ -59,7 +57,7 @@ describe("UserOrders.cy.jsx", () => {
   it("shows correct amount of orders", () => {
     cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
-    cy.get("[data-cy=order-history-list]").children().should("have.length", 2);
+    cy.get("[data-cy=order-item]").should("have.length", 2);
   });
 
   it("calls onClick with order id when clicked", () => {
