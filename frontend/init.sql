@@ -1,6 +1,8 @@
-DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS products CASCADE;
 
-DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS orders CASCADE;
+
+DROP TABLE IF EXISTS users CASCADE;
 
 SET
   client_encoding = 'UTF8';
@@ -17,14 +19,25 @@ CREATE TABLE
   );
 
 CREATE TABLE
+  users (
+    id serial PRIMARY KEY,
+    email text UNIQUE NOT NULL,
+    password text NOT NULL,
+    name text NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW ()
+  );
+
+CREATE TABLE
   orders (
     id serial PRIMARY KEY,
+    user_id INTEGER NOT NULL,
     address text NOT NULL,
     cart JSONB NOT NULL,
     delivery text NOT NULL,
     name text NOT NULL,
     price INTEGER NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW ()
+    created_at TIMESTAMP DEFAULT NOW (),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
   );
 
 INSERT INTO

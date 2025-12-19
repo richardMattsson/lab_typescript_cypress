@@ -1,4 +1,5 @@
 import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
+import Account from "../pages/Account";
 import Cart from "../pages/Cart";
 import Home from "../pages/Home";
 import HomeHeader from "../components/HomeHeader";
@@ -42,6 +43,10 @@ export default function Router() {
         {
           path: "/",
           element: <Home updateCart={handleUpdateCart} />,
+        },
+        {
+          path: "/account",
+          element: <Account user={{ id: 1, name: "Richard" }} />,
         },
         {
           path: "/cart",

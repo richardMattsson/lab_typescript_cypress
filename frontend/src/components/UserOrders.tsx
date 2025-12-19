@@ -2,17 +2,21 @@ import type { OrderType } from "../pages/Cart";
 
 type UserOrdersProps = {
   orders: OrderType[];
+  onClick: (id: number) => void;
 };
 
-export default function UserOrders({ orders }: UserOrdersProps) {
+export default function UserOrders({ orders, onClick }: UserOrdersProps) {
   return (
     <>
       {orders && (
-        <ul data-cy="order-history-list">
-          {orders.map((item) => (
-            <OrderItem key={item.id} order={item} onClick={() => onclick} />
-          ))}
-        </ul>
+        <>
+          <h2>Tidigare ordrar</h2>
+          <section data-cy="order-history-list" style={{ display: "grid" }}>
+            {orders.map((item) => (
+              <OrderItem key={item.id} order={item} onClick={onClick} />
+            ))}
+          </section>
+        </>
       )}
       {orders && orders.length <= 0 && <p>Du har inga tidigare ordrar.</p>}
     </>
@@ -26,8 +30,12 @@ type OrderItemProps = {
 
 export function OrderItem({ order, onClick }: OrderItemProps) {
   return (
-    <li data-cy="order-item" onClick={() => onClick(order.id)}>
-      <span>{order.created_at.split(".")[0]}</span>
-    </li>
+    <button
+      className="pointer"
+      data-cy="order-item"
+      onClick={() => onClick(order.id)}
+    >
+      {order.created_at.split(".")[0]}
+    </button>
   );
 }

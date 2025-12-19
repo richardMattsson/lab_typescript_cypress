@@ -17,6 +17,7 @@ type Form = {
 };
 
 export type OrderType = {
+  user_id: number;
   address: string;
   delivery: string;
   id: number;
@@ -50,6 +51,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
       };
     });
     const body = {
+      user_id: 1,
       address: form.address,
       cart: dbCart,
       delivery: form.date,

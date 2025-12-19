@@ -12,6 +12,14 @@ export default function HomeHeader({ cart }: HomeHeaderProps) {
         <h1>frukostbröd</h1>
       </Link>
 
+      <Link className="link" to={"/account"}>
+        <img
+          data-cy="account-icon"
+          src={"/images/app/account_circle_24dp_000000.svg"}
+          alt="account-icon"
+        />
+      </Link>
+
       <Link className="link" to={"/cart"}>
         <img
           data-cy="shopping-cart"

@@ -10,6 +10,7 @@ const cart: Pick<ProductType, "name" | "price" | "quantity">[] = [
 const orders: OrderType[] = [
   {
     id: 1,
+    user_id: 1,
     name: "Richard Mattsson",
     address: "Kollagatan 2",
     cart: cart,
@@ -19,6 +20,7 @@ const orders: OrderType[] = [
   },
   {
     id: 2,
+    user_id: 1,
     name: "Richard",
     address: "Kollagatan 2",
     cart: cart,
@@ -30,7 +32,7 @@ const orders: OrderType[] = [
 
 describe("UserOrders.cy.jsx", () => {
   it("shows a list of previous orders", () => {
-    cy.mount(<UserOrders orders={orders} />);
+    cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
     cy.get("[data-cy=order-history-list]")
       .children()
@@ -43,19 +45,19 @@ describe("UserOrders.cy.jsx", () => {
   });
 
   it("show previuos orders with an OrderItemComponent", () => {
-    cy.mount(<UserOrders orders={orders} />);
+    cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
     cy.get("[data-cy=order-item]");
   });
 
   it("show previuos orders with an OrderItemComponent", () => {
-    cy.mount(<UserOrders orders={[]} />);
+    cy.mount(<UserOrders orders={[]} onClick={() => {}} />);
 
     cy.window().contains("Du har inga tidigare ordrar.");
   });
 
   it("shows correct amount of orders", () => {
-    cy.mount(<UserOrders orders={orders} />);
+    cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
     cy.get("[data-cy=order-history-list]").children().should("have.length", 2);
   });

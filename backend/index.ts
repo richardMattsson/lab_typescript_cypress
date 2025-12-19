@@ -2,7 +2,7 @@ import express from "express";
 import { database } from "./database.ts";
 import type { QueryResult } from "pg";
 import type { ProductType } from "../frontend/src/components/ProductContainer.tsx";
-import type { Order } from "../frontend/src/pages/Cart.tsx";
+import type { OrderType } from "../frontend/src/pages/Cart.tsx";
 
 const app = express();
 const port = process.env.PORT || 9999;
@@ -20,10 +20,13 @@ app.get("/api/products", async (_request, response) => {
   }
 });
 
-app.get("/api/order", async (_request, response) => {
+app.get("/api/orders/:id", async (request, response) => {
+  const user_id = request.params.id;
+
   try {
-    const { rows }: QueryResult<Order> = await database.query(
-      "SELECT * FROM orders"
+    const { rows }: QueryResult<OrderType> = await database.query(
+      "SELECT * FROM orders WHERE user_id=$1",
+      [user_id]
     );
     response.send(rows);
   } catch (error) {
@@ -32,12 +35,14 @@ app.get("/api/order", async (_request, response) => {
 });
 
 app.post("/api/order", async (request, response) => {
-  const { address, cart, delivery, name, price } = request.body;
+  console.log(request.body);
+
+  const { user_id, address, cart, delivery, name, price } = request.body;
   try {
     await database.query("SET client_encoding = 'UTF8'");
-    const { rows }: QueryResult<Order> = await database.query(
-      `INSERT INTO orders (address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      [address, JSON.stringify(cart), delivery, name, price]
+    const { rows }: QueryResult<OrderType> = await database.query(
+      `INSERT INTO orders (user_id, address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+      [user_id, address, JSON.stringify(cart), delivery, name, price]
     );
     response.send(rows);
   } catch (error) {
