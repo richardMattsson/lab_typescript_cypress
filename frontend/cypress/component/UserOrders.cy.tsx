@@ -61,11 +61,12 @@ describe("UserOrders.cy.jsx", () => {
   });
 
   it("calls onClick with order id when clicked", () => {
-    cy.mount(<OrderItem order={orders[0]} />);
+    const onClick = cy.spy().as("orderClick");
+    cy.mount(<OrderItem order={orders[0]} onClick={onClick} />);
 
-    cy.get("[data-cy=order-item]")
-      .eq(0)
-      .click()
-      .should("have.been.calledWith", 1);
+    cy.get("[data-cy=order-item]").eq(0).click();
+    // cy.get("[data-cy=order-item]").should("have.been.calledWith", "1");
+
+    cy.get("@orderClick").should("have.been.calledWith", 1);
   });
 });

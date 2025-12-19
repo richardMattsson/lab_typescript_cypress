@@ -10,7 +10,7 @@ export default function UserOrders({ orders }: UserOrdersProps) {
       {orders && (
         <ul data-cy="order-history-list">
           {orders.map((item) => (
-            <OrderItem key={item.id} order={item} />
+            <OrderItem key={item.id} order={item} onClick={() => item.id} />
           ))}
         </ul>
       )}
@@ -21,11 +21,12 @@ export default function UserOrders({ orders }: UserOrdersProps) {
 
 type OrderItemProps = {
   order: OrderType;
+  onClick: () => number;
 };
 
-export function OrderItem({ order }: OrderItemProps) {
+export function OrderItem({ order, onClick }: OrderItemProps) {
   return (
-    <li data-cy="order-item">
+    <li data-cy="order-item" onClick={onClick}>
       <span>{order.created_at.split(".")[0]}</span>
     </li>
   );
