@@ -53,4 +53,24 @@ describe("UserOrders.cy.jsx", () => {
 
     cy.window().contains("Du har inga tidigare ordrar.");
   });
+
+  it("shows correct amount of orders", () => {
+    cy.mount(
+      <UserOrders
+        orders={[
+          {
+            id: 1,
+            name: "Richard Mattsson",
+            address: "Kollagatan 2",
+            cart: cart,
+            created_at: "2025-12-18 12:16:29.737133",
+            price: 80,
+            delivery: "Lördag kl. 08-09",
+          },
+        ]}
+      />
+    );
+
+    cy.get("data-cy=order-history-list").children().should("have.length", 1);
+  });
 });
