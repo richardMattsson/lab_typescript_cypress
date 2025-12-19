@@ -21,7 +21,7 @@ type OrderItemProps = {
 export function OrderItem({ order }: OrderItemProps) {
   return (
     <li data-cy="order-item">
-      <span>{order.created_at}</span>
+      <span>{order.created_at.split(".")[0]}</span>
     </li>
   );
 }
