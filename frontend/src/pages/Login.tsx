@@ -3,8 +3,16 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    await fetch("/login", {
+      method: "POST",
+      headers: { ContentType: "application/json" },
+      body: JSON.stringify({
+        email: "example@email.com",
+        password: "password",
+      }),
+    });
     navigate("/account");
   }
   return (

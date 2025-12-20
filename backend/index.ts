@@ -9,6 +9,10 @@ const port = process.env.PORT || 9999;
 
 app.use(express.json());
 
+app.post("/login", (_request, response) => {
+  response.sendStatus(200);
+});
+
 app.get("/api/products", async (_request, response) => {
   try {
     const { rows }: QueryResult<ProductType> = await database.query(

@@ -12,4 +12,11 @@ describe("login", () => {
     );
     cy.contains("Tidigare ordrar");
   });
+
+  it("redirects to login if fail", () => {
+    cy.visit("/#/account");
+    cy.location().should((location) => {
+      expect(location.hash).to.eq("#/login");
+    });
+  });
 });
