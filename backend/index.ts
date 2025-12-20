@@ -9,8 +9,11 @@ const port = process.env.PORT || 9999;
 
 app.use(express.json());
 
-app.post("/login", (_request, response) => {
-  response.sendStatus(200);
+let loggedIn = false;
+
+app.post("/api/login", (_request, response) => {
+  loggedIn = true;
+  response.status(200).json({ id: 1 });
 });
 
 app.get("/api/products", async (_request, response) => {
@@ -25,6 +28,8 @@ app.get("/api/products", async (_request, response) => {
 });
 
 app.get("/api/orders/:id", async (request, response) => {
+  console.log(loggedIn);
+  if (!loggedIn) return response.sendStatus(401);
   const user_id = request.params.id;
 
   try {

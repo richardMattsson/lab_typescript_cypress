@@ -8,7 +8,7 @@ describe("login", () => {
     cy.get("[data-cy=submit-login]").click();
 
     cy.location().should((location) =>
-      expect(location.hash).to.eq("#/account")
+      expect(location.hash).to.eq("#/account/1")
     );
     cy.contains("Tidigare ordrar");
   });

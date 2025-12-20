@@ -46,7 +46,7 @@ export default function Router() {
           element: <Home updateCart={handleUpdateCart} />,
         },
         {
-          path: "/account",
+          path: "/account/:id?",
           element: <Account user={{ id: 1, name: "Richard" }} />,
         },
         {
