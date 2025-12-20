@@ -35,8 +35,6 @@ app.get("/api/orders/:id", async (request, response) => {
 });
 
 app.post("/api/order", async (request, response) => {
-  console.log(request.body);
-
   const { user_id, address, cart, delivery, name, price } = request.body;
   try {
     await database.query("SET client_encoding = 'UTF8'");
