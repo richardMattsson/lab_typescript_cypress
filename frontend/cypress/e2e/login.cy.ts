@@ -1,6 +1,6 @@
 describe("login", () => {
   it("success, login", () => {
-    cy.visit("/login");
+    cy.visit("/#/login");
 
     cy.get("[data-cy=email-input-login]").type("example@email.com");
     cy.get("[data-cy=password-input-login]").type("password");
