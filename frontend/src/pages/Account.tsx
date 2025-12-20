@@ -16,11 +16,7 @@ export default function Account() {
 
   useEffect(() => {
     if (error) {
-      console.log(error.cause);
-      navigate("/login");
-
       if (error.cause === undefined) {
-        console.log("dfssdf");
         navigate("/login");
       }
     }

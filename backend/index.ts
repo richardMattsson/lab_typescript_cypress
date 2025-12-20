@@ -11,9 +11,32 @@ app.use(express.json());
 
 let loggedIn = false;
 
-app.post("/api/login", (_request, response) => {
-  loggedIn = true;
-  response.status(200).json({ id: 1 });
+type UserType = {
+  id: number;
+  email: string;
+  password: string;
+  name: string;
+  created_at: string;
+};
+
+app.post("/api/login", async (request, response) => {
+  const { email, password } = request.body;
+
+  try {
+    const { rows }: QueryResult<UserType> = await database.query(
+      "SELECT password, id FROM users WHERE email=$1",
+      [email]
+    );
+    const passwordInput = rows[0]?.password;
+    console.log(rows);
+    if (passwordInput === password) {
+      loggedIn = true;
+      response.status(200).json({ id: rows[0]?.id });
+    }
+    // response.send(rows);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get("/api/products", async (_request, response) => {
@@ -28,7 +51,6 @@ app.get("/api/products", async (_request, response) => {
 });
 
 app.get("/api/orders/:id", async (request, response) => {
-  console.log(loggedIn);
   if (!loggedIn) return response.sendStatus(401);
   const user_id = request.params.id;
 
