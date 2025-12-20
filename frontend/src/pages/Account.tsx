@@ -1,40 +1,51 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import UserOrders from "../components/UserOrders";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Account() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const queryClient = useQueryClient();
+
+  const [token] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
 
   const { data, error, isPending } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`/api/orders/${id ?? ""}`).then((result) => result.json()),
-    retry: false,
+      fetch(`/api/orders`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((result) => result.json()),
+    enabled: !!token,
   });
-
-  useEffect(() => {
-    if (error) {
-      if (error.cause === undefined) {
-        navigate("/login");
-      }
-    }
-  }, [error, navigate]);
 
   function handleClick() {
     console.log("hej");
   }
 
-  if (data) {
-    console.log(data);
+  function handleLogout() {
+    localStorage.removeItem("token");
+    queryClient.clear();
+    navigate("/login");
   }
 
   return (
     <>
       {isPending && <p>hämtar din information...</p>}
-      {error && error.cause}
-      <UserOrders orders={data} onClick={handleClick} />
+      {error && <p>Något gick fel med att hämta ordrar</p>}
+      {data && data.length > 0 && (
+        <UserOrders orders={data} onClick={handleClick} />
+      )}
+      <p className="pointer" onClick={handleLogout}>
+        Logga ut
+      </p>
     </>
   );
 }

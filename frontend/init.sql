@@ -23,14 +23,13 @@ CREATE TABLE
     id serial PRIMARY KEY,
     email text UNIQUE NOT NULL,
     password text NOT NULL,
-    name text NOT NULL,
     created_at TIMESTAMP DEFAULT NOW ()
   );
 
 CREATE TABLE
   orders (
     id serial PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER,
     address text NOT NULL,
     cart JSONB NOT NULL,
     delivery text NOT NULL,
@@ -41,9 +40,9 @@ CREATE TABLE
   );
 
 INSERT INTO
-  users (email, password, name)
+  users (email, password)
 VALUES
-  ('example@email.com', '1234', 'test');
+  ('example@email.com', 'password');
 
 INSERT INTO
   products (name, category, description, price, image)

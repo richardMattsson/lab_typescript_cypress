@@ -17,7 +17,7 @@ type Form = {
 };
 
 export type OrderType = {
-  user_id: number;
+  user_id?: number;
   address: string;
   delivery: string;
   id: number;
@@ -51,7 +51,6 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
       };
     });
     const body = {
-      user_id: 1,
       address: form.address,
       cart: dbCart,
       delivery: form.date,
@@ -61,7 +60,10 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
     try {
       const response = await fetch("/api/order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(body),
       });
       const result = await response.json();

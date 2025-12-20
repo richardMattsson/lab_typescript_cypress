@@ -7,6 +7,7 @@ export default function Login() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const response = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -16,8 +17,12 @@ export default function Login() {
       }),
     });
     const result = await response.json();
-
-    navigate(`/account/${result.id}`);
+    if (result.error) {
+      alert("Något gick fel med att logga in");
+    } else {
+      localStorage.setItem("token", result.token);
+      navigate(`/account`);
+    }
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -56,6 +61,7 @@ export default function Login() {
           style={{ marginTop: "15px" }}
         />
       </form>
+      <p onClick={() => navigate("/register")}>Registrera</p>
     </section>
   );
 }

@@ -4,6 +4,7 @@ import Cart from "../pages/Cart";
 import Home from "../pages/Home";
 import HomeHeader from "../components/HomeHeader";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import { useState } from "react";
 
 import type { ProductType } from "../components/ProductContainer";
@@ -46,7 +47,7 @@ export default function Router() {
           element: <Home updateCart={handleUpdateCart} />,
         },
         {
-          path: "/account/:id?",
+          path: "/account/",
           element: <Account />,
         },
         {
@@ -62,6 +63,10 @@ export default function Router() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
       ],
     },
