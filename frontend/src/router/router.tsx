@@ -47,7 +47,7 @@ export default function Router() {
         },
         {
           path: "/account/:id?",
-          element: <Account user={{ id: 1, name: "Richard" }} />,
+          element: <Account />,
         },
         {
           path: "/cart",

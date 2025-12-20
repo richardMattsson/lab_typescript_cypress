@@ -3,16 +3,7 @@ import UserOrders from "../components/UserOrders";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-type UserType = {
-  id: number;
-  name: string;
-};
-
-type AccountProps = {
-  user: UserType;
-};
-
-export default function Account({ user }: AccountProps) {
+export default function Account() {
   const navigate = useNavigate();
   const { id } = useParams();
 
