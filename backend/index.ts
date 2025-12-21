@@ -7,6 +7,7 @@ import type { ProductType } from "../frontend/src/components/ProductContainer.ts
 import type { OrderType } from "../frontend/src/pages/Cart.tsx";
 import { verifyToken, type AuthRequest } from "./authMiddleware.ts";
 import type { Response } from "express";
+import { orderMiddleWare } from "./orderMiddleWare.ts";
 
 const app = express();
 const port = process.env.PORT || 9999;
@@ -16,7 +17,7 @@ app.use(express.json());
 type UserType = {
   id: number;
   email: string;
-  password: string;
+  hashed_password: string;
   created_at: string;
 };
 
@@ -24,10 +25,10 @@ app.post("/api/register", async (request, response) => {
   try {
     const { email, password } = request.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    await database.query("INSERT INTO users (email, password) values($1, $2)", [
-      email,
-      hashedPassword,
-    ]);
+    await database.query(
+      "INSERT INTO users (email, hashed_password) values($1, $2)",
+      [email, hashedPassword]
+    );
     response.status(201).json({ message: "En ny användare har lagts till!" });
   } catch (error) {
     response.status(500).json({ error });
@@ -48,7 +49,10 @@ app.post("/api/login", async (request, response) => {
         .json({ error: "Det gick inte att logga in med din användare!" });
     }
     if (user) {
-      const validPassword = await bcrypt.compare(password, user.password);
+      const validPassword = await bcrypt.compare(
+        password,
+        user.hashed_password
+      );
       if (!validPassword) {
         return response
           .status(401)
@@ -98,7 +102,7 @@ app.get(
 
 app.post(
   "/api/order",
-  verifyToken,
+  orderMiddleWare,
   async (request: AuthRequest, response: Response) => {
     const { address, cart, delivery, name, price } = request.body;
     const user_id = request.user_id;

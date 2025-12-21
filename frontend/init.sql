@@ -22,7 +22,7 @@ CREATE TABLE
   users (
     id serial PRIMARY KEY,
     email text UNIQUE NOT NULL,
-    password text NOT NULL,
+    hashed_password text NOT NULL,
     created_at TIMESTAMP DEFAULT NOW ()
   );
 
@@ -39,11 +39,10 @@ CREATE TABLE
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
   );
 
-INSERT INTO
-  users (email, password)
-VALUES
-  ('example@email.com', 'password');
-
+-- INSERT INTO
+--   users (email, password)
+-- VALUES
+--   ('example@email.com', 'password');
 INSERT INTO
   products (name, category, description, price, image)
 VALUES
