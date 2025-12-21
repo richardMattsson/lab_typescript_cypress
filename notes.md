@@ -10,30 +10,29 @@
 
 #### Todo:
 
-1. Skapa login account page
-2. Göra en ny testdriven komponent
+1. Skapa login account page✔️
+2. Göra en ny testdriven komponent✔️
 3. Skapa tester för landscape
 4. Dela upp backend
 5. Kolla om det finns fler enpoints att lägga till, flytta över logik till backend
 6. Lägga till input för betalnings information
-7. Fixa viewport landscape
-8. styla bekräfta beställning knapp
-9. Bygga account
-10. Skapa workflow som skickar en beställning på produkter varje torsdag kl. 13
-11. Göra test för att ta bort en produkt ✔️
-12. Lägga till tester för updateCart ✔️
-13. Updatera komponent tester ✔️
-14. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
-15. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
-16. Sätta upp automatiserade tester med github actions ✔️
-17. Lägga till tanStack Query ✔️
+7. styla bekräfta beställning knapp✔️
+8. Bygga account✔️
+9. Skapa workflow som skickar en beställning på produkter varje torsdag kl. 13
+10. Göra test för att ta bort en produkt ✔️
+11. Lägga till tester för updateCart ✔️
+12. Updatera komponent tester ✔️
+13. Anpassa lägg till och ta bort produkter i productContainer så att den är kopplad direkt till cart och slå ihop funktioner. ✔️
+14. Lägga till UML-diagram (sekvensdiagram, flow-chart) och pusha upp fil på github, kanske i README. ✔️
+15. Sätta upp automatiserade tester med github actions ✔️
+16. Lägga till tanStack Query ✔️
 
 #### E2E tester:
 
 1. Är kostnaden för beställningen rätt?
 2. Innehåller beställningen rätt kundinformation?
-3. Går det att genomföra ett köp?
-4. Går det att logga in och logga ut?
+3. Går det att genomföra ett köp?✔️
+4. Går det att logga in och logga ut?✔️
 5. Visas det några produkter på webbsidan? ✔️
 6. Går det att lägga till produkter i kundvagnen? ✔️
 7. Går det att lägga en beställning? ✔️

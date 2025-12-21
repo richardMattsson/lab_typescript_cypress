@@ -34,12 +34,7 @@ describe("UserOrders.cy.jsx", () => {
   it("shows a list of previous orders", () => {
     cy.mount(<UserOrders orders={orders} onClick={() => {}} />);
 
-    cy.get("[data-cy=order-item]")
-      .eq(0)
-      .should("have.text", "2025-12-18 12:16:29");
-    cy.get("[data-cy=order-item]")
-      .eq(1)
-      .should("have.text", "2025-12-11 12:16:29");
+    cy.get("[data-cy=order-item]").eq(0).should("have.text", "Visa order");
   });
 
   it("show previuos orders with an OrderItemComponent", () => {
@@ -48,7 +43,7 @@ describe("UserOrders.cy.jsx", () => {
     cy.get("[data-cy=order-item]");
   });
 
-  it("show previuos orders with an OrderItemComponent", () => {
+  it("show message if previuos orders are null", () => {
     cy.mount(<UserOrders orders={[]} onClick={() => {}} />);
 
     cy.window().contains("Du har inga tidigare ordrar.");

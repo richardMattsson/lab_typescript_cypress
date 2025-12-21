@@ -10,7 +10,10 @@ export default function UserOrders({ orders, onClick }: UserOrdersProps) {
     <>
       {orders && (
         <>
-          <section data-cy="order-history-list" style={{ display: "grid" }}>
+          <section
+            data-cy="order-history-list"
+            style={{ display: "grid", gap: "40px" }}
+          >
             {orders.map((item) => (
               <OrderItem key={item.id} order={item} onClick={onClick} />
             ))}
@@ -29,16 +32,18 @@ type OrderItemProps = {
 
 export function OrderItem({ order, onClick }: OrderItemProps) {
   return (
-    <>
-      <span>Antal varor: {order.cart.length}</span>
-      <span>Pris totalt: {order.price} kr</span>
+    <section style={{ display: "grid" }}>
+      <div style={{ marginBottom: "10px" }}>
+        <span>{order.created_at.split(".")[0].split("T")[0]}</span>
+        <span>{` kl. ${order.created_at.split(".")[0].split("T")[1]}`}</span>
+      </div>
       <button
-        className="pointer"
+        className="create-user-button pointer"
         data-cy="order-item"
         onClick={() => onClick(order.id)}
       >
-        {order.created_at.split(".")[0]}
+        Visa order
       </button>
-    </>
+    </section>
   );
 }
