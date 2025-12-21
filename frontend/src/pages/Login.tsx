@@ -61,7 +61,13 @@ export default function Login() {
           style={{ marginTop: "15px" }}
         />
       </form>
-      <p onClick={() => navigate("/register")}>Registrera</p>
+      <p
+        className="pointer"
+        onClick={() => navigate("/register")}
+        style={{ textDecoration: "underline" }}
+      >
+        Skapa ny användare
+      </p>
     </section>
   );
 }

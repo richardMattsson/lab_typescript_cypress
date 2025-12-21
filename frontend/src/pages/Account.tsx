@@ -38,14 +38,17 @@ export default function Account() {
 
   return (
     <>
-      {isPending && <p>hämtar din information...</p>}
-      {error && <p>Något gick fel med att hämta ordrar</p>}
-      {data && data.length > 0 && (
-        <UserOrders orders={data} onClick={handleClick} />
-      )}
+      <h2>Ditt konto</h2>
       <p className="pointer" onClick={handleLogout}>
         Logga ut
       </p>
+      {isPending && <p>hämtar din information...</p>}
+      {error && <p>Något gick fel med att hämta ordrar</p>}
+      <h3>Tidigare beställningar</h3>
+      {data && data.length < 1 && <p>Du har inga beställningar</p>}
+      {data && data.length > 0 && (
+        <UserOrders orders={data} onClick={handleClick} />
+      )}
     </>
   );
 }

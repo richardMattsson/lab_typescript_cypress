@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
+  const [errorMsg, setErrorMsg] = useState(false);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -15,33 +16,70 @@ export default function Register() {
           password: form.password,
         }),
       });
-      const result = response.json();
-      console.log(result);
-      navigate("/login");
+
+      const result = await response.json();
+      if (result.error) {
+        console.log(result);
+        setErrorMsg(true);
+      } else {
+        navigate("/login");
+      }
     } catch {
       console.log("error");
     }
   }
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setErrorMsg(false);
     setForm({ ...form, [e.target.name]: e.target.value });
   }
   return (
-    <form action="" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="email"
-        placeholder="email"
-        value={form.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="lösenord"
-        value={form.password}
-        onChange={handleChange}
-      />
-      <input type="submit" value={"Registrera"} />
-    </form>
+    <section>
+      <h2>Skapa ny användare</h2>
+      <form
+        action=""
+        onSubmit={handleSubmit}
+        style={{ display: "grid", gap: "5px" }}
+      >
+        <label htmlFor="email-register">email:</label>
+        <input
+          data-cy="email-input-register"
+          type="text"
+          name="email"
+          id="email-register"
+          placeholder="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <label htmlFor="password-register">lösenord:</label>
+
+        <input
+          data-cy="password-input-register"
+          type="password"
+          name="password"
+          id="password-register"
+          placeholder="lösenord"
+          value={form.password}
+          onChange={handleChange}
+        />
+        <input
+          data-cy="submit-register"
+          type="submit"
+          value={"Registrera"}
+          style={{ marginTop: "15px" }}
+        />
+      </form>
+      {errorMsg && (
+        <p data-cy="errorMsg-register">
+          Angiven email finns redan som användare.
+        </p>
+      )}
+      <p
+        className="pointer"
+        onClick={() => navigate("/login")}
+        style={{ textDecoration: "underline" }}
+      >
+        Logga in
+      </p>
+    </section>
   );
 }

@@ -10,7 +10,6 @@ export default function UserOrders({ orders, onClick }: UserOrdersProps) {
     <>
       {orders && (
         <>
-          <h2>Tidigare ordrar</h2>
           <section data-cy="order-history-list" style={{ display: "grid" }}>
             {orders.map((item) => (
               <OrderItem key={item.id} order={item} onClick={onClick} />
