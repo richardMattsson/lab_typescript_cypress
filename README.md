@@ -1,4 +1,4 @@
-![check-code-coverage](https://img.shields.io/badge/code--coverage-89.71%25-green)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-80.25%25-green)
 
 Link to app: https://breadhome.onrender.com/
 
