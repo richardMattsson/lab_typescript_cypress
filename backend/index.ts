@@ -6,7 +6,7 @@ import type { QueryResult } from "pg";
 import type { ProductType } from "../frontend/src/components/ProductContainer.tsx";
 import type { OrderType } from "../frontend/src/pages/Cart.tsx";
 import { verifyToken, type AuthRequest } from "./authMiddleware.ts";
-import type { Response } from "express";
+import type { Request, Response } from "express";
 import { orderMiddleWare } from "./orderMiddleWare.ts";
 
 const app = express();
@@ -21,57 +21,74 @@ type UserType = {
   created_at: string;
 };
 
-app.post("/api/register", async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await database.query(
-      "INSERT INTO users (email, hashed_password) values($1, $2)",
-      [email, hashedPassword]
-    );
-    response.status(201).json({ message: "En ny användare har lagts till!" });
-  } catch (error) {
-    response.status(500).json({ error });
-  }
-});
+type RegisterBody = {
+  email: string;
+  password: string;
+};
 
-app.post("/api/login", async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    const { rows }: QueryResult<UserType> = await database.query(
-      "SELECT * FROM users WHERE email=$1",
-      [email]
-    );
-    const user = rows[0];
-    if (!user) {
-      return response
-        .status(401)
-        .json({ error: "Det gick inte att logga in med din användare!" });
-    }
-    if (user) {
-      const validPassword = await bcrypt.compare(
-        password,
-        user.hashed_password
+app.post(
+  "/api/register",
+  async (
+    request: Request<unknown, unknown, RegisterBody>,
+    response: Response
+  ) => {
+    try {
+      const { email, password } = request.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await database.query(
+        "INSERT INTO users (email, hashed_password) values($1, $2)",
+        [email, hashedPassword]
       );
-      if (!validPassword) {
+      response.status(201).json({ message: "En ny användare har lagts till!" });
+    } catch (error) {
+      response.status(500).json({ error });
+    }
+  }
+);
+
+app.post(
+  "/api/login",
+  async (
+    request: Request<unknown, unknown, RegisterBody>,
+    response: Response
+  ) => {
+    try {
+      const { email, password } = request.body;
+      const { rows }: QueryResult<UserType> = await database.query(
+        "SELECT * FROM users WHERE email=$1",
+        [email]
+      );
+      const user = rows[0];
+      if (!user) {
         return response
           .status(401)
-          .json({ error: "Ditt lösenord är inte korrekt!" });
+          .json({ error: "Det gick inte att logga in med din användare!" });
       }
+      if (user) {
+        const validPassword = await bcrypt.compare(
+          password,
+          user.hashed_password
+        );
+        if (!validPassword) {
+          return response
+            .status(401)
+            .json({ error: "Ditt lösenord är inte korrekt!" });
+        }
+      }
+      const token = jwt.sign({ user_id: user.id }, "secret-key", {
+        expiresIn: "1h",
+      });
+      response.status(200).json({
+        token,
+        message: "Du är inloggad!",
+      });
+    } catch (error) {
+      response.status(500).json({ error });
     }
-    const token = jwt.sign({ user_id: user.id }, "secret-key", {
-      expiresIn: "1h",
-    });
-    response.status(200).json({
-      token,
-      message: "Du är inloggad!",
-    });
-  } catch (error) {
-    response.status(500).json({ error });
   }
-});
+);
 
-app.get("/api/products", async (_request, response) => {
+app.get("/api/products", async (_request, response: Response) => {
   try {
     const { rows }: QueryResult<ProductType> = await database.query(
       "SELECT * FROM products"
