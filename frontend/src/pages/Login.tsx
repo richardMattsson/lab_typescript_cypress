@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [errorMsg, setErrorMsg] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -18,7 +19,7 @@ export default function Login() {
     });
     const result = await response.json();
     if (result.error) {
-      alert("Något gick fel med att logga in");
+      setErrorMsg(true);
     } else {
       localStorage.setItem("token", result.token);
       navigate(`/account`);
@@ -26,12 +27,16 @@ export default function Login() {
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setErrorMsg(false);
     setForm({ ...form, [e.target.name]: e.target.value });
   }
   return (
-    <section>
+    <section style={{ display: "grid", gap: "5px" }}>
       <h2>Logga in</h2>
-      <form onSubmit={handleSubmit} style={{ display: "grid", gap: "5px" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "grid", gap: "5px", marginBottom: "20px" }}
+      >
         <label htmlFor="email-input-login">email:</label>
         <input
           data-cy="email-input-login"
@@ -61,13 +66,13 @@ export default function Login() {
           style={{ marginTop: "15px" }}
         />
       </form>
-      <p
-        className="pointer"
+      {errorMsg && <p>Inloggningen misslyckades</p>}
+      <button
+        className="create-user-button pointer"
         onClick={() => navigate("/register")}
-        style={{ textDecoration: "underline" }}
       >
         Skapa ny användare
-      </p>
+      </button>
     </section>
   );
 }

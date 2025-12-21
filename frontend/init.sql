@@ -39,10 +39,6 @@ CREATE TABLE
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
   );
 
--- INSERT INTO
---   users (email, password)
--- VALUES
---   ('example@email.com', 'password');
 INSERT INTO
   products (name, category, description, price, image)
 VALUES

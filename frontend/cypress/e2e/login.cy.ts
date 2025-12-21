@@ -27,6 +27,21 @@ describe("login", () => {
       expect(location.hash).to.eq("#/login");
     });
   });
+
+  it("logs out", () => {
+    cy.visit("/#/login");
+    cy.get("[data-cy=email-input-login]").type("test@mail.com");
+    cy.get("[data-cy=password-input-login]").type("password");
+
+    cy.get("[data-cy=submit-login]").click();
+
+    cy.get("[data-cy=account-logout]").click();
+
+    cy.location().should((location) => {
+      expect(location.hash).to.eq("#/login");
+    });
+  });
+
   it("restore db", () => {
     cy.restoreDatabase();
   });

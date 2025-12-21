@@ -33,12 +33,12 @@ export default function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
   return (
-    <section>
+    <section style={{ display: "grid", gap: "5px" }}>
       <h2>Skapa ny användare</h2>
       <form
         action=""
         onSubmit={handleSubmit}
-        style={{ display: "grid", gap: "5px" }}
+        style={{ display: "grid", gap: "5px", marginBottom: "20px" }}
       >
         <label htmlFor="email-register">email:</label>
         <input
@@ -46,7 +46,7 @@ export default function Register() {
           type="text"
           name="email"
           id="email-register"
-          placeholder="email"
+          placeholder="Email"
           value={form.email}
           onChange={handleChange}
         />
@@ -57,7 +57,7 @@ export default function Register() {
           type="password"
           name="password"
           id="password-register"
-          placeholder="lösenord"
+          placeholder="Lösenord"
           value={form.password}
           onChange={handleChange}
         />
@@ -73,13 +73,13 @@ export default function Register() {
           Angiven email finns redan som användare.
         </p>
       )}
-      <p
-        className="pointer"
+      <button
+        className="create-user-button pointer"
         onClick={() => navigate("/login")}
         style={{ textDecoration: "underline" }}
       >
         Logga in
-      </p>
+      </button>
     </section>
   );
 }

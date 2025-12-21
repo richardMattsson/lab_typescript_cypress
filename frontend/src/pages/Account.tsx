@@ -39,9 +39,13 @@ export default function Account() {
   return (
     <>
       <h2>Ditt konto</h2>
-      <p className="pointer" onClick={handleLogout}>
+      <button
+        data-cy="account-logout"
+        className="create-user-button pointer"
+        onClick={handleLogout}
+      >
         Logga ut
-      </p>
+      </button>
       {isPending && <p>hämtar din information...</p>}
       {error && <p>Något gick fel med att hämta ordrar</p>}
       <h3>Tidigare beställningar</h3>

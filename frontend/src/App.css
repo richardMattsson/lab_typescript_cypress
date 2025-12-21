@@ -143,6 +143,17 @@ body {
   padding: 10px;
 }
 
+.create-user-button {
+  background-color: inherit;
+  border: none;
+  text-decoration: underline;
+  font-family: Google Sans Code;
+  font-size: 1em;
+  text-align: start;
+  width: 100%;
+  padding: 0;
+}
+
 .text-align-center {
   text-align: center;
 }
