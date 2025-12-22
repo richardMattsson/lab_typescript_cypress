@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { database } from "./database.ts";
@@ -135,6 +136,8 @@ app.post(
     }
   }
 );
+
+app.use(express.static(path.join(path.resolve(), "dist")));
 
 app.listen(port, () => {
   console.log("Webbtjänsten kan nu ta emot anrop på port " + port);
