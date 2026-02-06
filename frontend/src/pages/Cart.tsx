@@ -75,7 +75,7 @@ export default function Cart({ cart, setCart, updateCart }: CartProps) {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setForm((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -213,41 +213,23 @@ export function SelectedProductCard({
                 className="product-select"
                 name="quantity"
                 id="product-quantity"
+                value={product.quantity}
+                onChange={(e) =>
+                  updateCart({
+                    action: "update quantity",
+                    product,
+                    quantity: Number(e.target.value),
+                  })
+                }
               >
                 {[
-                  product.quantity,
-                  1,
-                  2,
-                  3,
-                  4,
-                  5,
-                  6,
-                  7,
-                  8,
-                  9,
-                  10,
-                  11,
-                  12,
-                  13,
-                  14,
-                  15,
-                  16,
-                  17,
-                  18,
-                  19,
-                  20,
-                ].map((number, index) => {
+                  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+                  19, 20,
+                ].map((number) => {
                   return (
                     <option
                       className="product-option-number"
-                      onClick={() =>
-                        updateCart({
-                          action: "update quantity",
-                          product,
-                          quantity: number,
-                        })
-                      }
-                      key={index === product.quantity ? 0 : number}
+                      key={number}
                       value={number}
                     >
                       {number}
@@ -278,7 +260,7 @@ export function OrderModal({
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   form: Form;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   openForm: boolean;
 }) {
