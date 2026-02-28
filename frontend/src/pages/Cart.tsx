@@ -192,7 +192,9 @@ export function SelectedProductCard({
     <>
       {product && (
         <section className="order-card" data-cy={`order-card-${product.id}`}>
-          <span className="product-name">{product.name}</span>
+          <span className="product-name">
+            {`${product.name} ${product.price} kr`}
+          </span>
           <span className="product-price">{`${
             product.price * (product.quantity || 1)
           } kr`}</span>

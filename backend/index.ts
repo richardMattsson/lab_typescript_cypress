@@ -1,17 +1,26 @@
 import express from "express";
-import path from "path";
+// import path from "path";
+import dotenv from "dotenv";
+import { Client } from "pg";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { database } from "./database.ts";
 import type { QueryResult } from "pg";
-import type { ProductType } from "../frontend/src/components/ProductContainer.tsx";
-import type { OrderType } from "../frontend/src/pages/Cart.tsx";
+import type { ProductType, OrderType } from "./types.ts";
 import { verifyToken, type AuthRequest } from "./authMiddleware.ts";
 import type { Request, Response } from "express";
 import { orderMiddleWare } from "./orderMiddleWare.ts";
 
 const app = express();
-const port = process.env.PORT || 9999;
+const port = process.env.PORT || 3000;
+
+dotenv.config();
+
+const client = new Client({
+  connectionString: process.env.PGURI,
+});
+
+client.connect();
 
 app.use(express.json());
 
@@ -31,33 +40,33 @@ app.post(
   "/api/register",
   async (
     request: Request<unknown, unknown, RegisterBody>,
-    response: Response
+    response: Response,
   ) => {
     try {
       const { email, password } = request.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       await database.query(
         "INSERT INTO users (email, hashed_password) values($1, $2)",
-        [email, hashedPassword]
+        [email, hashedPassword],
       );
       response.status(201).json({ message: "En ny användare har lagts till!" });
     } catch (error) {
       response.status(500).json({ error });
     }
-  }
+  },
 );
 
 app.post(
   "/api/login",
   async (
     request: Request<unknown, unknown, RegisterBody>,
-    response: Response
+    response: Response,
   ) => {
     try {
       const { email, password } = request.body;
       const { rows }: QueryResult<UserType> = await database.query(
         "SELECT * FROM users WHERE email=$1",
-        [email]
+        [email],
       );
       const user = rows[0];
       if (!user) {
@@ -68,7 +77,7 @@ app.post(
       if (user) {
         const validPassword = await bcrypt.compare(
           password,
-          user.hashed_password
+          user.hashed_password,
         );
         if (!validPassword) {
           return response
@@ -86,13 +95,13 @@ app.post(
     } catch (error) {
       response.status(500).json({ error });
     }
-  }
+  },
 );
 
 app.get("/api/products", async (_request, response: Response) => {
   try {
     const { rows }: QueryResult<ProductType> = await database.query(
-      "SELECT * FROM products"
+      "SELECT * FROM products",
     );
     response.send(rows);
   } catch (error) {
@@ -109,13 +118,13 @@ app.get(
     try {
       const { rows }: QueryResult<OrderType> = await database.query(
         "SELECT * FROM orders WHERE user_id=$1",
-        [user_id]
+        [user_id],
       );
       response.send(rows);
     } catch (error) {
       response.status(500).json({ error });
     }
-  }
+  },
 );
 
 app.post(
@@ -128,16 +137,16 @@ app.post(
       await database.query("SET client_encoding = 'UTF8'");
       const { rows }: QueryResult<OrderType> = await database.query(
         `INSERT INTO orders (user_id, address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [user_id, address, JSON.stringify(cart), delivery, name, price]
+        [user_id, address, JSON.stringify(cart), delivery, name, price],
       );
       response.send(rows);
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 );
 
-app.use(express.static(path.join(path.resolve(), "dist")));
+// app.use(express.static(path.join(path.resolve(), "dist")));
 
 app.listen(port, () => {
   console.log("Webbtjänsten kan nu ta emot anrop på port " + port);

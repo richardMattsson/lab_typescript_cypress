@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  backend:
+    build: backend
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - PGURI=${PGURI}
+
+    ports:
+      - "3000:3000"
+  database:
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    image: postgres
+
+    healthcheck:
+      interval: 5s
+      retries: 5
+      test: "pg_isready --username=postgres"
+
+    volumes:
+      - ./data:/var/lib/postgresql
+      - ./backend/docker-entrypoint:/docker-entrypoint-initdb.d
