@@ -1,10 +1,9 @@
 import express from "express";
-// import path from "path";
 import dotenv from "dotenv";
 import { Client } from "pg";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { database } from "./database.ts";
+
 import type { QueryResult } from "pg";
 import type { ProductType, OrderType } from "./types.ts";
 import { verifyToken, type AuthRequest } from "./authMiddleware.ts";
@@ -45,7 +44,7 @@ app.post(
     try {
       const { email, password } = request.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      await database.query(
+      await client.query(
         "INSERT INTO users (email, hashed_password) values($1, $2)",
         [email, hashedPassword],
       );
@@ -64,7 +63,7 @@ app.post(
   ) => {
     try {
       const { email, password } = request.body;
-      const { rows }: QueryResult<UserType> = await database.query(
+      const { rows }: QueryResult<UserType> = await client.query(
         "SELECT * FROM users WHERE email=$1",
         [email],
       );
@@ -100,7 +99,7 @@ app.post(
 
 app.get("/api/products", async (_request, response: Response) => {
   try {
-    const { rows }: QueryResult<ProductType> = await database.query(
+    const { rows }: QueryResult<ProductType> = await client.query(
       "SELECT * FROM products",
     );
     response.send(rows);
@@ -116,7 +115,7 @@ app.get(
     const user_id = request.user_id;
 
     try {
-      const { rows }: QueryResult<OrderType> = await database.query(
+      const { rows }: QueryResult<OrderType> = await client.query(
         "SELECT * FROM orders WHERE user_id=$1",
         [user_id],
       );
@@ -134,8 +133,8 @@ app.post(
     const { address, cart, delivery, name, price } = request.body;
     const user_id = request.user_id;
     try {
-      await database.query("SET client_encoding = 'UTF8'");
-      const { rows }: QueryResult<OrderType> = await database.query(
+      await client.query("SET client_encoding = 'UTF8'");
+      const { rows }: QueryResult<OrderType> = await client.query(
         `INSERT INTO orders (user_id, address, cart, delivery, name, price ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
         [user_id, address, JSON.stringify(cart), delivery, name, price],
       );

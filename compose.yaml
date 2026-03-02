@@ -18,7 +18,10 @@ services:
   database:
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    image: postgres
+      - PGDATA=/var/lib/postgresql/18/docker
+    image: postgres:18
+    ports:
+      - "5433:5432"
 
     healthcheck:
       interval: 5s
