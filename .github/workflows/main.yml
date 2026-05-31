@@ -45,7 +45,7 @@ jobs:
         working-directory: backend
         run: | 
           npm run dev &
-          npx wait-on http://localhost:9999
+          npx wait-on tcp:9999
         env:
           PGURI: postgresql://postgres:postgres@localhost:5432/testdb
           PORT: 9999
