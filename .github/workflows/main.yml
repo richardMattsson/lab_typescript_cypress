@@ -39,16 +39,16 @@ jobs:
 
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm install  
+        run: npm install
 
       - name: Start backend server
         working-directory: backend
-        run: | 
+        run: |
           npm run dev &
-          npx wait-on tcp:9999
+          npx wait-on tcp:3000
         env:
           PGURI: postgresql://postgres:postgres@localhost:5432/testdb
-          PORT: 9999
+          PORT: 3000
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
