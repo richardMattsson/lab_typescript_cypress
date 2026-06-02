@@ -1,5 +1,4 @@
 :root {
-  /* padding: 15px; */
   min-height: 100dvh;
   display: flex;
   justify-content: center;
@@ -78,17 +77,16 @@ body {
 }
 .product-modal-background {
   position: fixed;
-  inset: 0;
+  inset: inherit;
   z-index: 1;
+  min-height: 100dvh;
+  width: 340px;
 
   bottom: 40px;
-  min-height: 100dvh;
-  width: 380px;
-
   display: grid;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #ffffff94;
 }
 
 .product-name {
